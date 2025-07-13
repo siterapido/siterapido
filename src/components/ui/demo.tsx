@@ -82,16 +82,28 @@ export function FocusCardsDemo() {
       src: "/assets/site - engicore.png",
     },
     {
-      title: "Forest Adventure",
-      src: "https://images.unsplash.com/photo-1518710843675-2540dd79065c?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
+      title: "Site Alive",
+      src: "/assets/site - alive.png",
     },
     {
-      title: "Valley of life",
-      src: "https://images.unsplash.com/photo-1600271772470-bd22a42787b3?q=80&w=3072&auto=format&fit=crop&ixlib=rb-4.0.3",
+      title: "Site Francais",
+      src: "/assets/site - portifolio - francais.png",
     },
     {
-      title: "Camping is for pros",
-      src: "https://images.unsplash.com/photo-1486915309851-b0cc1f8a0084?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
+      title: "Site MM",
+      src: "/assets/site - portifolio - mm.png",
+    },
+    {
+      title: "Site Conexao",
+      src: "/assets/site - portifolio - conexao.png",
+    },
+    {
+      title: "Site Josue",
+      src: "/assets/site - portifolio - josue.png",
+    },
+    {
+      title: "Site Poramor",
+      src: "/assets/site - portifolio - poramor.png",
     },
   ];
 

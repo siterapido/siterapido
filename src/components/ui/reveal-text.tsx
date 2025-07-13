@@ -31,7 +31,7 @@ export function RevealText({
     const words = ref.current.querySelectorAll("span[data-word]");
     gsap.set(words, { opacity: 0, filter: "blur(8px)" });
 
-    let tl = gsap.timeline({
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ref.current,
         start: "top 80%",

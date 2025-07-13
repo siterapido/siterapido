@@ -2,11 +2,9 @@ import { Header1 } from "@/components/ui/header";
 import { ProblemSection } from "@/components/ui/problem-section";
 import { useEffect, useState } from "react";
 import { FullpageContainer } from "@/components/layout/FullpageContainer";
-import { FullpageSection } from "@/components/layout/FullpageSection";
 import { Hero } from "@/components/ui/animated-hero";
 import { FrustrationSection } from "./components/sections/FrustrationSection";
 import { ComoFuncionaSection } from "./components/sections/ComoFuncionaSection";
-import { FeatureStepsDemo } from "@/components/ui/feature-section-demo";
 import { PricingSection } from "./components/sections/PricingSection";
 import { AboutSection } from "./components/sections/AboutSection";
 import { FAQ } from "@/components/ui/faq-section";
@@ -55,9 +53,9 @@ function App() {
       <Hero />
       <FocusCardsDemo />
       <ProblemSection />
+      <ComoFuncionaSection />
       <SolutionSection />
       <PortfolioSection />
-      <FeatureStepsDemo />
       <PricingSection />
       <AboutSection />
       <FAQ />

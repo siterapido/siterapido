@@ -62,7 +62,7 @@ const faqs = [
 
 function FAQ() {
   return (
-    <div className="w-full py-20 lg:py-40">
+    <section id="faq" className="w-full py-20 lg:py-40">
       <div className="container mx-auto">
         <div className="grid lg:grid-cols-2 gap-10">
           <div className="flex gap-10 flex-col">
@@ -99,7 +99,7 @@ function FAQ() {
           </Accordion>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

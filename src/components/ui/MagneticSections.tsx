@@ -91,7 +91,7 @@ export const MagneticSections: React.FC<MagneticSectionsProps> = ({ children }) 
         gsap.set(section, { y: idx > current ? "100%" : "-100%", skewY: 0, scaleY: 1, zIndex: 1 });
       }
     });
-    // eslint-disable-next-line
+     
   }, [current, children.length]);
 
   return (

@@ -15,9 +15,8 @@ export function SolutionSection() {
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Coluna Esquerda: Espaço para ilustração */}
           <div className="flex items-center justify-center order-1 md:order-none">
-            {/* Substitua a imagem abaixo por uma ilustração relevante */}
             <img
-              src="/assets/LOGO PRINCIPAL2.png"
+              src="/assets/site-solucao.png"
               alt="Ilustração solução Site Rápido"
               className="w-full max-w-xl h-auto md:w-[380px] md:max-w-none lg:w-[420px] xl:w-[480px] rounded-none object-contain"
               loading="lazy"

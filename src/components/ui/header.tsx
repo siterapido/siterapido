@@ -32,18 +32,23 @@ function Header1() {
             description: "Veja sites já entregues."
         },
         {
+            title: "Planos",
+            href: "#planos",
+            description: "Veja nossos planos e preços."
+        },
+        {
+            title: "Sobre",
+            href: "#about",
+            description: "Conheça nossa equipe."
+        },
+        {
             title: "FAQ",
             href: "#faq",
             description: "Perguntas frequentes."
         },
-        {
-            title: "Contato",
-            href: "#contato",
-            description: "Fale com a gente."
-        },
     ];
     const [isOpen, setOpen] = useState(false);
-    const [logoSrc, setLogoSrc] = useState('/assets/LOGO PRINCIPAL.png');
+    const [logoSrc, setLogoSrc] = useState('/assets/LOGO PRINCIPAL-preta.png');
 
     // Remover todos os efeitos relacionados ao tema escuro e troca de logo
 
@@ -58,12 +63,33 @@ function Header1() {
         };
     }, [isOpen]);
 
+    useEffect(() => {
+        const handleMenuClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
+                const href = target.getAttribute('href')!;
+                const section = document.querySelector(href);
+                if (section) {
+                    e.preventDefault();
+                    const header = document.querySelector('header');
+                    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+                    const sectionTop = (section as HTMLElement).getBoundingClientRect().top + window.scrollY;
+                    window.scrollTo({
+                        top: sectionTop - headerHeight - 8, // 8px de margem extra
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        };
+        document.addEventListener('click', handleMenuClick);
+        return () => document.removeEventListener('click', handleMenuClick);
+    }, []);
+
     return (
-        <header className="w-full z-40 fixed top-0 left-0 backdrop-blur-md backdrop-saturate-150 bg-black border-b border-neutral-900 transition-colors duration-300 text-white">
+        <header className="w-full z-50 fixed top-0 left-0 bg-white/90 border-b border-neutral-200 shadow-md backdrop-blur-sm transition-colors duration-300 text-neutral-900">
             <div className="container mx-auto min-h-20 flex items-center justify-between px-4">
                 {/* Logo */}
                 <div className="flex items-center gap-4">
-                  {/* Removido o span de depuração do valor de dark */}
                   {logoSrc && (
                     <img 
                       src={logoSrc} 
@@ -79,7 +105,7 @@ function Header1() {
                     <NavigationMenuList>
                             {navigationItems.map((item) => (
                                 <NavigationMenuItem key={item.title}>
-                                    <NavigationMenuLink href={item.href} className="font-semibold text-base px-3 py-2 hover:underline focus:underline text-white">
+                                    <NavigationMenuLink href={item.href} className="font-semibold text-base px-3 py-2 hover:underline focus:underline text-neutral-900 hover:text-primary">
                                         {item.title}
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
@@ -90,16 +116,14 @@ function Header1() {
                 
                 {/* Direita: Botões e tema (Desktop) */}
                 <div className="hidden md:flex items-center gap-2 lg:gap-4">
-                    <Button variant="outline" className="font-semibold px-6 py-2 rounded-xl text-base border-white text-white bg-transparent hover:bg-white/10">Entrar</Button>
-                    <Button variant="default" className="font-semibold px-6 py-2 rounded-xl text-base bg-white text-black hover:bg-neutral-200">Comece agora</Button>
-                    {/* Botão de alternância de tema removido */}
+                    <Button variant="outline" className="font-semibold px-6 py-2 rounded-xl text-base border-neutral-300 text-neutral-900 bg-white hover:bg-neutral-100">Entrar</Button>
+                    <Button variant="default" className="font-semibold px-6 py-2 rounded-xl text-base bg-neutral-900 text-white hover:bg-neutral-800">Comece agora</Button>
                 </div>
 
                 {/* Botão de Menu (Mobile) */}
                 <div className="flex md:hidden items-center gap-2">
-                    {/* Botão de alternância de tema removido */}
-                    <button onClick={() => setOpen(!isOpen)} className="p-2 rounded-md hover:bg-muted transition-colors">
-                        <Menu className="w-6 h-6" />
+                    <button onClick={() => setOpen(!isOpen)} className="p-2 rounded-md hover:bg-neutral-100 transition-colors">
+                        <Menu className="w-6 h-6 text-neutral-900" />
                     </button>
                 </div>
             </div>
@@ -112,7 +136,7 @@ function Header1() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="md:hidden fixed top-0 left-0 w-full h-screen bg-black z-50 p-4 pt-20 text-white"
+                        className="md:hidden fixed top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-sm z-50 p-4 pt-20 text-neutral-900"
                     >
                         <div className="container mx-auto flex flex-col h-full">
                             <button onClick={() => setOpen(false)} className="absolute top-7 right-4 p-2 rounded-md">
@@ -121,13 +145,13 @@ function Header1() {
                             <nav className="flex flex-col gap-6 text-center mt-8">
                                 {navigationItems.map((item) => (
                                     <div key={item.title}>
-                                        <a href={item.href} onClick={() => setOpen(false)} className="text-2xl font-bold hover:underline text-white">{item.title}</a>
+                                        <a href={item.href} onClick={() => setOpen(false)} className="text-2xl font-bold hover:underline text-neutral-900 hover:text-primary">{item.title}</a>
                                     </div>
                                 ))}
                             </nav>
                              <div className="mt-auto flex flex-col gap-3 pb-8">
-                                <Button variant="outline" size="lg" className="font-semibold text-lg border-white text-white bg-transparent hover:bg-white/10">Entrar</Button>
-                                <Button variant="default" size="lg" className="font-semibold text-lg bg-white text-black hover:bg-neutral-200">Comece agora</Button>
+                                <Button variant="outline" size="lg" className="font-semibold text-lg border-neutral-300 text-neutral-900 bg-white hover:bg-neutral-100">Entrar</Button>
+                                <Button variant="default" size="lg" className="font-semibold text-lg bg-neutral-900 text-white hover:bg-neutral-800">Comece agora</Button>
                             </div>
                         </div>
                     </motion.div>

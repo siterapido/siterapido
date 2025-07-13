@@ -17,7 +17,7 @@ export function RainbowButton({
       className={cn(
         "group relative inline-flex h-11 animate-rainbow cursor-pointer items-center justify-center rounded-xl border-0 bg-[length:200%] px-8 py-2 font-medium text-primary-foreground transition-colors [background-clip:padding-box,border-box,border-box] [background-origin:border-box] [border:calc(0.16*1rem)_solid_transparent] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
         // before styles
-        "before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[40%] before:w-4/5 before:-translate-x-1/2 before:animate-rainbow before:bg-[linear-gradient(90deg,hsl(var(--color-1)),hsl(var(--color-5)),hsl(var(--color-3)),hsl(var(--color-4)),hsl(var(--color-2)))] before:bg-[length:200%] before:[filter:blur(1.5rem)] before:opacity-80",
+        "before:absolute before:bottom-[-20%] before:left-1/2 before:z-0 before:h-[120%] before:w-[180%] before:-translate-x-1/2 before:animate-none before:bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.28)_0%,rgba(255,255,255,0.16)_50%,transparent_90%)] before:[filter:blur(2.5rem)] before:opacity-90",
         background === 'white'
           ? 'bg-white text-black'
           : [

@@ -34,34 +34,51 @@ export function FrustrationSection() {
   return (
     <section className="relative py-24 sm:py-32 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight">
-            Cansado de promessas falsas e orçamentos astronômicos?
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Se você já tentou criar um site, provavelmente já se deparou com isso:
-          </p>
+        {/* Layout responsivo: imagem em cima no mobile, ao lado no desktop */}
+        <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+          {/* Imagem */}
+          <div className="flex-shrink-0 flex justify-center md:justify-start mb-8 md:mb-0 md:w-1/2">
+            <img
+              src="/assets/ChatGPT Image 10 de jul. de 2025, 13_36_53.png"
+              alt="Pessoa frustrada com site"
+              className="w-60 h-auto md:w-full max-w-xs md:max-w-md"
+              loading="lazy"
+            />
+          </div>
+          {/* Conteúdo textual */}
+          <div className="md:w-1/2">
+            {/* Título e texto */}
+            <div className="text-center md:text-left max-w-3xl mx-auto md:mx-0 mb-8">
+              <h2 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight">
+                Cansado de promessas falsas e orçamentos astronômicos?
+              </h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Se você já tentou criar um site, provavelmente já se deparou com isso:
+              </p>
+            </div>
+
+            <motion.ul
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="space-y-4 max-w-3xl mx-auto md:mx-0"
+            >
+              {frustrations.map((text, index) => (
+                <motion.li
+                  key={index}
+                  variants={itemVariants}
+                  className="flex items-center gap-4 p-5 sm:p-6 bg-card rounded-2xl border border-border/40 shadow-sm"
+                >
+                  <XCircle className="w-7 h-7 sm:w-8 sm:h-8 text-destructive flex-shrink-0" />
+                  <span className="text-lg font-medium text-card-foreground">{text}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
         </div>
 
-        <motion.ul
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          className="space-y-4 max-w-3xl mx-auto"
-        >
-          {frustrations.map((text, index) => (
-            <motion.li
-              key={index}
-              variants={itemVariants}
-              className="flex items-center gap-4 p-5 sm:p-6 bg-card rounded-2xl border border-border/40 shadow-sm"
-            >
-              <XCircle className="w-7 h-7 sm:w-8 sm:h-8 text-destructive flex-shrink-0" />
-              <span className="text-lg font-medium text-card-foreground">{text}</span>
-            </motion.li>
-          ))}
-        </motion.ul>
-
+        {/* Bloco de destaque */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -75,7 +92,6 @@ export function FrustrationSection() {
               aria-hidden="true" 
               className="absolute inset-0 w-full h-full bg-primary/10 blur-3xl opacity-40 animate-pulse" 
             />
-            
             <div className="relative z-10 flex flex-col items-center text-center gap-4">
               <Sparkles className="w-10 h-10 text-primary" />
               <p className="text-xl md:text-2xl italic font-medium text-foreground">
@@ -84,7 +100,6 @@ export function FrustrationSection() {
             </div>
           </div>
         </motion.div>
-
       </div>
     </section>
   );
