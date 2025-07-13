@@ -1,4 +1,4 @@
-name: Deploy Lovable via FTP na Hostinger
+name: Deploy Cursor via FTP na Hostinger
 
 on:
   push:
