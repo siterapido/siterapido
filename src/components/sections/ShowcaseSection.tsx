@@ -1,6 +1,4 @@
 import { motion, useInView } from "framer-motion";
-import { FullpageSection } from "@/components/layout/FullpageSection";
-import type { FullpageSectionProps } from "@/components/layout/FullpageSection";
 import { useEffect, useRef } from "react";
 
 const showcaseSites = [

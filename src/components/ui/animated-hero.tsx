@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, AnimatePresence, useInView } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { MoveRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Typewriter } from "@/components/ui/typewriter-text";
@@ -66,33 +66,6 @@ function AnimatedGridBG() {
   );
 }
 
-const floatingSites = [
-  {
-    src: "/assets/site - sancao.png",
-    alt: "Site Sancao",
-    layoutId: "site-sancao",
-    title: "Sancao"
-  },
-  {
-    src: "/assets/site - hotledas.png",
-    alt: "Site Hotledas",
-    layoutId: "site-hotledas",
-    title: "Hotledas"
-  },
-  {
-    src: "/assets/site - engicore.png",
-    alt: "Site Engicore",
-    layoutId: "site-engicore",
-    title: "Engicore"
-  },
-  {
-    src: "/assets/site - alive.png",
-    alt: "Site Alive",
-    layoutId: "site-alive",
-    title: "Alive"
-  },
-];
-
 // Aceita props de transição do FullpageSection
 function Hero(props: FullpageSectionProps) {
   const bullets = [
@@ -102,17 +75,12 @@ function Hero(props: FullpageSectionProps) {
   ];
 
   // Hook para detectar se a galeria está visível
-  const [showcaseRef, showcaseInView] = useSectionInView({ threshold: 0.4 });
   const [morphDone, setMorphDone] = useState(false);
   const [morphTriggered, setMorphTriggered] = useState(false); // novo estado
 
   // Ref para a Hero Section
   const heroRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(heroRef, { once: true, margin: "-20% 0px -20% 0px" });
-
-  // Controla se os sites estão na Hero ou no Grid
-  const showInHero = !morphTriggered && !morphDone;
-  const showInGrid = morphTriggered;
+  const showcaseInView = useSectionInView({ threshold: 0.4 });
 
   // Controla o timing do morph
   useEffect(() => {

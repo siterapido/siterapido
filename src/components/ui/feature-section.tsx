@@ -22,7 +22,6 @@ interface FeatureStepsProps {
 export function FeatureSteps({
   features,
   className,
-  title = "How to get Started",
   autoPlayInterval = 3000,
   imageHeight = "h-[400px]",
 }: FeatureStepsProps) {

@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
 import type { FC } from "react";
 import { RevealText } from "@/components/ui/reveal-text";
 

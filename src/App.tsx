@@ -1,15 +1,12 @@
 import { Header1 } from "@/components/ui/header";
 import { ProblemSection } from "@/components/ui/problem-section";
 import { useEffect, useState } from "react";
-import { FullpageContainer } from "@/components/layout/FullpageContainer";
 import { Hero } from "@/components/ui/animated-hero";
-import { FrustrationSection } from "./components/sections/FrustrationSection";
 import { ComoFuncionaSection } from "./components/sections/ComoFuncionaSection";
 import { PricingSection } from "./components/sections/PricingSection";
 import { AboutSection } from "./components/sections/AboutSection";
 import { FAQ } from "@/components/ui/faq-section";
 import { Footerdemo } from "@/components/ui/footer-section";
-import { motion, AnimatePresence } from "framer-motion";
 import { SolutionSection } from "./components/sections";
 import { FocusCardsDemo } from "@/components/ui/demo";
 import { PortfolioSection } from "./components/sections/PortfolioSection";
@@ -30,14 +27,6 @@ function App() {
     if (typeof window === "undefined") return true;
     return document.documentElement.classList.contains("dark");
   });
-
-  // Estado para controlar a transição entre as seções
-  const [showcaseEntering, setShowcaseEntering] = useState(false);
-
-  // Callback para detectar quando a ShowcaseSection está entrando
-  const handleShowcaseEntering = (isEntering: boolean) => {
-    setShowcaseEntering(isEntering);
-  };
 
   useEffect(() => {
     toggleDarkMode(dark);

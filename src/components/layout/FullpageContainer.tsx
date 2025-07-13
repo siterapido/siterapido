@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
-import type { ReactNode } from "react";
+import React, { useState, useEffect } from "react";
 
 interface FullpageContainerProps {
   children: React.ReactNode;
@@ -9,7 +8,6 @@ interface FullpageContainerProps {
 export function FullpageContainer({ children }: FullpageContainerProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const lastScrollY = useRef(0);
   const isDesktop = typeof window !== 'undefined' && window.innerWidth >= 1280;
 
   useEffect(() => {

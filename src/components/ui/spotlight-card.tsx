@@ -10,14 +10,6 @@ interface GlowCardProps {
   customSize?: boolean; // When true, ignores size prop and uses width/height or className
 }
 
-const glowColorMap = {
-  blue: { base: 220, spread: 200 },
-  purple: { base: 280, spread: 300 },
-  green: { base: 120, spread: 200 },
-  red: { base: 0, spread: 200 },
-  orange: { base: 30, spread: 200 }
-};
-
 const sizeMap = {
   sm: 'w-48 h-64',
   md: 'w-64 h-80',
@@ -27,7 +19,6 @@ const sizeMap = {
 const GlowCard: React.FC<GlowCardProps> = ({ 
   children, 
   className = '', 
-  glowColor = 'blue',
   size = 'md',
   width,
   height,
@@ -49,9 +40,6 @@ const GlowCard: React.FC<GlowCardProps> = ({
     document.addEventListener('pointermove', syncPointer);
     return () => document.removeEventListener('pointermove', syncPointer);
   }, []);
-
-  // Forçar borda preta sólida
-  const borderColor = '#000';
 
   const getSizeClasses = () => {
     if (customSize) return '';

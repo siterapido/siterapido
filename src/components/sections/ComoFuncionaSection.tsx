@@ -1,6 +1,5 @@
 import { Timeline } from "@/components/ui/timeline";
 import { Rocket, Code2, Lightbulb } from "lucide-react";
-import React from "react";
 
 export function ComoFuncionaSection() {
   const data = [

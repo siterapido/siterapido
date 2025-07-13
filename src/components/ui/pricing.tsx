@@ -7,7 +7,6 @@ import { Check, Star } from "lucide-react";
 import React, { useState, useRef } from "react";
 // @ts-ignore
 import confetti from "canvas-confetti";
-import NumberFlow from "@number-flow/react";
 import { GlowCard } from "@/components/ui/spotlight-card";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 
