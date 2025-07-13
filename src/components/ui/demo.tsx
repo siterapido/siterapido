@@ -71,39 +71,39 @@ export function FocusCardsDemo() {
   const cards = [
     {
       title: "Site Sancao",
-      src: "/assets/site - sancao.png",
+      src: "/assets/site-sancao.png",
     },
     {
       title: "Site Hotledas",
-      src: "/assets/site - hotledas.png",
+      src: "/assets/site-hotledas.png",
     },
     {
       title: "Site Engicore",
-      src: "/assets/site - engicore.png",
+      src: "/assets/site-engicore.png",
     },
     {
       title: "Site Alive",
-      src: "/assets/site - alive.png",
+      src: "/assets/site-alive.png",
     },
     {
       title: "Site Francais",
-      src: "/assets/site - portifolio - francais.png",
+      src: "/assets/site-portifolio-francais.png",
     },
     {
       title: "Site MM",
-      src: "/assets/site - portifolio - mm.png",
+      src: "/assets/site-portifolio-mm.png",
     },
     {
       title: "Site Conexao",
-      src: "/assets/site - portifolio - conexao.png",
+      src: "/assets/site-portifolio-conexao.png",
     },
     {
       title: "Site Josue",
-      src: "/assets/site - portifolio - josue.png",
+      src: "/assets/site-portifolio-josue.png",
     },
     {
       title: "Site Poramor",
-      src: "/assets/site - portifolio - poramor.png",
+      src: "/assets/site-portifolio-poramor.png",
     },
   ];
 

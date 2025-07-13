@@ -48,7 +48,7 @@ function Header1() {
         },
     ];
     const [isOpen, setOpen] = useState(false);
-    const [logoSrc, setLogoSrc] = useState('/assets/LOGO PRINCIPAL-preta.png');
+    const [logoSrc, setLogoSrc] = useState('/assets/logo-principal-preta.png');
 
     // Remover todos os efeitos relacionados ao tema escuro e troca de logo
 

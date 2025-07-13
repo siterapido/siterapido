@@ -39,7 +39,7 @@ export function ProblemSection() {
           {/* Coluna Direita: Imagem */}
           <div className="flex items-center justify-center">
             <img
-              src="/assets/site - problema - cena problema.png"
+              src="/assets/site-problema-cena-problema.png"
               alt="Ilustração problema"
               className="w-full max-w-xl h-auto md:w-[380px] md:max-w-none lg:w-[420px] xl:w-[480px] rounded-none object-contain"
               loading="lazy"
@@ -59,7 +59,7 @@ export function ProblemSectionInverted() {
           {/* Coluna Esquerda: Imagem */}
           <div className="flex items-center justify-center">
             <img
-              src="/assets/site - problema - cena problema.png"
+              src="/assets/site-problema-cena-problema.png"
               alt="Ilustração problema"
               className="w-full max-w-xl h-auto md:w-[380px] md:max-w-none lg:w-[420px] xl:w-[480px] rounded-none object-contain"
               loading="lazy"

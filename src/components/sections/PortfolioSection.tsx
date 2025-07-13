@@ -3,15 +3,15 @@ import { useState } from "react";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 
 const portfolioItems = [
-  { id: 1, image: "/assets/site - sancao.png" },
-  { id: 2, image: "/assets/site - hotledas.png" },
-  { id: 3, image: "/assets/site - engicore.png" },
-  { id: 4, image: "/assets/site - alive.png" },
-  { id: 5, image: "/assets/site - portifolio - francais.png" },
-  { id: 6, image: "/assets/site - portifolio - mm.png" },
-  { id: 7, image: "/assets/site - portifolio - conexao.png" },
-  { id: 8, image: "/assets/site - portifolio - josue.png" },
-  { id: 9, image: "/assets/site - portifolio - poramor.png" },
+  { id: 1, image: "/assets/site-sancao.png" },
+  { id: 2, image: "/assets/site-hotledas.png" },
+  { id: 3, image: "/assets/site-engicore.png" },
+  { id: 4, image: "/assets/site-alive.png" },
+  { id: 5, image: "/assets/site-portifolio-francais.png" },
+  { id: 6, image: "/assets/site-portifolio-mm.png" },
+  { id: 7, image: "/assets/site-portifolio-conexao.png" },
+  { id: 8, image: "/assets/site-portifolio-josue.png" },
+  { id: 9, image: "/assets/site-portifolio-poramor.png" },
 ];
 
 function getColumns<T>(items: T[], cols: number): T[][] {
