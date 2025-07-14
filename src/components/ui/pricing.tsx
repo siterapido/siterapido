@@ -3,7 +3,7 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Check, Star } from "lucide-react";
+import { Check, Star, PhoneCall } from "lucide-react";
 import React, { useState, useRef } from "react";
 // @ts-ignore
 import confetti from "canvas-confetti";
@@ -151,13 +151,14 @@ export function Pricing({
             <div
               className={cn(
                 `rounded-2xl border-[1px] p-6 text-center lg:flex lg:flex-col lg:justify-center relative`,
-                plan.isPopular ? "border-primary border-2 bg-black text-white" : "border-border bg-background text-foreground",
+                plan.isPopular ? "bg-black text-white" : "border-border bg-background text-foreground",
                 "flex flex-col",
                 !plan.isPopular && "mt-5",
                 index === 0 && "origin-right",
                 index === 2 && "origin-left",
                 cardZ
               )}
+              style={{}}
             >
               {plan.isPopular && (
                 <div className="absolute top-0 right-0 bg-primary py-0.5 px-2 rounded-bl-xl rounded-tr-xl flex items-center">
@@ -212,7 +213,21 @@ export function Pricing({
                 <hr className={cn("w-full my-4", plan.isPopular ? "border-white/30" : "")} />
                 { !plan.isPopular && (
                   <a
-                    href={plan.href}
+                    href={
+                      plan.buttonText.toLowerCase().includes('fale') || plan.buttonText.toLowerCase().includes('orçamento')
+                        ? 'https://wa.me/5584999810711?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%aas%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F'
+                        : plan.href
+                    }
+                    target={
+                      plan.buttonText.toLowerCase().includes('fale') || plan.buttonText.toLowerCase().includes('orçamento')
+                        ? '_blank'
+                        : undefined
+                    }
+                    rel={
+                      plan.buttonText.toLowerCase().includes('fale') || plan.buttonText.toLowerCase().includes('orçamento')
+                        ? 'noopener noreferrer'
+                        : undefined
+                    }
                     className={cn(
                       buttonVariants({
                         variant: plan.isPopular ? "default" : "outline",
@@ -224,7 +239,14 @@ export function Pricing({
                         : "bg-background text-foreground hover:bg-primary hover:text-primary-foreground"
                     )}
                   >
-                    {plan.buttonText}
+                    {plan.buttonText.toLowerCase().includes('fale') || plan.buttonText.toLowerCase().includes('orçamento') ? (
+                      <>
+                        <PhoneCall className="w-5 h-5 mr-2 inline-block align-middle" />
+                        {plan.buttonText}
+                      </>
+                    ) : (
+                      plan.buttonText
+                    )}
                   </a>
                 )}
                 <p className={cn("mt-6 text-xs leading-5 whitespace-pre-line", plan.isPopular ? "text-white" : "text-muted-foreground")}>

@@ -45,6 +45,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
+        style={{ fontFamily: 'Inter, sans-serif', fontWeight: 700, fontStyle: 'normal' }}
         ref={ref}
         {...props}
       />

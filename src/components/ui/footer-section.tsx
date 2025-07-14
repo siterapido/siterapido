@@ -46,11 +46,11 @@ function Footerdemo() {
           <div>
             <h3 className="mb-4 text-lg font-semibold">Links rápidos</h3>
             <nav className="space-y-2 text-sm">
-              <a href="#hero" className="block transition-colors hover:text-neutral-300 text-white">Início</a>
-              <a href="#como-funciona" className="block transition-colors hover:text-primary">Como funciona</a>
-              <a href="#portfolio" className="block transition-colors hover:text-primary">Portfólio</a>
-              <a href="#faq" className="block transition-colors hover:text-primary">FAQ</a>
-              <a href="#contato" className="block transition-colors hover:text-primary">Contato</a>
+              <a href="#hero" className="block transition-colors hover:text-[#84CC15] text-white">Início</a>
+              <a href="#como-funciona" className="block transition-colors hover:text-[#84CC15] text-white">Como funciona</a>
+              <a href="#portfolio" className="block transition-colors hover:text-[#84CC15] text-white">Portfólio</a>
+              <a href="#faq" className="block transition-colors hover:text-[#84CC15] text-white">FAQ</a>
+              <a href="#contato" className="block transition-colors hover:text-[#84CC15] text-white">Contato</a>
             </nav>
           </div>
           {/* Redes sociais */}
@@ -60,10 +60,16 @@ function Footerdemo() {
               <TooltipProvider>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <Button variant="outline" size="icon" className="rounded-full bg-black border-none">
-                      <Instagram className="h-4 w-4 text-white" />
+                    <a
+                      href="https://instagram.com/siterapido.tech"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="rounded-full bg-black border-none flex items-center justify-center h-10 w-10 group"
+                      aria-label="Instagram @siterapido.tech"
+                    >
+                      <Instagram className="h-4 w-4 text-white group-hover:text-[#84CC15] transition-colors" />
                       <span className="sr-only">Instagram</span>
-                    </Button>
+                    </a>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>@siterapido.tech</p>
@@ -80,8 +86,8 @@ function Footerdemo() {
             © 2024 Site Rápido. Todos os direitos reservados.
           </p>
           <nav className="flex gap-4 text-sm">
-            <a href="#" className="transition-colors hover:text-neutral-300 text-white">Política de Privacidade</a>
-            <a href="#" className="transition-colors hover:text-neutral-300 text-white">Termos de Uso</a>
+            <a href="#" className="transition-colors hover:text-[#84CC15] text-white">Política de Privacidade</a>
+            <a href="#" className="transition-colors hover:text-[#84CC15] text-white">Termos de Uso</a>
           </nav>
         </div>
       </div>

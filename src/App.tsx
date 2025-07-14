@@ -1,13 +1,11 @@
 import { Header1 } from "@/components/ui/header";
-import { ProblemSection } from "@/components/ui/problem-section";
 import { useEffect, useState } from "react";
 import { Hero } from "@/components/ui/animated-hero";
 import { ComoFuncionaSection } from "./components/sections/ComoFuncionaSection";
-import { PricingSection } from "./components/sections/PricingSection";
+import { PricingSection } from "@/components/ui/pricing-section";
 import { AboutSection } from "./components/sections/AboutSection";
 import { FAQ } from "@/components/ui/faq-section";
 import { Footerdemo } from "@/components/ui/footer-section";
-import { SolutionSection } from "./components/sections";
 import { FocusCardsDemo } from "@/components/ui/demo";
 import { PortfolioSection } from "./components/sections/PortfolioSection";
 
@@ -32,6 +30,25 @@ function App() {
     toggleDarkMode(dark);
   }, [dark]);
 
+  // Lenis Smooth Scroll
+  useEffect(() => {
+    let lenis: any;
+    let cleanup: (() => void) | undefined;
+    import("lenis").then(({ default: Lenis }) => {
+      lenis = new Lenis({
+        autoRaf: true,
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+      cleanup = () => {
+        if (lenis) lenis.destroy();
+      };
+    });
+    return () => {
+      if (cleanup) cleanup();
+    };
+  }, []);
+
   const handleToggleTheme = () => {
     setDark((prevDark) => !prevDark);
   };
@@ -40,12 +57,10 @@ function App() {
     <>
       <Header1 />
       <Hero />
-      <FocusCardsDemo />
-      <ProblemSection />
       <ComoFuncionaSection />
-      <SolutionSection />
-      <PortfolioSection />
       <PricingSection />
+      <PortfolioSection />
+      <FocusCardsDemo />
       <AboutSection />
       <FAQ />
       <Footerdemo />

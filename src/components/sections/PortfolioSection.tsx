@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { RainbowButton } from "@/components/ui/rainbow-button";
+import { Badge } from "@/components/ui/badge";
 
 const portfolioItems = [
   { id: 1, image: "/assets/site-sancao.png" },
@@ -78,11 +79,23 @@ export function PortfolioSection() {
       </div>
       {/* Bloco centralizado no meio da sessão */}
       <div className="relative z-30 flex flex-col items-center justify-center w-full max-w-2xl px-2 py-4 rounded-lg bg-transparent text-center">
-        <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-4 drop-shadow-lg">Criando sites incríveis para nossos clientes</h2>
+        <Badge className="mb-4 bg-[#84CC15] text-black">Portfólio</Badge>
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-white text-center relative">
+          <span className="glow-title">
+            Criando sites <span className="text-[#84CC15]">incríveis</span> para nossos clientes
+          </span>
+        </h2>
         <p className="text-base md:text-xl text-white/90 mb-6 drop-shadow max-w-2xl">Desenvolvemos sites personalizados e modernos que destacam sua marca e geram resultados. Soluções completas de design e desenvolvimento para o seu negócio decolar na internet.</p>
-        <RainbowButton className="pointer-events-auto mx-auto" background="white">
-          Quero meu site agora 🚀
-        </RainbowButton>
+        <a
+          href="https://wa.me/5584999810711?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%AAs%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pointer-events-auto mx-auto"
+        >
+          <RainbowButton background="white">
+            Quero meu site agora 🚀
+          </RainbowButton>
+        </a>
       </div>
       {/* Modal de destaque do site */}
       {selectedItem && (
@@ -104,6 +117,24 @@ export function PortfolioSection() {
           animation-name: portfolio-slide;
           animation-timing-function: linear;
           animation-iteration-count: infinite;
+        }
+        .glow-title {
+          position: relative;
+          display: inline-block;
+          z-index: 1;
+        }
+        .glow-title::after {
+          content: '';
+          position: absolute;
+          left: 0; right: 0; top: 50%; height: 60%;
+          transform: translateY(-50%);
+          background: radial-gradient(ellipse at center, rgba(132,204,21,0.18) 0%, rgba(132,204,21,0.10) 60%, transparent 100%);
+          filter: blur(8px);
+          z-index: -1;
+          pointer-events: none;
+        }
+        .glow-title {
+          text-shadow: 0 2px 16px #84CC15cc, 0 1px 2px #000a;
         }
         @media (max-width: 1023px) {
           .flex-1 { min-width: 50%; }

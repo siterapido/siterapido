@@ -1,13 +1,15 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { MoveRight, ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MoveRight, ChevronDown, PhoneCall } from "lucide-react";
+import { Button as ShadButton } from "@/components/ui/button";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Typewriter } from "@/components/ui/typewriter-text";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { useSectionInView } from "@/hooks/useSectionInView";
 import { FullpageSection } from "@/components/layout/FullpageSection";
 import type { FullpageSectionProps } from "@/components/layout/FullpageSection";
+import React from "react";
 
 function AnimatedGridBG() {
   const controls = useAnimation();
@@ -56,7 +58,7 @@ function AnimatedGridBG() {
       style={{
         backgroundImage: isDark
           ? "repeating-linear-gradient(0deg,rgba(255,255,255,0.07),rgba(255,255,255,0.07) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,0.07),rgba(255,255,255,0.07) 1px,transparent 1px,transparent 40px)"
-          : "repeating-linear-gradient(0deg,rgba(0,0,0,0.07),rgba(0,0,0,0.07) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.07),rgba(0,0,0,0.07) 1px,transparent 1px,transparent 40px)",
+          : "repeating-linear-gradient(0deg,rgba(0,0,0,0.13),rgba(0,0,0,0.13) 1.5px,transparent 1.5px,transparent 40px),repeating-linear-gradient(90deg,rgba(0,0,0,0.13),rgba(0,0,0,0.13) 1.5px,transparent 1.5px,transparent 40px)",
         maskImage:
           "linear-gradient(to bottom,rgba(0,0,0,0.15),rgba(0,0,0,0.7) 80%,transparent)",
         backgroundSize: "40px 40px, 40px 40px",
@@ -69,9 +71,7 @@ function AnimatedGridBG() {
 // Aceita props de transição do FullpageSection
 function Hero(props: FullpageSectionProps) {
   const bullets = [
-    "por apenas R$120/mês",
-    "feito em até 7 dias",
-    "sem fidelidade, sem pegadinhas",
+    "Assinatura por R$ 119,90/mês",
   ];
 
   // Hook para detectar se a galeria está visível
@@ -103,7 +103,7 @@ function Hero(props: FullpageSectionProps) {
   };
 
   return (
-    <div ref={heroRef} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-[80px] pb-4 sm:pt-16"> {/* pt-16 só no sm+ para compensar header fixo, pt-[80px] no mobile para header fixo, pb-4 para garantir visibilidade do botão */}
+    <div ref={heroRef} className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-[80px] pb-4 sm:pt-16" style={{ background: '#F1F3F2' }}> {/* pt-16 só no sm+ para compensar header fixo, pt-[80px] no mobile para header fixo, pb-4 para garantir visibilidade do botão */}
       <FullpageSection {...props} className="w-full h-full flex items-center justify-center overflow-hidden">
         <AnimatedGridBG />
         <div aria-hidden="true" className="absolute inset-0 z-5 pointer-events-none block dark:hidden bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.7)_0%,rgba(255,255,255,0.2)_60%,transparent_100%)]" />
@@ -134,12 +134,12 @@ function Hero(props: FullpageSectionProps) {
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
             <div className="flex flex-col items-start text-left max-w-3xl flex-1 w-full sm:mt-0">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold text-black dark:text-white leading-tight mb-4 break-words w-full">
-                <span className="block">Tenha um site profissional</span>
-                <span className="block">sem complicação</span>
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold text-black dark:text-white leading-tight mb-2 break-words w-full" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>
+                <span className="block" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>Venda mais</span>
+                <span className="block" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>com um site profissional</span>
               </h1>
               <p className="text-base sm:text-lg lg:text-2xl leading-relaxed text-gray-700 dark:text-gray-200 mb-4 max-w-xl">
-                Feito para autônomos e pequenos negócios que precisam de presença online rápida, bonita e sem dor de cabeça.
+                Site profissional e rápido para seu negócio!<br />Transforme cliques em clientes
               </p>
               <div className="flex flex-col items-start w-full mb-4">
                 <span className="relative flex justify-start items-center h-12 lg:h-14 w-full">
@@ -152,11 +152,57 @@ function Hero(props: FullpageSectionProps) {
                   />
                 </span>
               </div>
-              <div className="flex flex-row gap-3 w-full">
-                <RainbowButton className="flex-1 min-w-0 px-4 py-2 text-sm sm:text-base">Quero meu site agora 🚀</RainbowButton>
-                <Button variant="outline" size="lg" className="flex-1 min-w-0 font-semibold text-sm sm:text-base lg:text-lg px-4 sm:px-6 py-2 sm:py-3 rounded-2xl border-gray-200 dark:border-white/20">
-                  Saber mais <MoveRight className="w-5 h-5 ml-2" />
-                </Button>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-2">
+                <ShadButton
+                  asChild
+                  className="flex-1 max-w-xs sm:max-w-md px-8 py-3 text-lg font-bold rounded-full shadow-lg bg-[#84CC15] text-black flex items-center justify-center gap-3 transition-colors duration-200 relative overflow-hidden group hover:bg-[#6ea90f]"
+                  style={{ position: 'relative' }}
+                  size="lg"
+                >
+                  <a
+                    href="https://wa.me/5584999810711?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%aas%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {/* Efeito de brilho animado */}
+                    <span className="pointer-events-none absolute left-[-75%] top-0 w-[150%] h-full opacity-0 group-hover:opacity-60 transition-opacity duration-300 z-10"
+                          style={{
+                            background: 'linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 60%, transparent 100%)',
+                            filter: 'blur(2px)',
+                            animation: 'shine-move 1.2s cubic-bezier(.4,0,.2,1) forwards',
+                          }}
+                    />
+                    <style>{`
+                      @keyframes shine-move {
+                        0% { left: -75%; opacity: 0; }
+                        10% { opacity: 0.5; }
+                        50% { left: 100%; opacity: 0.6; }
+                        100% { left: 100%; opacity: 0; }
+                      }
+                      .group:hover .absolute {
+                        animation: shine-move 1.2s cubic-bezier(.4,0,.2,1) forwards;
+                      }
+                    `}</style>
+                    <PhoneCall className="w-6 h-6 mr-2" />
+                    Orçamento personalizado
+                  </a>
+                </ShadButton>
+                <ShadButton
+                  className="flex-1 max-w-xs sm:max-w-md px-8 py-3 text-lg font-bold rounded-full shadow-lg bg-white text-[#222] border-2 border-[#84CC15] flex items-center justify-center gap-3 hover:bg-[#f3f7ed] transition-colors duration-200"
+                  size="lg"
+                  variant="outline"
+                  onClick={() => {
+                    const section = document.querySelector('#planos');
+                    if (section) {
+                      section.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                >
+                  <span className="flex items-center gap-2">
+                    Ver Plano
+                    <MoveRight className="w-5 h-5" />
+                  </span>
+                </ShadButton>
               </div>
             </div>
             {/* Imagem à direita no desktop */}

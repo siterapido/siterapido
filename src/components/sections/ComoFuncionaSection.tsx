@@ -1,78 +1,91 @@
 import { Timeline } from "@/components/ui/timeline";
 import { Rocket, Code2, Lightbulb } from "lucide-react";
+import CheckIcon from "@/components/ui/check-icon";
+import React, { useRef, useEffect, useState } from "react";
+import { Badge } from "@/components/ui/badge";
 
 export function ComoFuncionaSection() {
-  const data = [
-    {
-      title: (
-        <>
-          <div className="block text-3xl md:text-5xl font-extrabold text-neutral-500 mb-2">Planejamento</div>
-          <div className="flex items-center gap-2 mb-4">
-            <Lightbulb size={24} className="text-green-600" />
-            <span className="text-green-600 font-bold text-lg md:text-xl">Análise Personalizada</span>
-          </div>
-        </>
-      ),
-      content: (
-        <div className="bg-neutral-100 border border-neutral-200 rounded-xl p-5 md:p-6 mt-0">
-          <ul className="list-disc pl-5 text-neutral-800 text-base md:text-lg font-normal space-y-1">
-            <li>Entendimento dos objetivos e público-alvo</li>
-            <li>Estratégia de design e conteúdo sob medida</li>
-            <li>Aprovação do escopo antes de iniciar</li>
-          </ul>
-        </div>
-      ),
-    },
-    {
-      title: (
-        <>
-          <div className="block text-3xl md:text-5xl font-extrabold text-neutral-500 mb-2">Desenvolvimento</div>
-          <div className="flex items-center gap-2 mb-4">
-            <Code2 size={24} className="text-green-600" />
-            <span className="text-green-600 font-bold text-lg md:text-xl">Criação de Excelência</span>
-          </div>
-        </>
-      ),
-      content: (
-        <div className="bg-neutral-100 border border-neutral-200 rounded-xl p-5 md:p-6 mt-0">
-          <ul className="list-disc pl-5 text-neutral-800 text-base md:text-lg font-normal space-y-1">
-            <li>Design moderno e responsivo</li>
-            <li>Elementos que convertem visitantes</li>
-            <li>Otimização para carregamento rápido e SEO</li>
-          </ul>
-        </div>
-      ),
-    },
-    {
-      title: (
-        <>
-          <div className="block text-3xl md:text-5xl font-extrabold text-neutral-500 mb-2">Entrega</div>
-          <div className="flex items-center gap-2 mb-4">
-            <Rocket size={24} className="text-green-600" />
-            <span className="text-green-600 font-bold text-lg md:text-xl">Lançamento e Suporte</span>
-          </div>
-        </>
-      ),
-      content: (
-        <div className="bg-neutral-100 border border-neutral-200 rounded-xl p-5 md:p-6 mt-0">
-          <ul className="list-disc pl-5 text-neutral-800 text-base md:text-lg font-normal space-y-1">
-            <li>Configuração de domínio e hospedagem</li>
-            <li>Integração com ferramentas de análise e marketing</li>
-            <li>Treinamento e suporte contínuo após o lançamento</li>
-          </ul>
-        </div>
-      ),
-    },
+  const [activeIndex, setActiveIndex] = useState(0);
+  const stepRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const headerOffset = 72; // ajuste conforme a altura real do seu menu/header fixo
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const offsets = stepRefs.current.map((ref) => {
+        if (!ref) return Infinity;
+        const rect = ref.getBoundingClientRect();
+        // Ativa quando o topo da etapa cruza o topo visível (abaixo do header)
+        return Math.abs(rect.top - headerOffset);
+      });
+      const min = Math.min(...offsets);
+      setActiveIndex(offsets.indexOf(min));
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const etapas = [
+    { numero: 1, titulo: "Planejamento", icone: Lightbulb, subtitulo: "Análise Personalizada" },
+    { numero: 2, titulo: "Desenvolvimento", icone: Code2, subtitulo: "Criação de Excelência" },
+    { numero: 3, titulo: "Entrega", icone: Rocket, subtitulo: "Lançamento e Suporte" },
   ];
+  const conteudos = [
+    [
+      "Entendimento dos objetivos e público-alvo",
+      "Estratégia de design e conteúdo sob medida",
+      "Aprovação do escopo antes de iniciar",
+    ],
+    [
+      "Design moderno e responsivo",
+      "Elementos que convertem visitantes",
+      "Otimização para carregamento rápido e SEO",
+    ],
+    [
+      "Configuração de domínio e hospedagem",
+      "Integração com ferramentas de análise e marketing",
+      "Treinamento e suporte contínuo após o lançamento",
+    ],
+  ];
+  const data = etapas.map((etapa, idx) => ({
+    numero: etapa.numero,
+    ref: (el: HTMLDivElement | null) => { stepRefs.current[idx] = el; },
+    title: (
+      <>
+        <div className="block text-3xl md:text-5xl font-extrabold text-white mb-2 font-[Coolvetica] tracking-wide">{etapa.titulo}</div>
+        <div className="flex items-center gap-2 mb-4">
+          <etapa.icone size={24} className="text-[#84CC15]" />
+          <span className="font-bold text-lg md:text-xl text-[#84CC15]">{etapa.subtitulo}</span>
+        </div>
+      </>
+    ),
+    content: (
+      <div className="bg-neutral-900 border border-[#84CC15] rounded-xl p-5 md:p-6 mt-0">
+        <ul className="pl-0 text-white text-base md:text-lg font-normal space-y-3">
+          {conteudos[idx].map((item, i) => (
+            <li key={i} className="flex items-start gap-2">
+              <CheckIcon size={20} className="mt-1 text-[#84CC15]" />{item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ),
+  }));
 
   return (
-    <section id="como-funciona" className="w-full bg-white border-b border-neutral-200 py-20 md:py-32">
+    <section id="como-funciona" className="w-full border-b border-neutral-800 py-20 md:py-32" style={{ background: 'radial-gradient(circle at 50% 30%, #181A1B 60%, #050505 100%)' }}>
       <div className="container mx-auto max-w-4xl px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-neutral-900">Como funciona</h2>
-          <p className="text-lg text-neutral-600">Veja como é simples ter seu site pronto com a Site Rápido:</p>
+          <Badge className="mb-4 bg-[#84CC15] text-black">Como funciona</Badge>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-white">
+            Como o <span className="text-[#84CC15]">processo</span> funciona
+          </h2>
+          <p className="text-lg text-neutral-400">
+            Desenvolvemos um processo simples em 3 etapas para criar websites que geram resultados para o seu negócio
+          </p>
         </div>
-        <Timeline data={data} />
+        <Timeline data={data} vertical activeIndex={activeIndex} />
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export function ProblemSection() {
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Coluna Esquerda: Título, subtítulo e bullets */}
           <div className="flex flex-col gap-6 md:gap-10">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white text-left leading-tight">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-black text-center">
               Cansado de promessas falsas e orçamentos astronômicos?
             </h2>
             <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left">

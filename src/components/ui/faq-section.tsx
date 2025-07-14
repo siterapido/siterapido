@@ -68,10 +68,10 @@ function FAQ() {
           <div className="flex gap-10 flex-col">
             <div className="flex gap-4 flex-col">
               <div>
-                <Badge variant="outline">FAQ</Badge>
+                <Badge className="mb-4 bg-black text-white">FAQ</Badge>
               </div>
               <div className="flex gap-2 flex-col">
-                <h4 className="text-3xl md:text-5xl tracking-tighter max-w-xl text-left font-regular">
+                <h4 className="text-3xl md:text-5xl font-extrabold mb-4 text-black text-left">
                   Perguntas mais frequentes
                 </h4>
                 <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground  text-left">
@@ -79,9 +79,16 @@ function FAQ() {
                 </p>
               </div>
               <div className="">
-                <Button className="gap-4" variant="outline">
-                  Falar no WhatsApp <PhoneCall className="w-4 h-4" />
-                </Button>
+                <a
+                  href="https://wa.me/5584999810711?text=Ol%C3%A1%2C%20quero%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20servi%C3%A7o%20de%20voc%C3%AAs."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-1/2"
+                >
+                  <Button className="gap-4 w-full" variant="outline" size="sm">
+                    Falar no WhatsApp <PhoneCall className="w-4 h-4" />
+                  </Button>
+                </a>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import { TiltedScroll } from "@/components/ui/tilted-scroll"
 import { TestimonialCarousel } from "@/components/ui/testimonial"
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { FocusCards } from "@/components/ui/focus-cards";
+import { Pricing } from "@/components/ui/single-pricing-card-1";
 
 function HeroDemo() {
   return (
@@ -108,4 +109,8 @@ export function FocusCardsDemo() {
   ];
 
   return <FocusCards cards={cards} />;
+} 
+
+export default function DemoOne() {
+  return <Pricing />;
 } 
