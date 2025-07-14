@@ -3,16 +3,26 @@ import { useState } from "react";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Badge } from "@/components/ui/badge";
 
+import siteSancao from "@/../public/assets/site-sancao.png";
+import siteHotledas from "@/../public/assets/site-hotledas.png";
+import siteEngicore from "@/../public/assets/site-engicore.png";
+import siteAlive from "@/../public/assets/site-alive.png";
+import siteFrancais from "@/../public/assets/site-portifolio-francais.png";
+import siteMM from "@/../public/assets/site-portifolio-mm.png";
+import siteConexao from "@/../public/assets/site-portifolio-conexao.png";
+import siteJosue from "@/../public/assets/site-portifolio-josue.png";
+import sitePorAmor from "@/../public/assets/site-portifolio-poramor.png";
+
 const portfolioItems = [
-  { id: 1, image: "/assets/site-sancao.png" },
-  { id: 2, image: "/assets/site-hotledas.png" },
-  { id: 3, image: "/assets/site-engicore.png" },
-  { id: 4, image: "/assets/site-alive.png" },
-  { id: 5, image: "/assets/site-portifolio-francais.png" },
-  { id: 6, image: "/assets/site-portifolio-mm.png" },
-  { id: 7, image: "/assets/site-portifolio-conexao.png" },
-  { id: 8, image: "/assets/site-portifolio-josue.png" },
-  { id: 9, image: "/assets/site-portifolio-poramor.png" },
+  { id: 1, image: siteSancao },
+  { id: 2, image: siteHotledas },
+  { id: 3, image: siteEngicore },
+  { id: 4, image: siteAlive },
+  { id: 5, image: siteFrancais },
+  { id: 6, image: siteMM },
+  { id: 7, image: siteConexao },
+  { id: 8, image: siteJosue },
+  { id: 9, image: sitePorAmor },
 ];
 
 function getColumns<T>(items: T[], cols: number): T[][] {
