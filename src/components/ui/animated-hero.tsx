@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { MoveRight, ChevronDown, PhoneCall } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button as ShadButton } from "@/components/ui/button";
 import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Typewriter } from "@/components/ui/typewriter-text";
@@ -10,6 +11,7 @@ import { useSectionInView } from "@/hooks/useSectionInView";
 import { FullpageSection } from "@/components/layout/FullpageSection";
 import type { FullpageSectionProps } from "@/components/layout/FullpageSection";
 import React from "react";
+import { LeadFormModal } from "@/components/ui/LeadFormModal";
 
 function AnimatedGridBG() {
   const controls = useAnimation();
@@ -77,6 +79,7 @@ function Hero(props: FullpageSectionProps) {
   // Hook para detectar se a galeria está visível
   const [morphDone, setMorphDone] = useState(false);
   const [morphTriggered, setMorphTriggered] = useState(false); // novo estado
+  const [modalOpen, setModalOpen] = useState<false | 'orcamento'>(false);
 
   // Ref para a Hero Section
   const heroRef = useRef<HTMLDivElement>(null);
@@ -120,29 +123,29 @@ function Hero(props: FullpageSectionProps) {
         {/* Nenhuma renderização para <div className="block xl:hidden"> para garantir que não aparece em mobile/tablet */}
 
         {/* Conteúdo principal */}
-        <div id="hero" className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 sm:pb-0"> {/* Adicionado pb-8 para mobile */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-4"> {/* flex-col no mobile, imagem por último, gap reduzido */}
+        <div id="hero" className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-0">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-16 xl:gap-24">
             {/* Imagem acima do conteúdo no mobile, à direita no desktop */}
-            <div className="block sm:hidden w-full flex justify-center items-center pt-[35px]">
+            <div className="block sm:hidden w-full flex justify-center items-center pt-6 pb-2">
               <img
                 src="/assets/site-hero-cerna-hero-v2.png"
                 alt="Ilustração de pessoas conversando sobre site"
-                className="w-full h-[200px] max-h-[40vh] object-contain drop-shadow-2xl mb-[-8px]"
+                className="w-full h-[180px] max-h-[32vh] object-contain drop-shadow-2xl mb-[-8px]"
                 loading="eager"
                 draggable="false"
               />
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
-            <div className="flex flex-col items-start text-left max-w-3xl flex-1 w-full sm:mt-0">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold text-black dark:text-white leading-tight mb-2 break-words w-full" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>
-                <span className="block" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>Venda mais</span>
-                <span className="block" style={{ fontFamily: 'Coolvetica, Coolvetica Condensed, Coolvetica Compressed, Coolvetica Crammed, sans-serif' }}>com um site profissional</span>
+            <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold text-black dark:text-white leading-tight mb-2 break-words w-full">
+                <span className="block">Venda mais</span>
+                <span className="block">com um site profissional</span>
               </h1>
-              <p className="text-base sm:text-lg lg:text-2xl leading-relaxed text-gray-700 dark:text-gray-200 mb-4 max-w-xl">
+              <p className="text-base sm:text-lg lg:text-2xl leading-relaxed text-gray-700 dark:text-gray-200 mb-2 max-w-xl mx-auto sm:mx-0">
                 Site profissional e rápido para seu negócio!<br />Transforme cliques em clientes
               </p>
-              <div className="flex flex-col items-start w-full mb-4">
-                <span className="relative flex justify-start items-center h-12 lg:h-14 w-full">
+              <div className="flex flex-col items-center sm:items-start w-full mb-4">
+                <span className="relative flex justify-center sm:justify-start items-center h-12 lg:h-14 w-full">
                   <Typewriter
                     text={bullets}
                     speed={60}
@@ -152,45 +155,21 @@ function Hero(props: FullpageSectionProps) {
                   />
                 </span>
               </div>
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full mt-2">
-                <ShadButton
-                  asChild
-                  className="flex-1 max-w-xs sm:max-w-md px-8 py-3 text-lg font-bold rounded-full shadow-lg bg-[#84CC15] text-black flex items-center justify-center gap-3 transition-colors duration-200 relative overflow-hidden group hover:bg-[#6ea90f]"
-                  style={{ position: 'relative' }}
-                  size="lg"
-                >
-                  <a
-                    href="https://wa.me/5584999810711?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%aas%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {/* Efeito de brilho animado */}
-                    <span className="pointer-events-none absolute left-[-75%] top-0 w-[150%] h-full opacity-0 group-hover:opacity-60 transition-opacity duration-300 z-10"
-                          style={{
-                            background: 'linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 40%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.5) 60%, transparent 100%)',
-                            filter: 'blur(2px)',
-                            animation: 'shine-move 1.2s cubic-bezier(.4,0,.2,1) forwards',
-                          }}
-                    />
-                    <style>{`
-                      @keyframes shine-move {
-                        0% { left: -75%; opacity: 0; }
-                        10% { opacity: 0.5; }
-                        50% { left: 100%; opacity: 0.6; }
-                        100% { left: 100%; opacity: 0; }
-                      }
-                      .group:hover .absolute {
-                        animation: shine-move 1.2s cubic-bezier(.4,0,.2,1) forwards;
-                      }
-                    `}</style>
-                    <PhoneCall className="w-6 h-6 mr-2" />
+              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center sm:justify-start items-center mt-2">
+                <button
+                  type="button"
+                  onClick={() => setModalOpen('orcamento')}
+                  className="w-full max-w-full h-14 text-base sm:text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-2xl px-6 sm:px-8 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-[#84CC15]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1555, 0 4px 24px 0 #84CC1511'}}>
+                  <span className="absolute inset-0 z-0 rounded-2xl pointer-events-none" style={{boxShadow:'0 0 32px 8px #b6e35a55, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
+                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
+                    <FaWhatsapp className="w-6 h-6 mr-2 text-white" />
                     Orçamento personalizado
-                  </a>
-                </ShadButton>
-                <ShadButton
-                  className="flex-1 max-w-xs sm:max-w-md px-8 py-3 text-lg font-bold rounded-full shadow-lg bg-white text-[#222] border-2 border-[#84CC15] flex items-center justify-center gap-3 hover:bg-[#f3f7ed] transition-colors duration-200"
-                  size="lg"
-                  variant="outline"
+                  </span>
+                </button>
+                <button
+                  className="w-full max-w-xs md:max-w-xs lg:max-w-[180px] xl:max-w-[200px] h-14 text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-2xl px-8 md:px-4 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1511, 0 4px 24px 0 #0001'}}
                   onClick={() => {
                     const section = document.querySelector('#planos');
                     if (section) {
@@ -198,11 +177,12 @@ function Hero(props: FullpageSectionProps) {
                     }
                   }}
                 >
-                  <span className="flex items-center gap-2">
-                    Ver Plano
+                  <span className="absolute inset-0 z-0 rounded-2xl pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #84CC1533, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
+                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
+                    Ver Planos
                     <MoveRight className="w-5 h-5" />
                   </span>
-                </ShadButton>
+                </button>
               </div>
             </div>
             {/* Imagem à direita no desktop */}
@@ -210,7 +190,7 @@ function Hero(props: FullpageSectionProps) {
               <img
                 src="/assets/site-hero-cerna-hero-v2.png"
                 alt="Ilustração de pessoas conversando sobre site"
-                className="w-full h-[200px] sm:h-[220px] md:h-[320px] lg:h-[540px] xl:h-[600px] max-h-[40vh] sm:max-h-[60vh] object-contain drop-shadow-2xl"
+                className="w-full h-[200px] sm:h-[220px] md:h-[320px] lg:h-[440px] xl:h-[520px] max-h-[40vh] sm:max-h-[60vh] object-contain drop-shadow-2xl"
                 loading="eager"
                 draggable="false"
               />
@@ -218,6 +198,7 @@ function Hero(props: FullpageSectionProps) {
           </div>
         </div>
         {/* Removido: Botão com ChevronDown para scroll */}
+        <LeadFormModal open={modalOpen !== false} onClose={() => setModalOpen(false)} plano={modalOpen === 'orcamento' ? 'orcamento' : undefined} />
       </FullpageSection>
     </div>
   );

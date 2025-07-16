@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Badge } from "./badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./card";
 import { Button } from "./button";
 import { CheckCircle, Star, CreditCard, ShieldCheck, Barcode, DollarSign, PhoneCall, MoveRight } from "lucide-react";
+import { LeadFormModal } from './LeadFormModal';
 
 const plans = [
   {
@@ -21,6 +23,7 @@ const plans = [
     cta: "Quero meu site rápido",
     featured: false,
     suffix: "/mês",
+    plano: 'mensal',
   },
   {
     name: "Anual",
@@ -38,10 +41,14 @@ const plans = [
     cta: "Quero economizar e crescer",
     featured: true,
     suffix: "/ano",
+    plano: 'pro',
   },
 ];
 
 export function PricingSection() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedPlano, setSelectedPlano] = useState<'mensal' | 'pro'>('mensal');
+
   return (
     <section id="planos" className="relative w-full py-20 lg:py-32 bg-background overflow-hidden">
       {/* Faixa de grade ao fundo, horizontal e ocupando toda a largura, com fade nas bordas */}
@@ -107,7 +114,6 @@ export function PricingSection() {
               </CardContent>
               <CardFooter className="flex flex-col gap-2">
                 <Button
-                  asChild
                   className={
                     plan.featured
                       ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg"
@@ -119,23 +125,15 @@ export function PricingSection() {
                       ? { background: 'linear-gradient(270deg, #84CC18, #d1fae5, #84CC18)', color: '#000', borderColor: '#84CC18' }
                       : {}
                   }
+                  onClick={() => { setSelectedPlano(plan.plano); setModalOpen(true); }}
                 >
-                  <a
-                    href={
-                      plan.name === "Mensal"
-                        ? "https://wa.me/5584999810711?text=Ol%C3%A1%2C%20quero%20contratar%20o%20plano%20Mensal%20do%20site%20profissional.%20Como%20funciona%3F"
-                        : "https://wa.me/5584999810711?text=Ol%C3%A1%2C%20quero%20contratar%20o%20plano%20Anual%20do%20site%20profissional.%20Como%20funciona%3F"
-                    }
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center w-full h-full relative"
-                  >
+                  <span className="flex items-center justify-center w-full h-full relative">
                     {plan.cta}
                     <MoveRight className="w-5 h-5 ml-2 inline-block align-middle" />
                     {plan.featured && (
                       <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#84CC18,#d1fae5,#84CC18)] bg-[length:200%_200%] opacity-60" />
                     )}
-                  </a>
+                  </span>
                 </Button>
                 {/* Garantias e meios de pagamento */}
                 <div className="flex flex-col items-center gap-1 mt-2">
@@ -161,6 +159,7 @@ export function PricingSection() {
           ))}
         </div>
       </div>
+      <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano={selectedPlano} />
     </section>
   );
 } 

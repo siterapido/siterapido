@@ -1,13 +1,16 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { PlusIcon, ShieldCheckIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Badge } from './badge';
 import { Button } from './button';
 import { cn } from '@/lib/utils';
 import { BorderTrail } from './border-trail';
+import { LeadFormModal } from './LeadFormModal';
 
 export function Pricing() {
+	const [modalOpen, setModalOpen] = useState(false);
+
 	return (
 		<section className="relative min-h-screen overflow-hidden py-24">
 			<div id="pricing" className="mx-auto w-full max-w-6xl space-y-5 px-4">
@@ -72,8 +75,8 @@ export function Pricing() {
 										</span>
 										<span>/month</span>
 									</div>
-									<Button className="w-full" variant="outline" asChild>
-										<a href="#">Start Your Journey</a>
+									<Button className="w-full" variant="outline" onClick={() => setModalOpen(true)}>
+										Start Your Journey
 									</Button>
 								</div>
 							</div>
@@ -105,8 +108,8 @@ export function Pricing() {
 										</span>
 										<span>/month</span>
 									</div>
-									<Button className="w-full" asChild>
-										<a href="#">Get Started Now</a>
+									<Button className="w-full" onClick={() => setModalOpen(true)}>
+										Get Started Now
 									</Button>
 								</div>
 							</div>
@@ -119,6 +122,7 @@ export function Pricing() {
 					</motion.div>
 				</div>
 			</div>
+			<LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} />
 		</section>
 	);
 }

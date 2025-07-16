@@ -8,6 +8,11 @@ import { FAQ } from "@/components/ui/faq-section";
 import { Footerdemo } from "@/components/ui/footer-section";
 import { FocusCardsDemo } from "@/components/ui/demo";
 import { PortfolioSection } from "./components/sections/PortfolioSection";
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Login from './components/admin/Login';
+import AdminLayout from './components/admin/AdminLayout';
+import LeadsList from './components/admin/LeadsList';
+import { supabase } from './lib/supabaseClient';
 
 function toggleDarkMode(forceDark?: boolean) {
   const html = document.documentElement;
@@ -20,7 +25,24 @@ function toggleDarkMode(forceDark?: boolean) {
   }
 }
 
-function App() {
+function ProtectedRoute({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      setUser(data.user);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div>Carregando...</div>;
+  if (!user) return <Navigate to="/admin/login" state={{ from: location }} replace />;
+  return <>{children}</>;
+}
+
+function LandingPage() {
   const [dark, setDark] = useState(() => {
     if (typeof window === "undefined") return true;
     return document.documentElement.classList.contains("dark");
@@ -65,6 +87,17 @@ function App() {
       <FAQ />
       <Footerdemo />
     </>
+  );
+}
+
+function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/admin/login" element={<Login onLogin={() => window.location.href = '/admin/leads'} />} />
+      <Route path="/admin" element={<ProtectedRoute><AdminLayout><LeadsList /></AdminLayout></ProtectedRoute>} />
+      <Route path="/admin/leads" element={<ProtectedRoute><AdminLayout><LeadsList /></AdminLayout></ProtectedRoute>} />
+    </Routes>
   );
 }
 

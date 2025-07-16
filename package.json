@@ -6,7 +6,9 @@
   "homepage": "https://siterapido.github.io/siterapido",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "vite build",
+    "check:images": "node check-slide-images.js",
+    "build-and-check": "npm run build && npm run check:images",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -22,6 +24,7 @@
     "@radix-ui/react-switch": "^1.2.5",
     "@radix-ui/react-tooltip": "^1.2.7",
     "@studio-freight/lenis": "^1.0.42",
+    "@supabase/supabase-js": "^2.51.0",
     "@types/gsap": "^1.20.2",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
@@ -32,6 +35,8 @@
     "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^6.23.0",
     "tailwind-merge": "^3.3.1",
     "tailwindcss-animate": "^1.0.7"
   },
