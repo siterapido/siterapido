@@ -12,7 +12,7 @@ const plans = [
     description: "Tenha seu site profissional no ar em até 7 dias, com suporte completo e atualizações inclusas.",
     benefits: [
       "Site profissional pronto em até 7 dias",
-      "Hospedagem e domínio inclusos",
+      "Hospedagem inclusa",
       "Suporte técnico ilimitado",
       "Atualizações e melhorias contínuas",
       "Painel para editar textos, imagens e portfólio",
