@@ -5,7 +5,20 @@ import { Button } from "./button";
 import { CheckCircle, Star, CreditCard, ShieldCheck, Barcode, DollarSign, PhoneCall, MoveRight } from "lucide-react";
 import { LeadFormModal } from './LeadFormModal';
 
-const plans = [
+type PlanoType = 'mensal' | 'anual';
+
+interface Plan {
+  name: string;
+  price: string;
+  description: string;
+  benefits: string[];
+  cta: string;
+  featured: boolean;
+  suffix: string;
+  plano: PlanoType;
+}
+
+const plans: Plan[] = [
   {
     name: "Mensal",
     price: "R$ 120,00",
@@ -41,13 +54,13 @@ const plans = [
     cta: "Quero economizar e crescer",
     featured: true,
     suffix: "/ano",
-    plano: 'pro',
+    plano: 'anual',
   },
 ];
 
 export function PricingSection() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPlano, setSelectedPlano] = useState<'mensal' | 'pro'>('mensal');
+  const [selectedPlano, setSelectedPlano] = useState<PlanoType>('mensal');
 
   return (
     <section id="planos" className="relative w-full py-20 lg:py-32 bg-background overflow-hidden">
