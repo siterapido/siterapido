@@ -2,6 +2,7 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { LeadFormModal } from "@/components/ui/LeadFormModal";
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 const portfolioItems = [
   { id: 1, image: "/assets/site-sancao.png", alt: "Site Sanção" },
@@ -84,14 +85,20 @@ export function PortfolioSection() {
         <p className="text-base md:text-xl text-white/90 mb-8 drop-shadow max-w-2xl mx-auto text-center">
           Desenvolvemos sites personalizados e modernos que destacam sua marca e geram resultados. Soluções completas de design e desenvolvimento para o seu negócio decolar na internet.
         </p>
-        <RainbowButton
-          background="white"
-          className="w-full max-w-xs md:max-w-sm h-14 text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#84CC15] hover:bg-[#84CC15] hover:text-black focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2"
-          style={{letterSpacing:'0.02em'}}
-          onClick={() => setModalOpen(true)}
+        <a
+          href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o portfólio de vocês e quero saber mais sobre como criar meu site profissional.')}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ display: 'block', width: '100%' }}
         >
-          Quero meu site agora 🚀
-        </RainbowButton>
+          <RainbowButton
+            background="white"
+            className="w-full max-w-xs md:max-w-sm h-14 text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#84CC15] hover:bg-[#84CC15] hover:text-black focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2"
+            style={{letterSpacing:'0.02em'}}
+          >
+            Quero meu site agora 🚀
+          </RainbowButton>
+        </a>
       </div>
       <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano="orcamento" />
       <style>{`

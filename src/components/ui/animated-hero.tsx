@@ -12,6 +12,7 @@ import { FullpageSection } from "@/components/layout/FullpageSection";
 import type { FullpageSectionProps } from "@/components/layout/FullpageSection";
 import React from "react";
 import { LeadFormModal } from "@/components/ui/LeadFormModal";
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 function AnimatedGridBG() {
   const controls = useAnimation();
@@ -137,7 +138,8 @@ function Hero(props: FullpageSectionProps) {
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
             <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4">
-              <h1 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-extrabold text-black dark:text-white leading-tight mb-2 break-words w-full">
+              {/* Título removido para ser recriado do zero */}
+              <h1 id="hero-title" className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl text-black dark:text-white leading-tight mb-2 break-words w-full">
                 <span className="block">Venda mais</span>
                 <span className="block">com um site profissional</span>
               </h1>
@@ -156,9 +158,10 @@ function Hero(props: FullpageSectionProps) {
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center sm:justify-start items-center mt-2">
-                <button
-                  type="button"
-                  onClick={() => setModalOpen('orcamento')}
+                <a
+                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero um orçamento personalizado para meu negócio. Pode me ajudar?')}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full max-w-full h-14 text-base sm:text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-2xl px-6 sm:px-8 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-[#84CC15]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
                   style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1555, 0 4px 24px 0 #84CC1511'}}>
                   <span className="absolute inset-0 z-0 rounded-2xl pointer-events-none" style={{boxShadow:'0 0 32px 8px #b6e35a55, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
@@ -166,7 +169,7 @@ function Hero(props: FullpageSectionProps) {
                     <FaWhatsapp className="w-6 h-6 mr-2 text-white" />
                     Orçamento personalizado
                   </span>
-                </button>
+                </a>
                 <button
                   className="w-full max-w-xs md:max-w-xs lg:max-w-[180px] xl:max-w-[200px] h-14 text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-2xl px-8 md:px-4 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
                   style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1511, 0 4px 24px 0 #0001'}}

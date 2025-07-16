@@ -7,6 +7,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 const faqs = [
   {
@@ -80,7 +81,7 @@ function FAQ() {
               </div>
               <div className="">
                 <a
-                  href="https://wa.me/5584999810711?text=Ol%C3%A1%2C%20quero%20tirar%20uma%20d%C3%BAvida%20sobre%20o%20servi%C3%A7o%20de%20voc%C3%AAs."
+                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Quero tirar uma dúvida sobre o serviço de vocês.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-1/2"

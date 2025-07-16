@@ -4,6 +4,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Button } from "./button";
 import { CheckCircle, Star, CreditCard, ShieldCheck, Barcode, DollarSign, PhoneCall, MoveRight } from "lucide-react";
 import { LeadFormModal } from './LeadFormModal';
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 type PlanoType = 'mensal' | 'anual';
 
@@ -126,19 +127,25 @@ export function PricingSection() {
                 </ul>
               </CardContent>
               <CardFooter className="flex flex-col gap-2">
-                <Button
+                <a
+                  href={gerarLinkWhatsApp(
+                    plan.plano === 'mensal' ? '5584999810711' : '5584999810711',
+                    plan.plano === 'mensal'
+                      ? 'Olá! Quero contratar o plano mensal de R$120/mês. Como funciona o processo?'
+                      : 'Olá! Quero contratar o plano anual de R$997/ano. Como funciona o processo?'
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={
                     plan.featured
                       ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg"
                       : "w-full bg-black text-white border-black hover:bg-zinc-900"
                   }
-                  variant={plan.featured ? "default" : "outline"}
                   style={
                     plan.featured
                       ? { background: 'linear-gradient(270deg, #84CC18, #d1fae5, #84CC18)', color: '#000', borderColor: '#84CC18' }
                       : {}
                   }
-                  onClick={() => { setSelectedPlano(plan.plano); setModalOpen(true); }}
                 >
                   <span className="flex items-center justify-center w-full h-full relative">
                     {plan.cta}
@@ -147,7 +154,7 @@ export function PricingSection() {
                       <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#84CC18,#d1fae5,#84CC18)] bg-[length:200%_200%] opacity-60" />
                     )}
                   </span>
-                </Button>
+                </a>
                 {/* Garantias e meios de pagamento */}
                 <div className="flex flex-col items-center gap-1 mt-2">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
