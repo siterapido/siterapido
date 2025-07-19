@@ -16,20 +16,20 @@ export function ProblemSection() {
       <div className="container mx-auto max-w-6xl px-4">
         <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
           {/* Coluna Esquerda: Título, subtítulo e bullets */}
-          <div className="flex flex-col gap-6 md:gap-10">
-            <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-black text-center">
+          <div className="flex flex-col gap-8 md:gap-12">
+            <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-black text-center">
               Cansado de promessas falsas e orçamentos astronômicos?
             </h2>
-            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left">
+            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left leading-relaxed">
               Se você já tentou criar um site, provavelmente já se deparou com isso:
             </p>
-            <ul className="mt-4 divide-y border-y *:flex *:items-center *:gap-3 *:py-3">
+            <ul className="mt-6 divide-y border-y *:flex *:items-center *:gap-4 *:py-4">
               {bullets.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 py-3">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-500 text-xl font-bold">
+                <li key={i} className="flex items-start gap-4 py-4">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-500 text-xl font-bold mt-0.5">
                     ✖
                   </span>
-                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left">
+                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left leading-relaxed">
                     {item}
                   </span>
                 </li>
@@ -66,20 +66,20 @@ export function ProblemSectionInverted() {
             />
           </div>
           {/* Coluna Direita: Título, subtítulo e bullets */}
-          <div className="flex flex-col gap-6 md:gap-10">
+          <div className="flex flex-col gap-8 md:gap-12">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white text-left leading-tight">
               Cansado de promessas falsas e orçamentos astronômicos?
             </h2>
-            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left">
+            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left leading-relaxed">
               Se você já tentou criar um site, provavelmente já se deparou com isso:
             </p>
-            <ul className="mt-4 divide-y border-y *:flex *:items-center *:gap-3 *:py-3">
+            <ul className="mt-6 divide-y border-y *:flex *:items-center *:gap-4 *:py-4">
               {bullets.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 py-3">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-500 text-xl font-bold">
+                <li key={i} className="flex items-start gap-4 py-4">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-red-100 text-red-500 text-xl font-bold mt-0.5">
                     ✖
                   </span>
-                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left">
+                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left leading-relaxed">
                     {item}
                   </span>
                 </li>

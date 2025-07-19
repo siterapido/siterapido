@@ -53,22 +53,22 @@ export function ComoFuncionaSection() {
     ref: (el: HTMLDivElement | null) => { stepRefs.current[idx] = el; },
     title: (
       <>
-        <div className="block text-3xl md:text-5xl font-extrabold text-white mb-2 font-[Coolvetica] tracking-wide">{etapa.titulo}</div>
-        <div className="flex items-center gap-2 mb-4">
-          <etapa.icone size={24} className="text-[#84CC15]" />
-          <span className="font-bold text-lg md:text-xl text-[#84CC15]">{etapa.subtitulo}</span>
+        <div className="block text-3xl md:text-5xl font-extrabold text-white mb-4 font-[Coolvetica] tracking-wide">{etapa.titulo}</div>
+        <div className="flex items-center gap-3 mb-6">
+          <etapa.icone size={24} className="text-[#9CD653]" />
+          <span className="font-bold text-lg md:text-xl text-[#9CD653]">{etapa.subtitulo}</span>
         </div>
       </>
     ),
     content: (
-      <div className="bg-neutral-900 border border-[#84CC15] rounded-xl p-5 md:p-6 mt-0">
-        <ul className="pl-0 text-white text-base md:text-lg font-normal space-y-3">
+              <div className="bg-neutral-900 border border-[#9CD653] rounded-xl p-6 md:p-8 mt-0">
+        <ul className="pl-0 text-white text-base md:text-lg font-normal space-y-4">
           {conteudos[idx].map((item, i) => (
-            <li key={i} className="flex items-center gap-3">
-              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#84CC15]/20 shadow-sm">
-                <CheckCircle className="w-5 h-5" style={{ color: '#84CC15', filter: 'drop-shadow(0 1px 2px #84CC1555)' }} />
+            <li key={i} className="flex items-start gap-4">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#9CD653]/20 shadow-sm mt-0.5">
+                <CheckCircle className="w-5 h-5" style={{ color: '#9CD653', filter: 'drop-shadow(0 1px 2px #9CD65355)' }} />
               </span>
-              <span className="text-white">{item}</span>
+              <span className="text-white leading-relaxed">{item}</span>
             </li>
           ))}
         </ul>
@@ -79,24 +79,24 @@ export function ComoFuncionaSection() {
   return (
     <section id="como-funciona" className="w-full border-b border-neutral-800 py-20 md:py-32" style={{ background: 'radial-gradient(circle at 50% 30%, #181A1B 60%, #050505 100%)' }}>
       <div className="container mx-auto max-w-4xl px-4">
-        <div className="text-center mb-16">
-          <Badge className="mb-4 bg-[#84CC15] text-black">Como funciona</Badge>
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-white">
-            Como o <span className="text-[#84CC15]">processo</span> funciona
+        <div className="text-center mb-20">
+          <Badge className="mb-6 bg-[#9CD653] text-black">Como funciona</Badge>
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white">
+            Como o <span className="text-[#9CD653]">processo</span> funciona
           </h2>
-          <p className="text-lg text-neutral-400">
+          <p className="text-lg text-neutral-400 leading-relaxed">
             Desenvolvemos um processo simples em 3 etapas para criar websites que geram resultados para o seu negócio
           </p>
         </div>
         <Timeline data={data} vertical activeIndex={activeIndex} />
         
         {/* Botão de Call-to-Action */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-20">
           <a
             href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi como funciona o processo de vocês e quero começar meu projeto. Pode me ajudar?')}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 bg-[#84CC15] hover:bg-[#84CC15]/90 text-black font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg"
+            className="inline-flex items-center justify-center gap-3 bg-[#9CD653] hover:bg-[#9CD653]/90 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
           >
             Quero começar meu projeto
             <MoveRight className="w-5 h-5" />

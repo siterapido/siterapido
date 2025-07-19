@@ -51,30 +51,30 @@ export const Timeline = ({ data, vertical = false, activeIndex }: TimelineProps)
           vertical ? (
             <div key={index} className="pt-10 md:pt-40" ref={item.ref}>
               {/* Desktop: card embaixo do título */}
-              <div className="hidden md:flex flex-row items-start gap-6">
+              <div className="hidden md:flex flex-row items-start gap-8">
                 {/* Bola numerada centralizada */}
                 <div className="relative flex flex-col items-center min-w-[32px] w-[32px]">
                   {item.numero && (
-                    <div className={`relative z-10 flex items-center justify-center w-7 h-7 rounded-full font-bold text-base shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#84CC15] text-black dark:text-white sticky top-8' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-6px'}}>
+                    <div className={`relative z-10 flex items-center justify-center w-7 h-7 rounded-full font-bold text-base shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#9CD653] text-black dark:text-white sticky top-8' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-6px'}}>
                       {item.numero}
                     </div>
                   )}
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 space-y-4">
                   {item.title}
                   {item.content}
                 </div>
               </div>
               {/* Mobile: layout padrão (linha e bola menores) */}
-              <div className="flex md:hidden justify-start gap-4">
+              <div className="flex md:hidden justify-start gap-6">
                 <div className="relative flex flex-col items-center min-w-[28px] w-[28px]">
                   {item.numero && (
-                    <div className={`relative z-10 flex items-center justify-center w-6 h-6 rounded-full font-bold text-sm shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#84CC15] text-black dark:text-white sticky top-4' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-4px'}}>
+                    <div className={`relative z-10 flex items-center justify-center w-6 h-6 rounded-full font-bold text-sm shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#9CD653] text-black dark:text-white sticky top-4' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-4px'}}>
                       {item.numero}
                     </div>
                   )}
                 </div>
-                <div className="w-full">
+                <div className="w-full space-y-4">
                   {item.title}
                   {item.content}
                 </div>
@@ -83,7 +83,7 @@ export const Timeline = ({ data, vertical = false, activeIndex }: TimelineProps)
           ) : (
             <div
               key={index}
-              className="flex justify-start pt-10 md:pt-40 md:gap-10"
+              className="flex justify-start pt-10 md:pt-40 md:gap-12"
             >
               <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
                 <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center z-[999]">
@@ -93,8 +93,8 @@ export const Timeline = ({ data, vertical = false, activeIndex }: TimelineProps)
                   {item.title}
                 </h3>
               </div>
-              <div className="relative pl-20 pr-4 md:pl-4 w-full">
-                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
+              <div className="relative pl-20 pr-4 md:pl-4 w-full space-y-4">
+                <h3 className="md:hidden block text-2xl mb-6 text-left font-bold text-neutral-500 dark:text-neutral-500">
                   {item.title}
                 </h3>
                 {item.content} {" "}

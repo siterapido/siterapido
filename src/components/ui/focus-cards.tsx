@@ -17,15 +17,6 @@ export const Card = React.memo(
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
     onClick: () => void;
   }) => {
-    // Detecta se está em mobile
-    const [isMobile, setIsMobile] = React.useState(false);
-    
-    React.useEffect(() => {
-      const checkMobile = () => setIsMobile(window.innerWidth < 768);
-      checkMobile();
-      window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     return (
       <div
@@ -33,7 +24,7 @@ export const Card = React.memo(
         onMouseLeave={() => setHovered(null)}
         onClick={onClick}
         className={cn(
-          "relative rounded-md bg-gray-100 dark:bg-neutral-900 overflow-hidden flex items-center justify-center cursor-pointer transition-all duration-300 ease-out group",
+          "relative rounded-md bg-gray-100 dark:bg-neutral-900 overflow-hidden flex items-center justify-center cursor-pointer transition-all duration-300 ease-out group hover:shadow-2xl",
           hovered !== null && hovered !== index && "blur-sm scale-[0.98]"
         )}
       >
@@ -41,24 +32,25 @@ export const Card = React.memo(
           src={card.src}
           alt={card.title}
           className="w-full h-full object-cover rounded-md transition-transform duration-300 group-hover:scale-105"
-          loading="lazy"
+          loading={index < 3 ? "eager" : "lazy"}
+          fetchPriority={index < 3 ? "high" : "auto"}
         />
-        {/* Overlay apenas em mobile */}
-        {isMobile && (
-          <div
-            className={cn(
-              "absolute inset-0 bg-black/80 flex flex-col justify-center p-6 transition-opacity duration-300",
-              hovered === index ? "opacity-100" : "opacity-0"
-            )}
-          >
-            <div className="text-white space-y-3">
-              <h3 className="text-xl font-bold text-[#84CC15]">{card.name}</h3>
-              <p className="text-sm text-white/80 line-clamp-2">{card.challenge}</p>
-              <p className="text-sm font-semibold text-[#84CC15]">{card.solution}</p>
-              <p className="text-sm italic text-white/90">"{card.result}"</p>
+        {/* Overlay com informações do projeto - funciona em desktop e mobile */}
+        <div
+          className={cn(
+            "absolute inset-0 bg-black/80 flex flex-col justify-center p-4 md:p-6 transition-all duration-300 ease-in-out",
+            hovered === index ? "opacity-100" : "opacity-0"
+          )}
+        >
+          <div className="text-white text-center space-y-4 md:space-y-5">
+            <h3 className="text-lg md:text-xl font-bold text-[#9CD653] leading-tight">{card.name}</h3>
+            <div className="space-y-3 md:space-y-4 text-xs md:text-sm">
+              <p className="text-white/90 leading-relaxed line-clamp-2">{card.challenge}</p>
+              <p className="text-[#9CD653] font-semibold leading-relaxed">{card.solution}</p>
+              <p className="text-white/95 italic font-medium leading-relaxed">"{card.result}"</p>
             </div>
           </div>
-        )}
+        </div>
       </div>
     );
   }
@@ -127,7 +119,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi os sites em destaque de vocês e quero um site igual para meu negócio. Pode me ajudar?')}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-3 bg-[#84CC15] hover:bg-[#84CC15]/90 text-black font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg"
+          className="inline-flex items-center justify-center gap-3 bg-[#9CD653] hover:bg-[#9CD653]/90 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
         >
           Quero um site igual
           <MoveRight className="w-5 h-5" />
@@ -137,43 +129,58 @@ export function FocusCards({ cards }: { cards: Card[] }) {
       {/* Modal de detalhes do projeto */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="relative max-w-5xl w-full bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
-            <div className="p-6 space-y-6">
-              <div className="flex justify-between items-start">
-                <h3 className="text-2xl font-bold text-neutral-900 dark:text-white">{selected.name}</h3>
+          <div className="relative max-w-4xl w-full bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: '90vh' }}>
+            {/* Container com scroll customizado */}
+            <div className="flex flex-col h-full">
+              {/* Header com imagem */}
+              <div className="relative flex-shrink-0">
+                <img
+                  src={selected.src}
+                  alt={selected.title}
+                  className="w-full h-48 md:h-64 object-cover"
+                />
                 <button
                   onClick={() => setSelected(null)}
-                  className="bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                  className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
                 >
                   <span style={{ fontSize: 18, fontWeight: 'bold', lineHeight: 1 }}>×</span>
                 </button>
               </div>
               
-              <div className="grid lg:grid-cols-2 gap-6">
-                {/* Imagem do site */}
-                <div className="flex justify-center">
-                  <img
-                    src={selected.src}
-                    alt={selected.title}
-                    className="w-full max-w-md h-auto object-contain rounded-lg shadow-lg"
-                  />
-                </div>
-                
-                {/* Informações do case */}
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="text-[#84CC15] font-semibold mb-2">O Desafio</h4>
-                    <p className="text-neutral-700 dark:text-neutral-300">{selected.challenge}</p>
-                  </div>
+              {/* Conteúdo com scroll */}
+              <div className="flex-1 overflow-y-auto" style={{ 
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#9CD653 #f1f1f1'
+              }}>
+                <div className="p-6 space-y-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white leading-tight">{selected.name}</h3>
                   
-                  <div>
-                    <h4 className="text-[#84CC15] font-semibold mb-2">A Solução Rápida</h4>
-                    <p className="text-neutral-700 dark:text-neutral-300">{selected.solution}</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="text-[#84CC15] font-semibold mb-2">O Resultado</h4>
-                    <p className="text-neutral-900 dark:text-white italic text-lg">"{selected.result}"</p>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-[#9CD653] font-semibold text-lg mb-3">O Desafio</h4>
+                      <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{selected.challenge}</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-[#84CC15] font-semibold text-lg mb-3">A Solução Rápida</h4>
+                      <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{selected.solution}</p>
+                    </div>
+                    
+                    <div>
+                      <h4 className="text-[#84CC15] font-semibold text-lg mb-3">O Resultado</h4>
+                      <p className="text-neutral-900 dark:text-white italic text-lg leading-relaxed">"{selected.result}"</p>
+                    </div>
+                    
+                    <div className="pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                      <a
+                        href={gerarLinkWhatsApp('5584999810711', `Olá! Vi o projeto ${selected.name} e quero um site igual para meu negócio. Pode me ajudar?`)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-[#9CD653] text-black px-6 py-3 rounded-xl font-semibold hover:bg-[#9CD653]/90 transition-colors"
+                      >
+                        Quero um site igual →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -181,6 +188,63 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           </div>
         </div>
       )}
+      
+      <style>{`
+        /* Garantir que o hover funcione corretamente */
+        .group:hover .absolute.inset-0 {
+          opacity: 1 !important;
+        }
+        
+        /* Melhorar a transição do overlay */
+        .group .absolute.inset-0 {
+          transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        }
+        
+        /* Garantir que o texto seja legível */
+        .group:hover .absolute.inset-0 {
+          background-color: rgba(0, 0, 0, 0.85) !important;
+        }
+        
+        /* Melhorar a legibilidade do texto */
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        /* Scroll customizado para o modal */
+        .overflow-y-auto::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-track {
+          background: #f1f1f1;
+          border-radius: 3px;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-thumb {
+          background: #9CD653;
+          border-radius: 3px;
+        }
+        
+        .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+          background: #84CC15;
+        }
+        
+        /* Dark mode para o scroll */
+        .dark .overflow-y-auto::-webkit-scrollbar-track {
+          background: #374151;
+        }
+        
+        .dark .overflow-y-auto::-webkit-scrollbar-thumb {
+          background: #9CD653;
+        }
+        
+        .dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+          background: #84CC15;
+        }
+      `}</style>
     </section>
   );
 } 

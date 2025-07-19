@@ -125,7 +125,7 @@ function Header1() {
                           href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero um orçamento personalizado para meu negócio. Pode me ajudar?')}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="block w-full max-w-xs h-12 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-2 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#84CC15] hover:bg-[#84CC15]/90 hover:text-white focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 shadow-none"
+                          className="block w-full max-w-xs h-12 text-sm sm:text-base font-semibold flex items-center justify-center gap-2 rounded-xl px-4 sm:px-6 py-2 transition-all duration-200 border-2 border-[#9CD653] bg-white text-[#9CD653] hover:bg-[#9CD653]/90 hover:text-white focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2 shadow-none"
                           style={{letterSpacing:'0.01em'}}>
                           <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
                             <svg className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.151-.174.2-.298.3-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.007-.372-.009-.571-.009-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.099 3.2 5.077 4.363.71.306 1.263.489 1.694.626.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347zm-5.421 7.617h-.001a9.87 9.87 0 01-4.988-1.357l-.361-.214-3.709.982.991-3.617-.235-.372A9.86 9.86 0 012.1 12.045C2.073 6.504 6.915 1.661 12.457 1.661c2.637 0 5.112 1.027 6.988 2.896a9.825 9.825 0 012.916 6.965c-.003 5.542-4.845 10.385-10.39 10.377zm8.413-18.19A11.815 11.815 0 0012.457 0C5.604 0 .062 5.541.1 12.396c.021 2.205.577 4.354 1.637 6.242L0 24l5.463-1.459a11.82 11.82 0 006.994 2.229h.005c6.853 0 12.396-5.542 12.434-12.396a12.292 12.292 0 00-3.646-8.735z"/></svg>
@@ -211,7 +211,7 @@ function Header1() {
                                   href={gerarLinkWhatsApp('5584999810711', 'Olá! Quero tirar uma dúvida sobre o serviço de vocês.')}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="w-full font-semibold px-6 py-2 rounded-full text-base bg-lime-500 hover:bg-lime-600 text-black shadow transition-colors duration-150" style={{fontWeight: 700}}
+                                  className="w-full font-semibold px-6 py-2 rounded-xl text-base bg-[#9CD653] hover:bg-[#9CD653]/90 text-black shadow transition-colors duration-150" style={{fontWeight: 700}}
                                 >
                                   Falar no WhatsApp
                                 </a>

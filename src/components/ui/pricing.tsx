@@ -193,14 +193,14 @@ export function Pricing({
                     {`Total anual: ${formatBRL(annual.anual)} | Você economiza ${formatBRL(annual.desconto)}`}
                   </div>
                 )}
-                <p className={cn("text-xs leading-5", plan.isPopular ? "text-white" : "text-muted-foreground")}>
+                <p className={cn("text-xs leading-6", plan.isPopular ? "text-white" : "text-muted-foreground")}>
                   {isMonthly ? (isFree ? "" : "cobrado mensalmente") : (isFree ? "" : "cobrado anualmente com desconto")}
                 </p>
-                <ul className="mt-5 gap-2 flex flex-col">
+                <ul className="mt-6 gap-3 flex flex-col">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                    <li key={idx} className="flex items-start gap-3">
                       <Check className={cn("h-4 w-4 mt-1 flex-shrink-0", plan.isPopular ? "text-green-500" : "text-primary")} />
-                      <span className={plan.isPopular ? "text-white" : "text-left"}>{feature}</span>
+                      <span className={plan.isPopular ? "text-white leading-relaxed" : "text-left leading-relaxed"}>{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -250,7 +250,7 @@ export function Pricing({
                     )}
                   </a>
                 )}
-                <p className={cn("mt-6 text-xs leading-5 whitespace-pre-line", plan.isPopular ? "text-white" : "text-muted-foreground")}>
+                <p className={cn("mt-8 text-xs leading-6 whitespace-pre-line", plan.isPopular ? "text-white" : "text-muted-foreground")}>
                   {plan.description}
                 </p>
               </div>
@@ -326,14 +326,14 @@ export function Pricing({
                     {`Total anual: ${formatBRL(annual.anual)} | Você economiza ${formatBRL(annual.desconto)}`}
                   </div>
                 )}
-                <p className={cn("text-xs leading-5", plan.isPopular ? "text-white" : "text-muted-foreground")}>
+                <p className={cn("text-xs leading-6", plan.isPopular ? "text-white" : "text-muted-foreground")}>
                   {isMonthly ? (isFree ? "" : "cobrado mensalmente") : (isFree ? "" : "cobrado anualmente com desconto")}
                 </p>
-                <ul className="mt-5 gap-2 flex flex-col">
+                <ul className="mt-6 gap-3 flex flex-col">
                   {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2">
+                    <li key={idx} className="flex items-start gap-3">
                       <Check className={cn("h-4 w-4 mt-1 flex-shrink-0", plan.isPopular ? "text-green-500" : "text-primary")} />
-                      <span className={plan.isPopular ? "text-white" : "text-left"}>{feature}</span>
+                      <span className={plan.isPopular ? "text-white leading-relaxed" : "text-left leading-relaxed"}>{feature}</span>
                     </li>
                   ))}
                 </ul>

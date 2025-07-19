@@ -22,21 +22,21 @@ export function SolutionSection() {
             />
           </div>
           {/* Coluna Direita: Título, copy e benefícios */}
-          <div className="flex flex-col gap-6 md:gap-10 order-2 md:order-none">
+          <div className="flex flex-col gap-8 md:gap-12 order-2 md:order-none">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white text-left leading-tight">
               Site Rápido: Presença online profissional sem enrolação
             </h2>
-            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left">
+            <p className="text-lg md:text-2xl font-semibold text-black dark:text-white mt-2 text-left leading-relaxed">
               Imagine ter um site bonito, funcional e que gera resultados por menos do que você gasta com delivery no mês.<br/>
               Enquanto outras agências complicam, nós simplificamos:
             </p>
-            <ul className="mt-4 divide-y border-y *:flex *:items-center *:gap-3 *:py-3">
+            <ul className="mt-6 divide-y border-y *:flex *:items-center *:gap-4 *:py-4">
               {benefits.map((item, i) => (
-                <li key={i} className="flex items-center gap-3 py-3">
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-green-100 text-green-600 text-xl font-bold">
+                <li key={i} className="flex items-start gap-4 py-4">
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-green-100 text-green-600 text-xl font-bold mt-0.5">
                     <CheckIcon size={20} color="#22c55e" />
                   </span>
-                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left">
+                  <span className="text-base md:text-xl text-gray-800 dark:text-gray-200 font-medium text-left leading-relaxed">
                     {item}
                   </span>
                 </li>

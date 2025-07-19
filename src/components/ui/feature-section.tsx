@@ -45,23 +45,23 @@ export function FeatureSteps({
     <div className={cn("w-full p-8 md:p-12 min-h-[900px] flex items-center justify-center", className)}>
       <div className="max-w-7xl mx-auto w-full flex flex-col items-center justify-center">
         {/* Título principal */}
-        <h1 className="font-extrabold text-center mb-4" style={{ fontSize: "60px", lineHeight: 1.1 }}>Veja como é fácil ter seu site pronto com a Site Rápido:</h1>
+        <h1 className="font-extrabold text-center mb-6" style={{ fontSize: "60px", lineHeight: 1.1 }}>Veja como é fácil ter seu site pronto com a Site Rápido:</h1>
         {/* Subtítulo */}
-        <p className="text-lg md:text-2xl text-muted-foreground text-center font-medium mb-10 max-w-2xl">Do briefing à publicação, cuidamos de tudo para você. Sem complicação, sem enrolação, com suporte de verdade.</p>
+        <p className="text-lg md:text-2xl text-muted-foreground text-center font-medium mb-12 max-w-2xl leading-relaxed">Do briefing à publicação, cuidamos de tudo para você. Sem complicação, sem enrolação, com suporte de verdade.</p>
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10 w-full md:items-center">
-          <div className="order-2 md:order-1 space-y-8">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-12 w-full md:items-center">
+          <div className="order-2 md:order-1 space-y-10">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
-                className="flex items-center gap-6 md:gap-8"
+                className="flex items-start gap-8 md:gap-10"
                 initial={{ opacity: 0.3 }}
                 animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
                 transition={{ duration: 0.5 }}
               >
                 <motion.div
                   className={cn(
-                    "w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2",
+                    "w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2 mt-1",
                     index === currentFeature
                       ? "bg-primary border-primary text-primary-foreground scale-110"
                       : "bg-muted border-muted-foreground",
@@ -75,10 +75,10 @@ export function FeatureSteps({
                 </motion.div>
 
                 <div className="flex-1">
-                  <h3 className="text-xl md:text-2xl font-semibold">
+                  <h3 className="text-xl md:text-2xl font-semibold mb-3">
                     {feature.title || feature.step}
                   </h3>
-                  <p className="text-sm md:text-lg text-muted-foreground">
+                  <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">
                     {feature.content}
                   </p>
                 </div>

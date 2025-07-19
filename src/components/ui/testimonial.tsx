@@ -105,7 +105,7 @@ const TestimonialCarousel = React.forwardRef<
                   </div>
                 )}
 
-                <div className="p-6 flex flex-col items-center gap-4">
+                <div className="p-8 flex flex-col items-center gap-6">
                   <img
                     src={testimonial.avatar}
                     alt={testimonial.name}
@@ -114,7 +114,7 @@ const TestimonialCarousel = React.forwardRef<
                   <h3 className="text-lg font-semibold text-gray-800 dark:text-foreground">
                     {testimonial.name}
                   </h3>
-                  <p className="text-center text-sm text-gray-600 dark:text-muted-foreground">
+                  <p className="text-center text-sm text-gray-600 dark:text-muted-foreground leading-relaxed">
                     {testimonial.description}
                   </p>
                 </div>

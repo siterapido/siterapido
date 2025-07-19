@@ -25,7 +25,7 @@ const faqs = [
   {
     question: "O que está incluso no plano?",
     answer: (
-      <ul className="list-disc pl-5 space-y-1">
+      <ul className="list-disc pl-5 space-y-2">
         <li>Criação do site personalizado</li>
         <li>Hospedagem dedicada</li>
         <li>Integração com WhatsApp</li>
@@ -63,19 +63,19 @@ const faqs = [
 
 function FAQ() {
   return (
-    <section id="faq" className="w-full py-20 lg:py-40">
+    <section id="faq" className="w-full py-24 lg:py-48">
       <div className="container mx-auto">
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div className="flex gap-10 flex-col">
-            <div className="flex gap-4 flex-col">
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div className="flex gap-12 flex-col">
+            <div className="flex gap-6 flex-col">
               <div>
-                <Badge className="mb-4 bg-black text-white">FAQ</Badge>
+                <Badge className="mb-6 bg-black text-white">FAQ</Badge>
               </div>
-              <div className="flex gap-2 flex-col">
-                <h4 className="text-3xl md:text-5xl font-extrabold mb-4 text-black text-left">
+              <div className="flex gap-4 flex-col">
+                <h4 className="text-3xl md:text-5xl font-extrabold mb-6 text-black text-left">
                   Perguntas mais frequentes
                 </h4>
-                <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground  text-left">
+                <p className="text-lg max-w-xl lg:max-w-lg leading-relaxed tracking-tight text-muted-foreground text-left">
                   Tire suas dúvidas sobre nossos serviços e planos. Se precisar de mais informações, fale com a gente!
                 </p>
               </div>

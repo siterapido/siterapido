@@ -118,7 +118,6 @@ export function PortfolioSection() {
   // Detecta se está em mobile (largura <= 640px)
   const [isMobile, setIsMobile] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
-  const [selectedProject, setSelectedProject] = React.useState<typeof portfolioItems[0] | null>(null);
   
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 640);
@@ -133,7 +132,7 @@ export function PortfolioSection() {
   return (
     <section id="portfolio" className="w-full relative min-h-[600px] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-neutral-950">
       {/* Slides verticais como background absoluto */}
-      <div className="absolute inset-0 w-full h-full z-10 pointer-events-none">
+      <div className="absolute inset-0 w-full h-full z-10 pointer-events-auto">
         <div className={`relative w-full h-full flex items-stretch ${numCols === 2 ? 'gap-x-2' : 'gap-x-1'}`}> 
           {columns.map((col, colIdx) => (
             <div
@@ -153,24 +152,17 @@ export function PortfolioSection() {
                 {col.map((item, i) => (
                   <div 
                     key={item.id + '-' + i} 
-                    className="w-full h-[437px] flex items-center justify-center bg-neutral-900/60 rounded-lg shadow-xl overflow-hidden cursor-pointer group relative"
-                    onClick={() => setSelectedProject(item)}
+                    className="w-full h-[437px] flex items-center justify-center bg-neutral-900/60 rounded-lg shadow-xl overflow-hidden group relative"
                   >
                     <img
                       src={item.image}
                       alt={item.alt}
-                      loading="lazy"
+                      loading={i < 6 ? "lazy" : "lazy"}
+                      fetchPriority={i < 3 ? "high" : "auto"}
                       className="w-full h-full object-cover object-top object-center transition-transform duration-300 group-hover:scale-105"
                       style={{ display: "block" }}
                     />
-                    {/* Overlay com informações do projeto */}
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-4">
-                      <h3 className="text-white font-bold text-lg mb-2">{item.name}</h3>
-                      <p className="text-white/80 text-sm mb-2">{item.challenge}</p>
-                      <p className="text-[#84CC15] font-semibold text-sm mb-2">{item.solution}</p>
-                      <p className="text-white/90 text-sm italic">"{item.result}"</p>
-                      <p className="text-white/70 text-xs mt-2">- {item.client}</p>
-                    </div>
+
                   </div>
                 ))}
               </div>
@@ -178,18 +170,18 @@ export function PortfolioSection() {
           ))}
         </div>
         {/* Overlay degradê escuro sutil */}
-        <div className="absolute inset-0 z-20 pointer-events-none" style={{background: 'linear-gradient(0deg, rgba(20,20,20,0.96) 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0.60) 70%, rgba(20,20,20,0.0) 100%)'}} />
+        <div className="absolute inset-0 z-5 pointer-events-none" style={{background: 'linear-gradient(0deg, rgba(20,20,20,0.96) 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0.60) 70%, rgba(20,20,20,0.0) 100%)'}} />
       </div>
       
       {/* Conteúdo centralizado acima do background */}
       <div className="relative z-30 flex flex-col items-center justify-center w-full max-w-2xl px-4 py-8 text-center">
-        <Badge className="mb-6 bg-[#84CC15] text-black text-base px-5 py-2 shadow-lg mx-auto" style={{fontWeight:700, fontSize:'1rem', letterSpacing:'0.04em', boxShadow:'0 2px 16px 0 #84CC15aa'}}>Portfólio</Badge>
+        <Badge className="mb-8 bg-[#9CD653] text-black text-base px-5 py-2 shadow-lg mx-auto" style={{fontWeight:700, fontSize:'1rem', letterSpacing:'0.04em', boxShadow:'0 2px 16px 0 #9CD653aa'}}>Portfólio</Badge>
         <div className="relative w-full flex justify-center overflow-visible">
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-white text-center px-6 py-3 rounded-2xl overflow-visible drop-shadow-lg" style={{overflow: 'visible', position: 'relative', zIndex: 1}}>
-            Criando sites <span className="glow-text text-[#84CC15] relative">incríveis</span> para nossos clientes
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white text-center px-6 py-3 rounded-2xl overflow-visible drop-shadow-lg" style={{overflow: 'visible', position: 'relative', zIndex: 1}}>
+            Criando sites <span className="glow-text text-[#9CD653] relative">incríveis</span> para nossos clientes
           </h2>
         </div>
-        <p className="text-base md:text-xl text-white/90 mb-8 drop-shadow max-w-2xl mx-auto text-center">
+        <p className="text-base md:text-xl text-white/90 mb-10 drop-shadow max-w-2xl mx-auto text-center leading-relaxed">
           Desenvolvemos sites personalizados e modernos que destacam sua marca e geram resultados. Cada projeto é um case de sucesso com métricas reais de crescimento.
         </p>
         <a
@@ -200,7 +192,7 @@ export function PortfolioSection() {
         >
           <RainbowButton
             background="white"
-            className="w-full max-w-xs md:max-w-sm h-14 text-base sm:text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#84CC15] hover:bg-[#84CC15] hover:text-black focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2"
+            className="w-full max-w-xs md:max-w-sm h-14 text-base sm:text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#9CD653] hover:bg-[#9CD653] hover:text-black focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2"
             style={{letterSpacing:'0.02em'}}
           >
             <span className="hidden sm:inline">Quero meu site agora 🚀</span>
@@ -209,58 +201,7 @@ export function PortfolioSection() {
         </a>
       </div>
 
-      {/* Modal de detalhes do projeto */}
-      {selectedProject && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
-          <div className="bg-neutral-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="relative">
-              <img
-                src={selectedProject.image}
-                alt={selectedProject.alt}
-                className="w-full h-64 object-cover rounded-t-2xl"
-              />
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70 transition-colors"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-white mb-4">{selectedProject.name}</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <h4 className="text-[#84CC15] font-semibold mb-2">O Desafio</h4>
-                  <p className="text-white/80">{selectedProject.challenge}</p>
-                </div>
-                
-                <div>
-                  <h4 className="text-[#84CC15] font-semibold mb-2">A Solução Rápida</h4>
-                  <p className="text-white/80">{selectedProject.solution}</p>
-                </div>
-                
-                <div>
-                  <h4 className="text-[#84CC15] font-semibold mb-2">O Resultado</h4>
-                  <p className="text-white/90 italic text-lg">"{selectedProject.result}"</p>
-                  <p className="text-white/70 text-sm mt-2">- {selectedProject.client}</p>
-                </div>
-                
-                <div className="pt-4 border-t border-white/20">
-                  <a
-                    href={selectedProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#84CC15] text-black px-6 py-3 rounded-lg font-semibold hover:bg-[#84CC15]/90 transition-colors"
-                  >
-                    Ver site ao vivo →
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+
 
       <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano="orcamento" />
       <style>{`
@@ -287,11 +228,13 @@ export function PortfolioSection() {
           width: 180%;
           height: 120%;
           border-radius: 2rem;
-          background: radial-gradient(ellipse at center, rgba(132,204,21,0.35) 0%, rgba(132,204,21,0.10) 60%, transparent 100%);
+          background: radial-gradient(ellipse at center, rgba(156,214,83,0.35) 0%, rgba(156,214,83,0.10) 60%, transparent 100%);
           filter: blur(22px);
           z-index: 0;
           pointer-events: none;
         }
+        
+
       `}</style>
     </section>
   );

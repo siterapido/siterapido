@@ -4,7 +4,6 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { MoveRight, ChevronDown, PhoneCall } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { Button as ShadButton } from "@/components/ui/button";
-import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Typewriter } from "@/components/ui/typewriter-text";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { useSectionInView } from "@/hooks/useSectionInView";
@@ -132,6 +131,7 @@ function Hero(props: FullpageSectionProps) {
                 className="w-full h-[180px] max-h-[32vh] object-contain drop-shadow-2xl mb-[-8px]"
                 loading="eager"
                 draggable="false"
+                fetchPriority="high"
               />
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
@@ -149,7 +149,7 @@ function Hero(props: FullpageSectionProps) {
               >
                 <span className="block">Transforme cliques em</span>
                 <span className="block">clientes com um</span>
-                <span className="block" style={{ color: '#84CC15', WebkitTextFillColor: '#84CC15' }}>site que funciona</span>
+                <span className="block" style={{ color: '#9CD653', WebkitTextFillColor: '#9CD653' }}>site que funciona</span>
               </h2>
               
               {/* Subtítulo focado na mensalidade */}
@@ -166,8 +166,8 @@ function Hero(props: FullpageSectionProps) {
               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center sm:justify-start items-center mt-2">
                 {/* CTA Principal - Quero ver os planos */}
                 <button
-                  className="w-full max-w-full h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-[#84CC15]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 hover:scale-105"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1555, 0 4px 24px 0 #84CC1511'}}
+                  className="w-full max-w-full h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-xl px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#9CD653] bg-[#9CD653]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #9CD65355, 0 4px 24px 0 #9CD65311'}}
                   onClick={() => {
                     const section = document.querySelector('#planos');
                     if (section) {
@@ -175,7 +175,7 @@ function Hero(props: FullpageSectionProps) {
                     }
                   }}
                 >
-                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none" style={{boxShadow:'0 0 32px 8px #b6e35a55, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
+                  <span className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{boxShadow:'0 0 32px 8px #9CD65355, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
                   <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
                     <span className="hidden sm:inline">Quero ver os planos</span>
                     <span className="sm:hidden">Ver planos</span>
@@ -188,10 +188,10 @@ function Hero(props: FullpageSectionProps) {
                   href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero falar com um especialista sobre meu projeto. Pode me ajudar?')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-xs md:max-w-xs lg:max-w-[200px] xl:max-w-[220px] h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 hover:scale-105"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1511, 0 4px 24px 0 #0001'}}
+                  className="w-full max-w-xs md:max-w-xs lg:max-w-[200px] xl:max-w-[220px] h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-xl px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#9CD653] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #9CD65311, 0 4px 24px 0 #0001'}}
                 >
-                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #84CC1533, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
+                  <span className="absolute inset-0 z-0 rounded-xl pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #9CD65333, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
                   <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
                     <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                     <span className="hidden sm:inline">Falar com especialista</span>
@@ -208,6 +208,7 @@ function Hero(props: FullpageSectionProps) {
                 className="w-full h-[200px] sm:h-[220px] md:h-[320px] lg:h-[440px] xl:h-[520px] max-h-[40vh] sm:max-h-[60vh] object-contain drop-shadow-2xl"
                 loading="eager"
                 draggable="false"
+                fetchPriority="high"
               />
             </div>
           </div>

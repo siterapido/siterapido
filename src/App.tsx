@@ -1,5 +1,5 @@
 import { Header1 } from "@/components/ui/header";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Hero } from "@/components/ui/animated-hero";
 import { ComoFuncionaSection } from "./components/sections/ComoFuncionaSection";
 import { PricingSection } from "@/components/ui/pricing-section";
@@ -14,6 +14,7 @@ import Login from './components/admin/Login';
 import AdminLayout from './components/admin/AdminLayout';
 import LeadsList from './components/admin/LeadsList';
 import { supabase } from './lib/supabaseClient';
+import { usePreload } from './hooks/usePreload';
 
 function toggleDarkMode(forceDark?: boolean) {
   const html = document.documentElement;
@@ -43,11 +44,23 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+// Componente de loading para Suspense
+function LoadingSpinner() {
+  return (
+    <div className="flex items-center justify-center py-8">
+      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#84CC15]"></div>
+    </div>
+  );
+}
+
 function LandingPage() {
   const [dark, setDark] = useState(() => {
     if (typeof window === "undefined") return true;
     return document.documentElement.classList.contains("dark");
   });
+
+  // Hook para preload de recursos críticos
+  usePreload();
 
   useEffect(() => {
     toggleDarkMode(dark);
@@ -57,24 +70,37 @@ function LandingPage() {
   useEffect(() => {
     let lenis: any;
     let cleanup: (() => void) | undefined;
-    import("lenis").then(({ default: Lenis }) => {
-      lenis = new Lenis({
-        autoRaf: true,
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-      cleanup = () => {
-        if (lenis) lenis.destroy();
-      };
-    });
+    
+    // Preload do Lenis
+    const preloadLenis = () => {
+      return import("lenis");
+    };
+    
+    // Carrega o Lenis de forma otimizada
+    const loadLenis = async () => {
+      try {
+        const { default: Lenis } = await preloadLenis();
+        lenis = new Lenis({
+          autoRaf: true,
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+        cleanup = () => {
+          if (lenis) lenis.destroy();
+        };
+      } catch (error) {
+        console.warn('Lenis failed to load:', error);
+      }
+    };
+    
+    // Carrega após um pequeno delay para não bloquear o render inicial
+    const timer = setTimeout(loadLenis, 100);
+    
     return () => {
+      clearTimeout(timer);
       if (cleanup) cleanup();
     };
   }, []);
-
-  const handleToggleTheme = () => {
-    setDark((prevDark) => !prevDark);
-  };
 
   return (
     <>
@@ -82,11 +108,21 @@ function LandingPage() {
       <Hero />
       <ComoFuncionaSection />
       <PricingSection />
-      <PortfolioSection />
-      <FocusCardsDemo />
-      <AboutSection />
-      <FAQ />
-      <Footerdemo />
+      <Suspense fallback={<LoadingSpinner />}>
+        <PortfolioSection />
+      </Suspense>
+      <Suspense fallback={<LoadingSpinner />}>
+        <FocusCardsDemo />
+      </Suspense>
+      <Suspense fallback={<LoadingSpinner />}>
+        <AboutSection />
+      </Suspense>
+      <Suspense fallback={<LoadingSpinner />}>
+        <FAQ />
+      </Suspense>
+      <Suspense fallback={<LoadingSpinner />}>
+        <Footerdemo />
+      </Suspense>
       <WhatsAppFloatingButton />
     </>
   );

@@ -97,13 +97,13 @@ export function PricingSection() {
                   ? "shadow-lg scale-105 border-[3px] bg-black text-white"
                   : "bg-white border-zinc-200 text-black hover:shadow-lg")
               }
-              style={plan.featured ? { borderColor: '#84CC18', boxShadow: '0 8px 32px 0 #84CC1833' } : {}}
+              style={plan.featured ? { borderColor: '#9CD653', boxShadow: '0 8px 32px 0 #9CD65333' } : {}}
             >
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CardTitle className="text-2xl font-semibold">{plan.name}</CardTitle>
                   {plan.featured && (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ background: '#84CC18', color: '#000' }}>
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-medium" style={{ background: '#9CD653', color: '#000' }}>
                       <Star className="w-4 h-4" style={{ color: '#000' }} /> Popular
                     </span>
                   )}
@@ -111,22 +111,22 @@ export function PricingSection() {
                 <CardDescription className={plan.featured ? 'text-zinc-200' : ''}>{plan.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="flex items-baseline gap-2 mb-6">
+                <div className="flex items-baseline gap-2 mb-8">
                   <span className="text-4xl font-bold">{plan.price}</span>
                   <span className={plan.featured ? "text-zinc-300" : "text-base text-muted-foreground"}>{plan.suffix}</span>
                 </div>
                 {plan.plano === 'anual' && (
-                  <div className="text-sm text-muted-foreground mb-6 text-center">
+                  <div className="text-sm text-muted-foreground mb-8 text-center">
                     (equivale a R$ 83,08/mês)
                   </div>
                 )}
-                <ul className="flex flex-col gap-3 mb-6">
+                <ul className="flex flex-col gap-4 mb-8">
                   {plan.benefits.map((benefit) => (
-                    <li key={benefit} className="flex items-center gap-3 text-base">
-                      <span className={plan.featured ? "inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#84CC18]/20 shadow-sm" : "inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#84CC18]/10 shadow-sm"}>
-                        <CheckCircle className="w-5 h-5" style={{ color: '#84CC18', filter: 'drop-shadow(0 1px 2px #84CC1855)' }} />
+                    <li key={benefit} className="flex items-start gap-4 text-base">
+                      <span className={plan.featured ? "inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#9CD653]/20 shadow-sm" : "inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#9CD653]/10 shadow-sm"}>
+                        <CheckCircle className="w-5 h-5" style={{ color: '#9CD653', filter: 'drop-shadow(0 1px 2px #9CD65355)' }} />
                       </span>
-                      <span className={plan.featured ? 'text-zinc-100' : ''}>{benefit}</span>
+                      <span className={plan.featured ? 'text-zinc-100 leading-relaxed' : 'leading-relaxed'}>{benefit}</span>
                     </li>
                   ))}
                 </ul>
@@ -143,12 +143,12 @@ export function PricingSection() {
                   rel="noopener noreferrer"
                   className={
                     plan.featured
-                      ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg rounded-2xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
-                      : "w-full bg-black text-white border-black hover:bg-zinc-900 rounded-2xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      ? "w-full relative overflow-hidden border-2 border-[#9CD653] animate-gradient-bg rounded-xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      : "w-full bg-black text-white border-black hover:bg-zinc-900 rounded-xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                   }
                   style={
                     plan.featured
-                      ? { background: 'linear-gradient(270deg, #84CC18, #d1fae5, #84CC18)', color: '#000', borderColor: '#84CC18' }
+                      ? { background: 'linear-gradient(270deg, #9CD653, #d1fae5, #9CD653)', color: '#000', borderColor: '#9CD653' }
                       : {}
                   }
                 >
@@ -156,14 +156,14 @@ export function PricingSection() {
                     {plan.cta}
                     <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline-block align-middle flex-shrink-0" />
                     {plan.featured && (
-                      <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#84CC18,#d1fae5,#84CC18)] bg-[length:200%_200%] opacity-60" />
+                      <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#9CD653,#d1fae5,#9CD653)] bg-[length:200%_200%] opacity-60" />
                     )}
                   </span>
                 </a>
                 {/* Garantias e meios de pagamento */}
                 <div className="flex flex-col items-center gap-1 mt-2">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <ShieldCheck className="w-4 h-4 text-[#84CC18]" />
+                    <ShieldCheck className="w-4 h-4 text-[#9CD653]" />
                     7 dias de garantia
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
