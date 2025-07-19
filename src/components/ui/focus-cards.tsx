@@ -128,59 +128,53 @@ export function FocusCards({ cards }: { cards: Card[] }) {
       
       {/* Modal de detalhes do projeto */}
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
-          <div className="relative max-w-4xl w-full bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl" style={{ maxHeight: '90vh' }}>
-            {/* Container com scroll customizado */}
-            <div className="flex flex-col h-full">
-              {/* Header com imagem */}
-              <div className="relative flex-shrink-0">
-                <img
-                  src={selected.src}
-                  alt={selected.title}
-                  className="w-full h-48 md:h-64 object-cover"
-                />
-                <button
-                  onClick={() => setSelected(null)}
-                  className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 flex items-center justify-center transition-colors"
-                >
-                  <span style={{ fontSize: 18, fontWeight: 'bold', lineHeight: 1 }}>×</span>
-                </button>
-              </div>
-              
-              {/* Conteúdo com scroll */}
-              <div className="flex-1 overflow-y-auto" style={{ 
-                scrollbarWidth: 'thin',
-                scrollbarColor: '#9CD653 #f1f1f1'
-              }}>
-                <div className="p-6 space-y-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white leading-tight">{selected.name}</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 sm:p-4">
+          <div className="relative w-full max-w-4xl bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl max-h-[95vh] sm:max-h-[90vh] flex flex-col">
+            {/* Header com imagem */}
+            <div className="relative flex-shrink-0">
+              <img
+                src={selected.src}
+                alt={selected.title}
+                className="w-full h-32 sm:h-48 md:h-64 object-cover"
+              />
+              <button
+                onClick={() => setSelected(null)}
+                className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-black/50 hover:bg-black/70 text-white rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center transition-colors z-10"
+              >
+                <span className="text-lg sm:text-xl font-bold leading-none">×</span>
+              </button>
+            </div>
+            
+            {/* Conteúdo com scroll */}
+            <div className="flex-1 overflow-y-auto min-h-0">
+              <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-neutral-900 dark:text-white leading-tight">{selected.name}</h3>
+                
+                <div className="space-y-4 sm:space-y-6">
+                  <div>
+                    <h4 className="text-[#9CD653] font-semibold text-base sm:text-lg mb-2 sm:mb-3">O Desafio</h4>
+                    <p className="text-neutral-700 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">{selected.challenge}</p>
+                  </div>
                   
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-[#9CD653] font-semibold text-lg mb-3">O Desafio</h4>
-                      <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{selected.challenge}</p>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-[#84CC15] font-semibold text-lg mb-3">A Solução Rápida</h4>
-                      <p className="text-neutral-700 dark:text-neutral-300 text-base leading-relaxed">{selected.solution}</p>
-                    </div>
-                    
-                    <div>
-                      <h4 className="text-[#84CC15] font-semibold text-lg mb-3">O Resultado</h4>
-                      <p className="text-neutral-900 dark:text-white italic text-lg leading-relaxed">"{selected.result}"</p>
-                    </div>
-                    
-                    <div className="pt-6 border-t border-neutral-200 dark:border-neutral-700">
-                      <a
-                        href={gerarLinkWhatsApp('5584999810711', `Olá! Vi o projeto ${selected.name} e quero um site igual para meu negócio. Pode me ajudar?`)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 bg-[#9CD653] text-black px-6 py-3 rounded-xl font-semibold hover:bg-[#9CD653]/90 transition-colors"
-                      >
-                        Quero um site igual →
-                      </a>
-                    </div>
+                  <div>
+                    <h4 className="text-[#84CC15] font-semibold text-base sm:text-lg mb-2 sm:mb-3">A Solução Rápida</h4>
+                    <p className="text-neutral-700 dark:text-neutral-300 text-sm sm:text-base leading-relaxed">{selected.solution}</p>
+                  </div>
+                  
+                  <div>
+                    <h4 className="text-[#84CC15] font-semibold text-base sm:text-lg mb-2 sm:mb-3">O Resultado</h4>
+                    <p className="text-neutral-900 dark:text-white italic text-base sm:text-lg leading-relaxed">"{selected.result}"</p>
+                  </div>
+                  
+                  <div className="pt-4 sm:pt-6 border-t border-neutral-200 dark:border-neutral-700">
+                    <a
+                      href={gerarLinkWhatsApp('5584999810711', `Olá! Vi o projeto ${selected.name} e quero um site igual para meu negócio. Pode me ajudar?`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-[#9CD653] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold hover:bg-[#9CD653]/90 transition-colors text-sm sm:text-base"
+                    >
+                      Quero um site igual →
+                    </a>
                   </div>
                 </div>
               </div>
@@ -243,6 +237,20 @@ export function FocusCards({ cards }: { cards: Card[] }) {
         
         .dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
           background: #84CC15;
+        }
+        
+        /* Garantir que o modal seja responsivo */
+        @media (max-width: 640px) {
+          .fixed.inset-0 {
+            padding: 0.5rem;
+          }
+        }
+        
+        /* Melhorar a experiência em telas muito pequenas */
+        @media (max-width: 480px) {
+          .fixed.inset-0 {
+            padding: 0.25rem;
+          }
         }
       `}</style>
     </section>
