@@ -12,7 +12,8 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { Instagram, Phone, Mail, Clock } from "lucide-react"
+import { Instagram, Phone, Mail, Clock, MoveRight } from "lucide-react"
+import { gerarLinkWhatsApp } from "@/lib/utils"
 
 function Footerdemo() {
   // Removido: const [isDarkMode, setIsDarkMode] = React.useState(true)
@@ -81,7 +82,27 @@ function Footerdemo() {
           </div>
           {/* Formulário de contato removido */}
         </div>
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
+        
+        {/* Botão de Call-to-Action */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 border-t pt-8">
+          <div className="text-center">
+            <h3 className="text-xl font-bold mb-4 text-white">Pronto para começar seu projeto?</h3>
+            <p className="text-muted-foreground mb-6 max-w-md">
+              Entre em contato conosco e vamos criar o site perfeito para seu negócio
+            </p>
+            <a
+              href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero começar meu projeto. Pode me ajudar?')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-3 bg-[#84CC15] hover:bg-[#84CC15]/90 text-black font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg"
+            >
+              Falar no WhatsApp
+              <MoveRight className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+        
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
             © 2024 Site Rápido. Todos os direitos reservados.
           </p>

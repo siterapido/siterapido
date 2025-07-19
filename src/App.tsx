@@ -8,6 +8,7 @@ import { FAQ } from "@/components/ui/faq-section";
 import { Footerdemo } from "@/components/ui/footer-section";
 import { FocusCardsDemo } from "@/components/ui/demo";
 import { PortfolioSection } from "./components/sections/PortfolioSection";
+import { WhatsAppFloatingButton } from "@/components/ui/whatsapp-icon";
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Login from './components/admin/Login';
 import AdminLayout from './components/admin/AdminLayout';
@@ -86,6 +87,7 @@ function LandingPage() {
       <AboutSection />
       <FAQ />
       <Footerdemo />
+      <WhatsAppFloatingButton />
     </>
   );
 }

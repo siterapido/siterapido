@@ -94,35 +94,35 @@
 /* === Fontes Customizadas Coolvetica === */
 @font-face {
   font-family: 'Coolvetica';
-  src: url('/Fontes/coolvetica rg.otf') format('opentype');
+  src: url('/Fontes/coolvetica-rg.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Coolvetica';
-  src: url('/Fontes/coolvetica rg it.otf') format('opentype');
+  src: url('/Fontes/coolvetica-rg-it.woff') format('woff');
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Coolvetica Condensed';
-  src: url('/Fontes/coolvetica condensed rg.otf') format('opentype');
+  src: url('/Fontes/coolvetica-condensed-rg.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Coolvetica Compressed';
-  src: url('/Fontes/coolvetica compressed hv.otf') format('opentype');
+  src: url('/Fontes/coolvetica-compressed-hv.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Coolvetica Crammed';
-  src: url('/Fontes/coolvetica crammed rg.otf') format('opentype');
+  src: url('/Fontes/coolvetica-crammed-rg.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -138,7 +138,10 @@
   p, button, a, li, ul, ol, span, div, input, textarea, select, label, th, td {
     font-family: 'Inter', sans-serif;
   }
-  h1, h2, h3, h4, h5, h6 {
+  h1 {
+    font-family: 'Coolvetica', Arial, sans-serif !important;
+  }
+  h2, h3, h4, h5, h6 {
     font-family: 'Coolvetica', 'Coolvetica Condensed', 'Coolvetica Compressed', 'Coolvetica Crammed', sans-serif !important;
   }
 } 
@@ -147,7 +150,24 @@
   font-family: 'Coolvetica', Arial, sans-serif;
 } 
 
-#hero-title {
-  font-family: 'Coolvetica', Arial, sans-serif !important;
-  font-weight: 400 !important;
+.font-coolvetica-compressed {
+  font-family: 'Coolvetica Compressed', Arial, sans-serif !important;
+  font-weight: 700 !important;
+} 
+
+/* Animação personalizada para o botão flutuante do WhatsApp */
+@keyframes pulse-whatsapp {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.animate-pulse-whatsapp {
+  animation: pulse-whatsapp 2s infinite;
 } 

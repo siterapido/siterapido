@@ -1,8 +1,9 @@
 import { Timeline } from "@/components/ui/timeline";
-import { Rocket, Code2, Lightbulb } from "lucide-react";
+import { Rocket, Code2, Lightbulb, MoveRight } from "lucide-react";
 import CheckIcon from "@/components/ui/check-icon";
 import React, { useRef, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 export function ComoFuncionaSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -86,6 +87,19 @@ export function ComoFuncionaSection() {
           </p>
         </div>
         <Timeline data={data} vertical activeIndex={activeIndex} />
+        
+        {/* Botão de Call-to-Action */}
+        <div className="text-center mt-16">
+          <a
+            href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi como funciona o processo de vocês e quero começar meu projeto. Pode me ajudar?')}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 bg-[#84CC15] hover:bg-[#84CC15]/90 text-black font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg"
+          >
+            Quero começar meu projeto
+            <MoveRight className="w-5 h-5" />
+          </a>
+        </div>
       </div>
     </section>
   );

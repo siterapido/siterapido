@@ -138,8 +138,8 @@ export function PricingSection() {
                   rel="noopener noreferrer"
                   className={
                     plan.featured
-                      ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg"
-                      : "w-full bg-black text-white border-black hover:bg-zinc-900"
+                      ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg rounded-2xl py-4 px-8 text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      : "w-full bg-black text-white border-black hover:bg-zinc-900 rounded-2xl py-4 px-8 text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                   }
                   style={
                     plan.featured
@@ -147,9 +147,9 @@ export function PricingSection() {
                       : {}
                   }
                 >
-                  <span className="flex items-center justify-center w-full h-full relative">
+                  <span className="flex items-center justify-center w-full h-full relative whitespace-nowrap">
                     {plan.cta}
-                    <MoveRight className="w-5 h-5 ml-2 inline-block align-middle" />
+                    <MoveRight className="w-5 h-5 ml-2 inline-block align-middle flex-shrink-0" />
                     {plan.featured && (
                       <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#84CC18,#d1fae5,#84CC18)] bg-[length:200%_200%] opacity-60" />
                     )}

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { MoveRight } from "lucide-react";
+import { gerarLinkWhatsApp } from "@/lib/utils";
 
 export const Card = React.memo(
   ({
@@ -96,6 +98,20 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           </button>
         )}
       </div>
+      
+      {/* Botão de Call-to-Action */}
+      <div className="text-center mt-12">
+        <a
+          href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi os sites em destaque de vocês e quero um site igual para meu negócio. Pode me ajudar?')}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-3 bg-[#84CC15] hover:bg-[#84CC15]/90 text-black font-bold text-lg px-8 py-4 rounded-2xl transition-all duration-300 hover:scale-105 shadow-lg"
+        >
+          Quero um site igual
+          <MoveRight className="w-5 h-5" />
+        </a>
+      </div>
+      
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md">
           <div className="relative max-w-3xl w-full mx-4">
