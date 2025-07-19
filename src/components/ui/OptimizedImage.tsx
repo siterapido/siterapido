@@ -35,18 +35,13 @@ export const OptimizedImage: React.FC<OptimizedImageProps> = ({
   // Gerar srcset para diferentes tamanhos
   const generateSrcSet = (originalSrc: string) => {
     const baseName = originalSrc.replace(/\.[^/.]+$/, '');
-    const extension = originalSrc.split('.').pop();
     
-    // Tentar WebP primeiro, fallback para formato original
-    const webpSrc = originalSrc.replace(/\.(png|jpg|jpeg)$/, '.webp');
-    
-    const sizes = [360, 720, 1080, 1440];
-    const srcSet = sizes
-      .map(size => `${baseName}-${size}.webp ${size}w`)
-      .join(', ');
+    // Verificar se existe versão otimizada
+    const optimizedSrc = originalSrc.replace(/\.(png|jpg|jpeg)$/, '.webp');
+    const optimizedPath = optimizedSrc.replace('/assets/', '/assets/optimized/');
     
     return {
-      webp: srcSet,
+      webp: optimizedPath,
       fallback: originalSrc,
     };
   };
