@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importa Inter do Google Fonts - deve vir primeiro */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -56,6 +59,47 @@
   }
 }
 
+/* === Fontes Customizadas Coolvetica === */
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/Fontes/coolvetica-rg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Coolvetica';
+  src: url('/Fontes/coolvetica-rg-it.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Coolvetica Condensed';
+  src: url('/Fontes/coolvetica-condensed-rg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Coolvetica Compressed';
+  src: url('/Fontes/coolvetica-compressed-hv.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Coolvetica Crammed';
+  src: url('/Fontes/coolvetica-crammed-rg.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -63,6 +107,22 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Coolvetica', Arial, sans-serif !important;
+  }
+  
+  html, body {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  p, button, a, li, ul, ol, span, div, input, textarea, select, label, th, td {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1 {
+    font-family: 'Coolvetica', Arial, sans-serif !important;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: 'Coolvetica', 'Coolvetica Condensed', 'Coolvetica Compressed', 'Coolvetica Crammed', sans-serif !important;
   }
 }
 
@@ -89,61 +149,6 @@
   background: linear-gradient(270deg, #84CC18, #d1fae5, #84CC18);
   background-size: 200% 200%;
   animation: gradient-move 3s linear infinite;
-} 
-
-/* === Fontes Customizadas Coolvetica === */
-@font-face {
-  font-family: 'Coolvetica';
-  src: url('/Fontes/coolvetica-rg.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Coolvetica';
-  src: url('/Fontes/coolvetica-rg-it.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Coolvetica Condensed';
-  src: url('/Fontes/coolvetica-condensed-rg.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Coolvetica Compressed';
-  src: url('/Fontes/coolvetica-compressed-hv.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Coolvetica Crammed';
-  src: url('/Fontes/coolvetica-crammed-rg.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Importa Inter do Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
-
-@layer base {
-  html, body {
-    font-family: 'Inter', sans-serif;
-  }
-  p, button, a, li, ul, ol, span, div, input, textarea, select, label, th, td {
-    font-family: 'Inter', sans-serif;
-  }
-  h1 {
-    font-family: 'Coolvetica', Arial, sans-serif !important;
-  }
-  h2, h3, h4, h5, h6 {
-    font-family: 'Coolvetica', 'Coolvetica Condensed', 'Coolvetica Compressed', 'Coolvetica Crammed', sans-serif !important;
-  }
 } 
 
 .font-coolvetica {
