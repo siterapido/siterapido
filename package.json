@@ -6,14 +6,17 @@
   "homepage": "https://siterapido.github.io/siterapido",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run optimize:images && vite build",
+    "build:fast": "vite build",
+    "optimize:images": "node optimize-images.js",
     "check:images": "node check-slide-images.js",
     "build-and-check": "npm run build && npm run check:images",
     "analyze": "node analyze-bundle.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "performance:audit": "npm run build && lighthouse dist/index.html --output=json --output-path=./lighthouse-report.json"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.10",
@@ -58,6 +61,7 @@
     "terser": "^5.43.1",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.3"
+    "vite": "^7.0.3",
+    "vite-plugin-compression2": "^2.2.0"
   }
 }

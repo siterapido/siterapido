@@ -1,81 +1,112 @@
-// Utilitários para otimizações de performance
+// Configurações de performance para otimização
 
-// Debounce para otimizar eventos de scroll e resize
-export function debounce<T extends (...args: any[]) => any>(
-  func: T,
-  wait: number
-): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout;
-  return (...args: Parameters<T>) => {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => func(...args), wait);
-  };
-}
-
-// Throttle para otimizar eventos frequentes
-export function throttle<T extends (...args: any[]) => any>(
-  func: T,
-  limit: number
-): (...args: Parameters<T>) => void {
-  let inThrottle: boolean;
-  return (...args: Parameters<T>) => {
-    if (!inThrottle) {
-      func(...args);
-      inThrottle = true;
-      setTimeout(() => (inThrottle = false), limit);
+export const PERFORMANCE_CONFIG = {
+    // Throttle para eventos de scroll
+    SCROLL_THROTTLE: 16, // ~60fps
+    
+    // Debounce para eventos de resize
+    RESIZE_DEBOUNCE: 150,
+    
+    // Intersection Observer options
+    INTERSECTION_OPTIONS: {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    },
+    
+    // Lazy loading options
+    LAZY_LOADING: {
+        threshold: 0.1,
+        rootMargin: '50px'
     }
-  };
-}
+} as const;
 
-// Intersection Observer para lazy loading
-export function createIntersectionObserver(
-  callback: IntersectionObserverCallback,
-  options: IntersectionObserverInit = {}
-): IntersectionObserver {
-  return new IntersectionObserver(callback, {
-    rootMargin: '50px',
-    threshold: 0.1,
-    ...options,
-  });
-}
+// Função para throttle
+export const throttle = <T extends (...args: any[]) => any>(
+    func: T,
+    limit: number
+): T => {
+    let inThrottle: boolean;
+    return ((...args: any[]) => {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }) as T;
+};
 
-// Preload de recursos críticos
-export function preloadResource(href: string, as: string, type?: string): void {
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = as;
-  link.href = href;
-  if (type) link.type = type;
-  if (as === 'font') link.crossOrigin = 'anonymous';
-  document.head.appendChild(link);
-}
+// Função para debounce
+export const debounce = <T extends (...args: any[]) => any>(
+    func: T,
+    wait: number
+): T => {
+    let timeout: NodeJS.Timeout;
+    return ((...args: any[]) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), wait);
+    }) as T;
+};
 
-// Preload de imagens críticas
-export function preloadImage(src: string): void {
-  const img = new Image();
-  img.src = src;
-}
+// Função para preload de recursos críticos
+export const preloadCriticalResources = () => {
+    const criticalResources = [
+        '/assets/logo-principal-preta.png',
+        // Adicione outros recursos críticos aqui
+    ];
 
-// Verificar se o dispositivo tem conexão lenta
-export function isSlowConnection(): boolean {
-  if ('connection' in navigator) {
-    const connection = (navigator as any).connection;
-    return connection.effectiveType === 'slow-2g' || 
-           connection.effectiveType === '2g' || 
-           connection.effectiveType === '3g';
-  }
-  return false;
-}
+    criticalResources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = resource;
+        document.head.appendChild(link);
+    });
+};
 
-// Verificar se o dispositivo tem memória limitada
-export function hasLimitedMemory(): boolean {
-  if ('deviceMemory' in navigator) {
-    return (navigator as any).deviceMemory < 4;
-  }
-  return false;
-}
+// Função para otimizar imagens
+export const optimizeImage = (src: string, width?: number, height?: number) => {
+    // Aqui você pode adicionar lógica para otimização de imagens
+    // Por exemplo, usar um CDN ou service worker para otimização
+    return src;
+};
 
-// Verificar se deve usar otimizações para dispositivos de baixo desempenho
-export function shouldUseLowPerfOptimizations(): boolean {
-  return isSlowConnection() || hasLimitedMemory();
-} 
+// Função para preload de recursos
+export const preloadResource = (href: string, as: string, type?: string) => {
+    const link = document.createElement('link');
+    link.rel = 'preload';
+    link.as = as;
+    link.href = href;
+    if (type) link.type = type;
+    document.head.appendChild(link);
+};
+
+// Função para preload de imagens
+export const preloadImage = (src: string) => {
+    const img = new Image();
+    img.src = src;
+};
+
+// Função para detectar conexão lenta
+export const isSlowConnection = () => {
+    if ('connection' in navigator) {
+        const connection = (navigator as any).connection;
+        return connection.effectiveType === 'slow-2g' || 
+               connection.effectiveType === '2g' || 
+               connection.effectiveType === '3g';
+    }
+    return false;
+};
+
+// Função para detectar memória limitada
+export const hasLimitedMemory = () => {
+    if ('deviceMemory' in navigator) {
+        return (navigator as any).deviceMemory < 4; // Menos de 4GB
+    }
+    return false;
+};
+
+// Função para decidir se usar otimizações de baixo desempenho
+export const shouldUseLowPerfOptimizations = () => {
+    return isSlowConnection() || hasLimitedMemory();
+}; 
