@@ -17,15 +17,15 @@ const CheckIcon: React.FC<CheckIconProps> = ({ className = "", size = 24 }) => (
   >
     <defs>
       <linearGradient id="check-gradient" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
-        <stop stopColor="#E3F584" />
-        <stop offset="1" stopColor="#b6e35c" />
+        <stop stopColor="#84CC15" />
+        <stop offset="1" stopColor="#65A30D" />
       </linearGradient>
     </defs>
-    <circle cx="12" cy="12" r="12" fill="url(#check-gradient)" fillOpacity="0.2" />
+    <circle cx="12" cy="12" r="10" fill="url(#check-gradient)" fillOpacity="0.15" />
     <path
       d="M7 12.5L11 16L17 9.5"
       stroke="url(#check-gradient)"
-      strokeWidth="2.2"
+      strokeWidth="2.5"
       strokeLinecap="round"
       strokeLinejoin="round"
     />

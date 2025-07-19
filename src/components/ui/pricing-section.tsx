@@ -34,7 +34,7 @@ const plans: Plan[] = [
       "Certificado SSL e site seguro",
       "Otimização para Google (SEO)",
     ],
-    cta: "Quero meu site rápido",
+    cta: "Meu site rápido",
     featured: false,
     suffix: "/mês",
     plano: 'mensal',
@@ -52,7 +52,7 @@ const plans: Plan[] = [
       "Sessão estratégica de onboarding personalizada",
       "Acesso antecipado a novos recursos da plataforma",
     ],
-    cta: "Quero economizar e crescer",
+    cta: "Economizar e crescer",
     featured: true,
     suffix: "/ano",
     plano: 'anual',
@@ -115,6 +115,11 @@ export function PricingSection() {
                   <span className="text-4xl font-bold">{plan.price}</span>
                   <span className={plan.featured ? "text-zinc-300" : "text-base text-muted-foreground"}>{plan.suffix}</span>
                 </div>
+                {plan.plano === 'anual' && (
+                  <div className="text-sm text-muted-foreground mb-6 text-center">
+                    (equivale a R$ 83,08/mês)
+                  </div>
+                )}
                 <ul className="flex flex-col gap-3 mb-6">
                   {plan.benefits.map((benefit) => (
                     <li key={benefit} className="flex items-center gap-3 text-base">
@@ -138,8 +143,8 @@ export function PricingSection() {
                   rel="noopener noreferrer"
                   className={
                     plan.featured
-                      ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg rounded-2xl py-4 px-8 text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
-                      : "w-full bg-black text-white border-black hover:bg-zinc-900 rounded-2xl py-4 px-8 text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      ? "w-full relative overflow-hidden border-2 border-[#84CC18] animate-gradient-bg rounded-2xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
+                      : "w-full bg-black text-white border-black hover:bg-zinc-900 rounded-2xl py-4 px-6 text-base sm:text-lg font-bold transition-all duration-300 hover:scale-105 shadow-lg"
                   }
                   style={
                     plan.featured
@@ -147,9 +152,9 @@ export function PricingSection() {
                       : {}
                   }
                 >
-                  <span className="flex items-center justify-center w-full h-full relative whitespace-nowrap">
+                  <span className="flex items-center justify-center w-full h-full relative text-center leading-tight">
                     {plan.cta}
-                    <MoveRight className="w-5 h-5 ml-2 inline-block align-middle flex-shrink-0" />
+                    <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 inline-block align-middle flex-shrink-0" />
                     {plan.featured && (
                       <span className="absolute inset-0 z-[-1] animate-gradient-move bg-[linear-gradient(270deg,#84CC18,#d1fae5,#84CC18)] bg-[length:200%_200%] opacity-60" />
                     )}

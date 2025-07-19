@@ -73,9 +73,7 @@ function AnimatedGridBG() {
 
 // Aceita props de transição do FullpageSection
 function Hero(props: FullpageSectionProps) {
-  const bullets = [
-    "Assinatura por R$ 119,90/mês",
-  ];
+  // Removido o array bullets com o preço para evitar inconsistência
 
   // Hook para detectar se a galeria está visível
   const [morphDone, setMorphDone] = useState(false);
@@ -138,43 +136,38 @@ function Hero(props: FullpageSectionProps) {
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
             <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4">
-              {/* Título removido para ser recriado do zero */}
+              {/* Headline com mais ênfase e destaque */}
               <h2
-                className="font-coolvetica-compressed text-3xl sm:text-4xl lg:text-6xl xl:text-7xl text-black dark:text-white leading-tight mb-2 break-words w-full"
+                className="font-coolvetica-compressed text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-black dark:text-white leading-tight mb-4 break-words w-full"
+                style={{
+                  textShadow: '0 4px 8px rgba(0,0,0,0.1)',
+                  background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}
               >
-                <span className="block">Venda mais</span>
-                <span className="block">com um site profissional</span>
+                <span className="block">Transforme cliques em</span>
+                <span className="block">clientes com um</span>
+                <span className="block" style={{ color: '#84CC15', WebkitTextFillColor: '#84CC15' }}>site que funciona</span>
               </h2>
-              <p className="text-base sm:text-lg lg:text-2xl leading-relaxed text-gray-700 dark:text-gray-200 mb-2 max-w-xl mx-auto sm:mx-0">
-                Site profissional e rápido para seu negócio!<br />Transforme cliques em clientes
-              </p>
-              <div className="flex flex-col items-center sm:items-start w-full mb-4">
-                <span className="relative flex justify-center sm:justify-start items-center h-12 lg:h-14 w-full">
-                  <Typewriter
-                    text={bullets}
-                    speed={60}
-                    loop={true}
-                    cursor={""}
-                    className="font-extrabold text-sm sm:text-lg lg:text-xl px-3 py-2 rounded-full whitespace-nowrap text-neutral-700 dark:text-neutral-300 bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700"
-                  />
-                </span>
+              
+              {/* Subtítulo focado na mensalidade */}
+              <div className="space-y-2 mb-6">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-200 max-w-xl mx-auto sm:mx-0 font-medium">
+                  Seu site profissional por mensalidade.
+                </p>
+                <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-600 dark:text-gray-300 max-w-xl mx-auto sm:mx-0 font-normal">
+                  Sem taxa de entrada. Sem fidelidade. Cancele quando quiser.
+                </p>
               </div>
+              
+              {/* CTAs reorganizados - CTA principal para planos, secundário para orçamento */}
               <div className="flex flex-col sm:flex-row gap-4 w-full justify-center sm:justify-start items-center mt-2">
-                <a
-                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero um orçamento personalizado para meu negócio. Pode me ajudar?')}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full max-w-full h-16 text-base sm:text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-full px-6 sm:px-8 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-[#84CC15]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1555, 0 4px 24px 0 #84CC1511'}}>
-                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none" style={{boxShadow:'0 0 32px 8px #b6e35a55, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
-                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
-                    <FaWhatsapp className="w-6 h-6 mr-2 text-white" />
-                    Orçamento personalizado
-                  </span>
-                </a>
+                {/* CTA Principal - Quero ver os planos */}
                 <button
-                  className="w-full max-w-xs md:max-w-xs lg:max-w-[180px] xl:max-w-[200px] h-16 text-lg md:text-xl font-extrabold flex items-center justify-center gap-3 rounded-full px-8 md:px-4 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 whitespace-nowrap"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1511, 0 4px 24px 0 #0001'}}
+                  className="w-full max-w-full h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-[#84CC15]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 hover:scale-105"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1555, 0 4px 24px 0 #84CC1511'}}
                   onClick={() => {
                     const section = document.querySelector('#planos');
                     if (section) {
@@ -182,12 +175,29 @@ function Hero(props: FullpageSectionProps) {
                     }
                   }}
                 >
-                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #84CC1533, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
-                  <span className="relative z-10 flex items-center gap-2 whitespace-nowrap">
-                    Ver Planos
-                    <MoveRight className="w-5 h-5" />
+                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none" style={{boxShadow:'0 0 32px 8px #b6e35a55, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
+                  <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
+                    <span className="hidden sm:inline">Quero ver os planos</span>
+                    <span className="sm:hidden">Ver planos</span>
+                    <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                   </span>
                 </button>
+                
+                {/* CTA Secundário - Falar com especialista */}
+                <a
+                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero falar com um especialista sobre meu projeto. Pode me ajudar?')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full max-w-xs md:max-w-xs lg:max-w-[200px] xl:max-w-[220px] h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-full px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#84CC15] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2 hover:scale-105"
+                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #84CC1511, 0 4px 24px 0 #0001'}}
+                >
+                  <span className="absolute inset-0 z-0 rounded-full pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #84CC1533, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
+                  <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
+                    <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <span className="hidden sm:inline">Falar com especialista</span>
+                    <span className="sm:hidden">Especialista</span>
+                  </span>
+                </a>
               </div>
             </div>
             {/* Imagem à direita no desktop */}

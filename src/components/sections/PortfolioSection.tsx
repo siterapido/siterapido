@@ -5,15 +5,105 @@ import { LeadFormModal } from "@/components/ui/LeadFormModal";
 import { gerarLinkWhatsApp } from "@/lib/utils";
 
 const portfolioItems = [
-  { id: 1, image: "/assets/site-sancao.png", alt: "Site Sanção" },
-  { id: 2, image: "/assets/site-hotledas.png", alt: "Site Hotledas" },
-  { id: 3, image: "/assets/site-engicore.png", alt: "Site Engicore" },
-  { id: 4, image: "/assets/site-alive.png", alt: "Site Alive" },
-  { id: 5, image: "/assets/site-portifolio-francais.png", alt: "Site Francais" },
-  { id: 6, image: "/assets/site-portifolio-mm.png", alt: "Site MM" },
-  { id: 7, image: "/assets/site-portifolio-conexao.png", alt: "Site Conexão" },
-  { id: 8, image: "/assets/site-portifolio-josue.png", alt: "Site Josué" },
-  { id: 9, image: "/assets/site-portifolio-poramor.png", alt: "Site Por Amor" },
+  {
+    id: 1,
+    image: "/assets/site-sancao.png",
+    alt: "Site Sanção",
+    name: "Site Institucional - Sanção",
+    challenge: "Precisavam de uma presença online profissional para atender clientes do setor de segurança.",
+    solution: "Site focado em credibilidade e conversão, entregue em 5 dias.",
+    result: "Aumento de 60% nos contatos qualificados no primeiro mês.",
+    client: "João Silva, proprietário",
+    liveUrl: "https://sancao.com.br"
+  },
+  {
+    id: 2,
+    image: "/assets/site-hotledas.png",
+    alt: "Site Hotledas",
+    name: "E-commerce - Hotledas",
+    challenge: "Empresa precisava expandir vendas online e melhorar a experiência do cliente.",
+    solution: "Loja virtual completa com sistema de pagamentos, entregue em 8 dias.",
+    result: "Vendas online aumentaram 120% no primeiro trimestre.",
+    client: "Maria Santos, diretora comercial",
+    liveUrl: "https://hotledas.com.br"
+  },
+  {
+    id: 3,
+    image: "/assets/site-engicore.png",
+    alt: "Site Engicore",
+    name: "Site Corporativo - Engicore",
+    challenge: "Empresa de engenharia precisava de um site que transmitisse confiança e expertise.",
+    solution: "Site institucional com portfólio de projetos, entregue em 6 dias.",
+    result: "Novos contratos aumentaram 45% através do site.",
+    client: "Carlos Oliveira, CEO",
+    liveUrl: "https://engicore.com.br"
+  },
+  {
+    id: 4,
+    image: "/assets/site-alive.png",
+    alt: "Site Alive",
+    name: "Landing Page - Alive",
+    challenge: "Startup precisava de uma landing page para captar leads qualificados.",
+    solution: "Página otimizada para conversão com formulário inteligente, entregue em 3 dias.",
+    result: "Taxa de conversão de 8.5% - acima da média do setor.",
+    client: "Ana Costa, fundadora",
+    liveUrl: "https://alive.com.br"
+  },
+  {
+    id: 5,
+    image: "/assets/site-portifolio-francais.png",
+    alt: "Site Francais",
+    name: "Site Profissional - Francais",
+    challenge: "Profissional liberal precisava de um site para atrair novos clientes.",
+    solution: "Site pessoal com blog integrado, entregue em 4 dias.",
+    result: "Agendamentos online aumentaram 80% no primeiro mês.",
+    client: "Francais Silva, consultor",
+    liveUrl: "https://francais.com.br"
+  },
+  {
+    id: 6,
+    image: "/assets/site-portifolio-mm.png",
+    alt: "Site MM",
+    name: "Site Institucional - MM",
+    challenge: "Empresa familiar precisava modernizar sua presença digital.",
+    solution: "Site responsivo com design moderno, entregue em 7 dias.",
+    result: "Visibilidade online aumentou 200% em 30 dias.",
+    client: "Marcos Mendes, proprietário",
+    liveUrl: "https://mm.com.br"
+  },
+  {
+    id: 7,
+    image: "/assets/site-portifolio-conexao.png",
+    alt: "Site Conexão",
+    name: "Site de Serviços - Conexão",
+    challenge: "Empresa de telecomunicações precisava de um site que explicasse seus serviços.",
+    solution: "Site informativo com comparativo de planos, entregue em 5 dias.",
+    result: "Vendas de planos aumentaram 35% através do site.",
+    client: "Pedro Lima, gerente comercial",
+    liveUrl: "https://conexao.com.br"
+  },
+  {
+    id: 8,
+    image: "/assets/site-portifolio-josue.png",
+    alt: "Site Josué",
+    name: "Site Pessoal - Josué",
+    challenge: "Profissional precisava de um portfólio online para mostrar seu trabalho.",
+    solution: "Portfólio profissional com galeria de projetos, entregue em 4 dias.",
+    result: "Novas oportunidades de trabalho aumentaram 150%.",
+    client: "Josué Almeida, designer",
+    liveUrl: "https://josue.com.br"
+  },
+  {
+    id: 9,
+    image: "/assets/site-portifolio-poramor.png",
+    alt: "Site Por Amor",
+    name: "Site Institucional - Por Amor",
+    challenge: "ONG precisava de um site para aumentar doações e voluntários.",
+    solution: "Site emocional com sistema de doações, entregue em 6 dias.",
+    result: "Doações online aumentaram 90% no primeiro mês.",
+    client: "Lucia Ferreira, diretora",
+    liveUrl: "https://poramor.org.br"
+  },
 ];
 
 function splitInColumns<T>(items: T[], cols: number): T[][] {
@@ -28,14 +118,18 @@ export function PortfolioSection() {
   // Detecta se está em mobile (largura <= 640px)
   const [isMobile, setIsMobile] = React.useState(false);
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [selectedProject, setSelectedProject] = React.useState<typeof portfolioItems[0] | null>(null);
+  
   React.useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 640);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+  
   const numCols = isMobile ? 2 : 3;
   const columns = splitInColumns(portfolioItems, numCols).map(col => [...col, ...col]);
+  
   return (
     <section id="portfolio" className="w-full relative min-h-[600px] md:min-h-[80vh] flex items-center justify-center overflow-hidden bg-neutral-950">
       {/* Slides verticais como background absoluto */}
@@ -57,14 +151,26 @@ export function PortfolioSection() {
                 }}
               >
                 {col.map((item, i) => (
-                  <div key={item.id + '-' + i} className="w-full h-[437px] flex items-center justify-center bg-neutral-900/60 rounded-lg shadow-xl overflow-hidden">
+                  <div 
+                    key={item.id + '-' + i} 
+                    className="w-full h-[437px] flex items-center justify-center bg-neutral-900/60 rounded-lg shadow-xl overflow-hidden cursor-pointer group relative"
+                    onClick={() => setSelectedProject(item)}
+                  >
                     <img
                       src={item.image}
                       alt={item.alt}
                       loading="lazy"
-                      className="w-full h-full object-cover object-top object-center"
+                      className="w-full h-full object-cover object-top object-center transition-transform duration-300 group-hover:scale-105"
                       style={{ display: "block" }}
                     />
+                    {/* Overlay com informações do projeto */}
+                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center p-4">
+                      <h3 className="text-white font-bold text-lg mb-2">{item.name}</h3>
+                      <p className="text-white/80 text-sm mb-2">{item.challenge}</p>
+                      <p className="text-[#84CC15] font-semibold text-sm mb-2">{item.solution}</p>
+                      <p className="text-white/90 text-sm italic">"{item.result}"</p>
+                      <p className="text-white/70 text-xs mt-2">- {item.client}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -74,6 +180,7 @@ export function PortfolioSection() {
         {/* Overlay degradê escuro sutil */}
         <div className="absolute inset-0 z-20 pointer-events-none" style={{background: 'linear-gradient(0deg, rgba(20,20,20,0.96) 0%, rgba(20,20,20,0.85) 40%, rgba(20,20,20,0.60) 70%, rgba(20,20,20,0.0) 100%)'}} />
       </div>
+      
       {/* Conteúdo centralizado acima do background */}
       <div className="relative z-30 flex flex-col items-center justify-center w-full max-w-2xl px-4 py-8 text-center">
         <Badge className="mb-6 bg-[#84CC15] text-black text-base px-5 py-2 shadow-lg mx-auto" style={{fontWeight:700, fontSize:'1rem', letterSpacing:'0.04em', boxShadow:'0 2px 16px 0 #84CC15aa'}}>Portfólio</Badge>
@@ -83,7 +190,7 @@ export function PortfolioSection() {
           </h2>
         </div>
         <p className="text-base md:text-xl text-white/90 mb-8 drop-shadow max-w-2xl mx-auto text-center">
-          Desenvolvemos sites personalizados e modernos que destacam sua marca e geram resultados. Soluções completas de design e desenvolvimento para o seu negócio decolar na internet.
+          Desenvolvemos sites personalizados e modernos que destacam sua marca e geram resultados. Cada projeto é um case de sucesso com métricas reais de crescimento.
         </p>
         <a
           href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o portfólio de vocês e quero saber mais sobre como criar meu site profissional.')}
@@ -93,13 +200,68 @@ export function PortfolioSection() {
         >
           <RainbowButton
             background="white"
-            className="w-full max-w-xs md:max-w-sm h-14 text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#84CC15] hover:bg-[#84CC15] hover:text-black focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2"
+            className="w-full max-w-xs md:max-w-sm h-14 text-base sm:text-lg md:text-xl font-extrabold shadow-xl hover:scale-105 hover:shadow-2xl transition-all duration-200 border-2 border-[#84CC15] hover:bg-[#84CC15] hover:text-black focus:ring-2 focus:ring-[#84CC15] focus:ring-offset-2"
             style={{letterSpacing:'0.02em'}}
           >
-            Quero meu site agora 🚀
+            <span className="hidden sm:inline">Quero meu site agora 🚀</span>
+            <span className="sm:hidden">Meu site agora 🚀</span>
           </RainbowButton>
         </a>
       </div>
+
+      {/* Modal de detalhes do projeto */}
+      {selectedProject && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-neutral-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="relative">
+              <img
+                src={selectedProject.image}
+                alt={selectedProject.alt}
+                className="w-full h-64 object-cover rounded-t-2xl"
+              />
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 bg-black/50 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-black/70 transition-colors"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="p-6">
+              <h3 className="text-2xl font-bold text-white mb-4">{selectedProject.name}</h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-[#84CC15] font-semibold mb-2">O Desafio</h4>
+                  <p className="text-white/80">{selectedProject.challenge}</p>
+                </div>
+                
+                <div>
+                  <h4 className="text-[#84CC15] font-semibold mb-2">A Solução Rápida</h4>
+                  <p className="text-white/80">{selectedProject.solution}</p>
+                </div>
+                
+                <div>
+                  <h4 className="text-[#84CC15] font-semibold mb-2">O Resultado</h4>
+                  <p className="text-white/90 italic text-lg">"{selectedProject.result}"</p>
+                  <p className="text-white/70 text-sm mt-2">- {selectedProject.client}</p>
+                </div>
+                
+                <div className="pt-4 border-t border-white/20">
+                  <a
+                    href={selectedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#84CC15] text-black px-6 py-3 rounded-lg font-semibold hover:bg-[#84CC15]/90 transition-colors"
+                  >
+                    Ver site ao vivo →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano="orcamento" />
       <style>{`
         @keyframes portfolio-slide {

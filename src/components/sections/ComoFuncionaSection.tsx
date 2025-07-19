@@ -1,6 +1,5 @@
 import { Timeline } from "@/components/ui/timeline";
-import { Rocket, Code2, Lightbulb, MoveRight } from "lucide-react";
-import CheckIcon from "@/components/ui/check-icon";
+import { Rocket, Code2, Lightbulb, MoveRight, CheckCircle } from "lucide-react";
 import React, { useRef, useEffect, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { gerarLinkWhatsApp } from "@/lib/utils";
@@ -28,9 +27,9 @@ export function ComoFuncionaSection() {
   }, []);
 
   const etapas = [
-    { numero: 1, titulo: "Planejamento", icone: Lightbulb, subtitulo: "Análise Personalizada" },
-    { numero: 2, titulo: "Desenvolvimento", icone: Code2, subtitulo: "Criação de Excelência" },
-    { numero: 3, titulo: "Entrega", icone: Rocket, subtitulo: "Lançamento e Suporte" },
+    { numero: 1, titulo: "Briefing Ágil", icone: Lightbulb, subtitulo: "Análise Personalizada" },
+    { numero: 2, titulo: "Construção e Otimização", icone: Code2, subtitulo: "Criação de Excelência" },
+    { numero: 3, titulo: "Lançamento e Suporte Contínuo", icone: Rocket, subtitulo: "Lançamento e Suporte" },
   ];
   const conteudos = [
     [
@@ -65,8 +64,11 @@ export function ComoFuncionaSection() {
       <div className="bg-neutral-900 border border-[#84CC15] rounded-xl p-5 md:p-6 mt-0">
         <ul className="pl-0 text-white text-base md:text-lg font-normal space-y-3">
           {conteudos[idx].map((item, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <CheckIcon size={20} className="mt-1 text-[#84CC15]" />{item}
+            <li key={i} className="flex items-center gap-3">
+              <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#84CC15]/20 shadow-sm">
+                <CheckCircle className="w-5 h-5" style={{ color: '#84CC15', filter: 'drop-shadow(0 1px 2px #84CC1555)' }} />
+              </span>
+              <span className="text-white">{item}</span>
             </li>
           ))}
         </ul>

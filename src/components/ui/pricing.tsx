@@ -206,8 +206,9 @@ export function Pricing({
                 </ul>
                 {/* Botão de ação */}
                 { plan.isPopular && (
-                  <RainbowButton background="white" className="w-full font-bold text-lg mt-4">
-                    Quero meu site agora 🚀
+                  <RainbowButton background="white" className="w-full font-bold text-base sm:text-lg mt-4">
+                    <span className="hidden sm:inline">Quero meu site agora 🚀</span>
+                    <span className="sm:hidden">Meu site agora 🚀</span>
                   </RainbowButton>
                 )}
                 <hr className={cn("w-full my-4", plan.isPopular ? "border-white/30" : "")} />
