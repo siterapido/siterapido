@@ -125,14 +125,37 @@ function Hero(props: FullpageSectionProps) {
           <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 xl:gap-16">
             {/* Imagem acima do conteúdo no mobile, à direita no desktop */}
             <div className="block sm:hidden w-full flex justify-center items-center pt-4 pb-6">
-              <img
-                src="/assets/optimized/site-hero-cerna-hero-v2.webp"
-                alt="Ilustração de pessoas conversando sobre site"
-                className="w-full h-[200px] max-h-[35vh] object-contain drop-shadow-2xl"
-                loading="eager"
-                draggable="false"
-                fetchPriority="high"
-              />
+              <picture>
+                {/* Mobile - 200x200 */}
+                <source
+                  media="(max-width: 640px)"
+                  srcSet="/assets/responsive/site-hero-cerna-hero-v2-mobile.webp"
+                  type="image/webp"
+                />
+                {/* Tablet - 400x400 */}
+                <source
+                  media="(min-width: 641px) and (max-width: 1024px)"
+                  srcSet="/assets/responsive/site-hero-cerna-hero-v2-tablet.webp"
+                  type="image/webp"
+                />
+                {/* Desktop - 600x600 */}
+                <source
+                  media="(min-width: 1025px)"
+                  srcSet="/assets/responsive/site-hero-cerna-hero-v2-desktop.webp"
+                  type="image/webp"
+                />
+                {/* Fallback */}
+                <img
+                  src="/assets/responsive/site-hero-cerna-hero-v2-mobile.webp"
+                  alt="Ilustração de pessoas conversando sobre site"
+                  className="w-full h-[200px] max-h-[35vh] object-contain drop-shadow-2xl"
+                  loading="eager"
+                  draggable="false"
+                  fetchPriority="high"
+                  width="200"
+                  height="200"
+                />
+              </picture>
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
             <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4 px-2 sm:px-0">

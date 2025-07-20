@@ -1,13 +1,12 @@
 <!doctype html>
 <html lang="pt-BR">
   <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-M83CJT4B');</script>
-    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager - Carregamento otimizado via JavaScript -->
+    <script>
+      // GTM será carregado via thirdPartyOptimization.ts
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+    </script>
     
     <meta charset="UTF-8" />
     <link rel="icon" type="image/jpeg" href="/assets/icone-1.jpg" />
@@ -27,7 +26,8 @@
     <!-- Preload de recursos críticos -->
     <link rel="preload" href="/assets/fonts/coolvetica-rg-CF58JjUd.woff" as="font" type="font/woff" crossorigin />
     <link rel="preload" href="/assets/fonts/coolvetica-compressed-hv-Cat-ApIj.woff" as="font" type="font/woff" crossorigin />
-    <link rel="preload" href="/assets/optimized/site-hero-cerna-hero-v2.webp" as="image" />
+    <!-- Preload da imagem hero responsiva para mobile (mais crítica) -->
+    <link rel="preload" href="/assets/responsive/site-hero-cerna-hero-v2-mobile.webp" as="image" fetchpriority="high" />
     
     <!-- DNS prefetch para domínios externos -->
     <link rel="dns-prefetch" href="//connect.facebook.net" />

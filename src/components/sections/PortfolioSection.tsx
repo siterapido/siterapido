@@ -2,12 +2,17 @@ import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { LeadFormModal } from "@/components/ui/LeadFormModal";
+import { PortfolioImage } from "@/components/ui/PortfolioImage";
 import { gerarLinkWhatsApp } from "@/lib/utils";
 
 const portfolioItems = [
   {
     id: 1,
-    image: "/assets/optimized/site-sancao.webp",
+    image: {
+      mobile: "/assets/responsive/site-sancao-mobile.webp",
+      tablet: "/assets/responsive/site-sancao-tablet.webp",
+      desktop: "/assets/optimized/site-sancao.webp"
+    },
     alt: "Site Sanção",
     name: "Site Institucional - Sanção",
     challenge: "Precisavam de uma presença online profissional para atender clientes do setor de segurança.",
@@ -18,7 +23,11 @@ const portfolioItems = [
   },
   {
     id: 2,
-    image: "/assets/optimized/site-hotledas.webp",
+    image: {
+      mobile: "/assets/responsive/site-hotledas-mobile.webp",
+      tablet: "/assets/responsive/site-hotledas-tablet.webp",
+      desktop: "/assets/optimized/site-hotledas.webp"
+    },
     alt: "Site Hotledas",
     name: "E-commerce - Hotledas",
     challenge: "Empresa precisava expandir vendas online e melhorar a experiência do cliente.",
@@ -29,7 +38,11 @@ const portfolioItems = [
   },
   {
     id: 3,
-    image: "/assets/optimized/site-engicore.webp",
+    image: {
+      mobile: "/assets/responsive/site-engicore-mobile.webp",
+      tablet: "/assets/responsive/site-engicore-tablet.webp",
+      desktop: "/assets/optimized/site-engicore.webp"
+    },
     alt: "Site Engicore",
     name: "Site Corporativo - Engicore",
     challenge: "Empresa de engenharia precisava de um site que transmitisse confiança e expertise.",
@@ -40,7 +53,11 @@ const portfolioItems = [
   },
   {
     id: 4,
-    image: "/assets/optimized/site-alive.webp",
+    image: {
+      mobile: "/assets/responsive/site-alive-mobile.webp",
+      tablet: "/assets/responsive/site-alive-tablet.webp",
+      desktop: "/assets/optimized/site-alive.webp"
+    },
     alt: "Site Alive",
     name: "Landing Page - Alive",
     challenge: "Startup precisava de uma landing page para captar leads qualificados.",
@@ -154,15 +171,12 @@ export function PortfolioSection() {
                     key={item.id + '-' + i} 
                     className="w-full h-[437px] flex items-center justify-center bg-neutral-900/60 rounded-lg shadow-xl overflow-hidden group relative"
                   >
-                    <img
-                      src={item.image}
+                    <PortfolioImage
+                      image={item.image}
                       alt={item.alt}
-                      loading={i < 6 ? "lazy" : "lazy"}
-                      fetchPriority={i < 3 ? "high" : "auto"}
-                      className="w-full h-full object-cover object-top object-center transition-transform duration-300 group-hover:scale-105"
-                      style={{ display: "block" }}
+                      priority={i < 3}
+                      className="w-full h-full"
                     />
-
                   </div>
                 ))}
               </div>

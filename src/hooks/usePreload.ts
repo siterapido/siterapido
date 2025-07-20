@@ -1,35 +1,53 @@
 import { useEffect } from 'react';
-import { preloadResource, preloadImage, shouldUseLowPerfOptimizations } from '@/lib/performance';
+import { detectDeviceCapabilities } from '@/lib/performance';
+import { CRITICAL_IMAGES_PRELOAD } from '@/lib/imageConfig';
+import { fontOptimizer } from '@/lib/fontOptimization';
+
+// Função para preload de recursos
+const preloadResource = (href: string, as: string, type?: string) => {
+  if (typeof document === 'undefined') return;
+  
+  const link = document.createElement('link');
+  link.rel = 'preload';
+  link.as = as;
+  link.href = href;
+  if (type) link.type = type;
+  link.crossOrigin = 'anonymous';
+  
+  document.head.appendChild(link);
+};
+
+// Função para preload de imagens
+const preloadImage = (src: string) => {
+  if (typeof document === 'undefined') return;
+  
+  const img = new Image();
+  img.src = src;
+};
 
 export function usePreload() {
   useEffect(() => {
+    const capabilities = detectDeviceCapabilities();
+    
     // Só faz preload se não for dispositivo de baixo desempenho
-    if (shouldUseLowPerfOptimizations()) {
+    if (capabilities.hasSlowConnection || capabilities.hasLowMemory) {
       return;
     }
 
-    // Preload de imagens críticas
-    const criticalImages = [
-      '/assets/optimized/site-hero-cerna-hero-v2.webp',
-      '/assets/optimized/site-sancao.webp',
-      '/assets/optimized/site-hotledas.webp',
-      '/assets/optimized/site-engicore.webp',
-      '/assets/optimized/site-alive.webp'
-    ];
-
-    criticalImages.forEach(src => {
+    // Preload de imagens críticas responsivas
+    CRITICAL_IMAGES_PRELOAD.forEach(src => {
       preloadResource(src, 'image');
       preloadImage(src);
     });
 
-    // Preload de fontes críticas
+    // Preload de fontes críticas usando o novo sistema
     const criticalFonts = [
-      '/Fontes/coolvetica-rg.woff',
-      '/Fontes/coolvetica-compressed-hv.woff'
+      { family: 'Coolvetica', weight: '400' },
+      { family: 'Coolvetica', weight: '900' }
     ];
 
-    criticalFonts.forEach(href => {
-      preloadResource(href, 'font', 'font/woff');
+    criticalFonts.forEach(font => {
+      fontOptimizer.preloadFont(font.family, 'normal', font.weight);
     });
 
     // Preload de recursos CSS críticos

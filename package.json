@@ -6,9 +6,10 @@
   "homepage": "https://siterapido.github.io/siterapido",
   "scripts": {
     "dev": "vite",
-    "build": "npm run optimize:images && vite build",
+    "build": "npm run generate:responsive-images && npm run optimize:images && vite build",
     "build:fast": "vite build",
     "optimize:images": "node optimize-images.js",
+    "generate:responsive-images": "node scripts/generate-responsive-images.js",
     "check:images": "node check-slide-images.js",
     "build-and-check": "npm run build && npm run check:images",
     "analyze": "node analyze-bundle.js",

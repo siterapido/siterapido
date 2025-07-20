@@ -1,0 +1,1 @@
+import{c as I}from"./vendor-supabase-core-CHKCHvTl.js";const s=I("https://ejkchzdumlxejmjfszdk.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVqa2NoemR1bWx4ZWptamZzemRrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIwODQ4NTAsImV4cCI6MjA2NzY2MDg1MH0.M9hLKETZjoj7C2qZCwDox8HjaNSVNJvQ2Y2aCtjgjwI");export{s};
