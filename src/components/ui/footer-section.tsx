@@ -26,7 +26,7 @@ function Footerdemo() {
           {/* Logo e contato */}
           <div className="flex flex-col items-start gap-6">
             <img
-              src="/assets/logo-footer.png"
+              src="/assets/optimized/logo-footer.webp"
               alt="Logo Site Rápido"
               className="h-7 w-auto mb-2"
             />

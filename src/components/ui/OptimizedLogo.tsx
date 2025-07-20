@@ -13,7 +13,7 @@ const OptimizedLogo = memo(({
 }: OptimizedLogoProps) => (
     <div className="flex items-center gap-4">
         <img 
-            src="/assets/logo-principal-preta.png" 
+            src="/assets/optimized/logo-principal-preta.webp" 
             alt="Logo Site Rápido" 
             className={className}
             width={width}

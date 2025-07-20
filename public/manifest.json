@@ -11,24 +11,24 @@
   "lang": "pt-BR",
   "icons": [
     {
-      "src": "/assets/logo-principal-preta.png",
+      "src": "/assets/icone-1.jpg",
       "sizes": "192x192",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     },
     {
-      "src": "/assets/logo-principal-preta.png",
+      "src": "/assets/icone-1.jpg",
       "sizes": "512x512",
-      "type": "image/png",
+      "type": "image/jpeg",
       "purpose": "any maskable"
     }
   ],
   "categories": ["business", "productivity"],
   "screenshots": [
     {
-      "src": "/assets/site-hero-cerna-hero-v2.webp",
+      "src": "/assets/optimized/site-hero-cerna-hero-v2.jpg",
       "sizes": "1280x720",
-      "type": "image/webp",
+      "type": "image/jpeg",
       "form_factor": "wide"
     }
   ],
@@ -40,7 +40,7 @@
       "url": "/#planos",
       "icons": [
         {
-          "src": "/assets/logo-principal-preta.png",
+          "src": "/assets/icone-1.jpg",
           "sizes": "96x96"
         }
       ]

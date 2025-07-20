@@ -10,11 +10,11 @@ export function usePreload() {
 
     // Preload de imagens críticas
     const criticalImages = [
-      '/assets/site-hero-cerna-hero-v2.png',
-      '/assets/site-sancao.png',
-      '/assets/site-hotledas.png',
-      '/assets/site-engicore.png',
-      '/assets/site-alive.png'
+      '/assets/optimized/site-hero-cerna-hero-v2.jpg',
+      '/assets/optimized/site-sancao.webp',
+      '/assets/optimized/site-hotledas.webp',
+      '/assets/optimized/site-engicore.webp',
+      '/assets/optimized/site-alive.webp'
     ];
 
     criticalImages.forEach(src => {

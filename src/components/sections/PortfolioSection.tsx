@@ -7,7 +7,7 @@ import { gerarLinkWhatsApp } from "@/lib/utils";
 const portfolioItems = [
   {
     id: 1,
-    image: "/assets/site-sancao.png",
+    image: "/assets/optimized/site-sancao.webp",
     alt: "Site Sanção",
     name: "Site Institucional - Sanção",
     challenge: "Precisavam de uma presença online profissional para atender clientes do setor de segurança.",
@@ -18,7 +18,7 @@ const portfolioItems = [
   },
   {
     id: 2,
-    image: "/assets/site-hotledas.png",
+    image: "/assets/optimized/site-hotledas.webp",
     alt: "Site Hotledas",
     name: "E-commerce - Hotledas",
     challenge: "Empresa precisava expandir vendas online e melhorar a experiência do cliente.",
@@ -29,7 +29,7 @@ const portfolioItems = [
   },
   {
     id: 3,
-    image: "/assets/site-engicore.png",
+    image: "/assets/optimized/site-engicore.webp",
     alt: "Site Engicore",
     name: "Site Corporativo - Engicore",
     challenge: "Empresa de engenharia precisava de um site que transmitisse confiança e expertise.",
@@ -40,7 +40,7 @@ const portfolioItems = [
   },
   {
     id: 4,
-    image: "/assets/site-alive.png",
+    image: "/assets/optimized/site-alive.webp",
     alt: "Site Alive",
     name: "Landing Page - Alive",
     challenge: "Startup precisava de uma landing page para captar leads qualificados.",
@@ -51,7 +51,7 @@ const portfolioItems = [
   },
   {
     id: 5,
-    image: "/assets/site-portifolio-francais.png",
+    image: "/assets/optimized/site-portifolio-francais.webp",
     alt: "Site Francais",
     name: "Site Profissional - Francais",
     challenge: "Profissional liberal precisava de um site para atrair novos clientes.",
@@ -62,7 +62,7 @@ const portfolioItems = [
   },
   {
     id: 6,
-    image: "/assets/site-portifolio-mm.png",
+    image: "/assets/optimized/site-portifolio-mm.webp",
     alt: "Site MM",
     name: "Site Institucional - MM",
     challenge: "Empresa familiar precisava modernizar sua presença digital.",
@@ -73,7 +73,7 @@ const portfolioItems = [
   },
   {
     id: 7,
-    image: "/assets/site-portifolio-conexao.png",
+    image: "/assets/optimized/site-portifolio-conexao.webp",
     alt: "Site Conexão",
     name: "Site de Serviços - Conexão",
     challenge: "Empresa de telecomunicações precisava de um site que explicasse seus serviços.",
@@ -84,7 +84,7 @@ const portfolioItems = [
   },
   {
     id: 8,
-    image: "/assets/site-portifolio-josue.png",
+    image: "/assets/optimized/site-portifolio-josue.webp",
     alt: "Site Josué",
     name: "Site Pessoal - Josué",
     challenge: "Profissional precisava de um portfólio online para mostrar seu trabalho.",
@@ -95,7 +95,7 @@ const portfolioItems = [
   },
   {
     id: 9,
-    image: "/assets/site-portifolio-poramor.png",
+    image: "/assets/optimized/site-portifolio-poramor.webp",
     alt: "Site Por Amor",
     name: "Site Institucional - Por Amor",
     challenge: "ONG precisava de um site para aumentar doações e voluntários.",

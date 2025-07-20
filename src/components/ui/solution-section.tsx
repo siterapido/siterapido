@@ -11,18 +11,9 @@ export function SolutionSection() {
   return (
     <section className="w-full py-16 md:py-32 bg-white dark:bg-neutral-950 border-b border-neutral-200 dark:border-neutral-800 z-10">
       <div className="container mx-auto max-w-6xl px-4">
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16 lg:gap-24">
-          {/* Coluna Esquerda: Espaço para ilustração */}
-          <div className="flex items-center justify-center order-1 md:order-none">
-            <img
-              src="/assets/site-solucao.png"
-              alt="Ilustração solução Site Rápido"
-              className="w-full max-w-xl h-auto md:w-[380px] md:max-w-none lg:w-[420px] xl:w-[480px] rounded-none object-contain"
-              loading="lazy"
-            />
-          </div>
-          {/* Coluna Direita: Título, copy e benefícios */}
-          <div className="flex flex-col gap-8 md:gap-12 order-2 md:order-none">
+        <div className="flex justify-center">
+          {/* Conteúdo centralizado */}
+          <div className="flex flex-col gap-8 md:gap-12 max-w-4xl">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-black dark:text-white text-left leading-tight">
               Site Rápido: Presença online profissional sem enrolação
             </h2>

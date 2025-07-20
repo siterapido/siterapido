@@ -56,6 +56,21 @@
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
   }
+  
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  h1 {
+    font-family: 'Coolvetica', Arial, sans-serif;
+  }
+  
+  h2, h3, h4, h5, h6 {
+    font-family: 'Coolvetica', Arial, sans-serif;
+  }
 }
 
 /* === Fontes Customizadas Coolvetica === */
@@ -99,32 +114,6 @@
   font-display: swap;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-family: 'Coolvetica', Arial, sans-serif !important;
-  }
-  
-  html, body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  p, button, a, li, ul, ol, span, div, input, textarea, select, label, th, td {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  }
-  
-  h1 {
-    font-family: 'Coolvetica', Arial, sans-serif !important;
-  }
-  
-  h2, h3, h4, h5, h6 {
-    font-family: 'Coolvetica', 'Coolvetica Condensed', 'Coolvetica Compressed', 'Coolvetica Crammed', sans-serif !important;
-  }
-}
-
 @layer utilities {
   /* Utilities personalizadas podem ser adicionadas aqui */
 } 
@@ -155,8 +144,7 @@
 } 
 
 .font-coolvetica-compressed {
-  font-family: 'Coolvetica Compressed', Arial, sans-serif !important;
-  font-weight: 700 !important;
+  font-family: 'Coolvetica Compressed', Arial, sans-serif;
 } 
 
 /* Animação personalizada para o botão flutuante do WhatsApp */

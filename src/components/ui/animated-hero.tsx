@@ -121,53 +121,60 @@ function Hero(props: FullpageSectionProps) {
         {/* Nenhuma renderização para <div className="block xl:hidden"> para garantir que não aparece em mobile/tablet */}
 
         {/* Conteúdo principal */}
-        <div id="hero" className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 pb-8 sm:pb-0">
-          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-16 xl:gap-24">
+        <div id="hero" className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pb-8 sm:pb-12">
+          <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 xl:gap-16">
             {/* Imagem acima do conteúdo no mobile, à direita no desktop */}
-            <div className="block sm:hidden w-full flex justify-center items-center pt-6 pb-2">
+            <div className="block sm:hidden w-full flex justify-center items-center pt-4 pb-6">
               <img
-                src="/assets/site-hero-cerna-hero-v2.png"
+                src="/assets/optimized/site-hero-cerna-hero-v2.jpg"
                 alt="Ilustração de pessoas conversando sobre site"
-                className="w-full h-[180px] max-h-[32vh] object-contain drop-shadow-2xl mb-[-8px]"
+                className="w-full h-[200px] max-h-[35vh] object-contain drop-shadow-2xl"
                 loading="eager"
                 draggable="false"
                 fetchPriority="high"
               />
             </div>
             {/* Texto à esquerda (desktop) ou abaixo da imagem (mobile) */}
-            <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4">
-              {/* Headline com mais ênfase e destaque */}
-              <h2
-                className="font-coolvetica-compressed text-3xl sm:text-4xl md:text-5xl lg:text-5xl xl:text-6xl text-black dark:text-white leading-tight mb-4 break-words w-full"
-                style={{
-                  textShadow: '0 4px 8px rgba(0,0,0,0.1)',
-                  background: 'linear-gradient(135deg, #000000 0%, #1a1a1a 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}
-              >
-                <span className="block">Transforme cliques em</span>
-                <span className="block">clientes com um</span>
-                <span className="block" style={{ color: '#9CD653', WebkitTextFillColor: '#9CD653' }}>site que funciona</span>
-              </h2>
+            <div className="flex flex-col items-center text-center max-w-3xl flex-1 w-full sm:mt-0 mx-auto sm:items-start sm:text-left gap-4 px-2 sm:px-0">
+              {/* Headline com melhor hierarquia e responsividade */}
+              <div className="space-y-1 sm:space-y-2">
+                <h1
+                  className="font-coolvetica text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black dark:text-white leading-[1.1] sm:leading-[1.05] md:leading-[1.0] w-full tracking-wide"
+                  style={{
+                    letterSpacing: '0.05em'
+                  }}
+                >
+                  <span className="block mb-2 sm:mb-3 whitespace-nowrap">Transforme cliques em</span>
+                  <span className="block mb-2 sm:mb-3 whitespace-nowrap">clientes com um site</span>
+                  <span 
+                    className="block whitespace-nowrap" 
+                    style={{ 
+                      color: '#9CD653', 
+                      textShadow: '0 2px 8px rgba(156, 214, 83, 0.3)',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    que funciona
+                  </span>
+                </h1>
+              </div>
               
-              {/* Subtítulo focado na mensalidade */}
-              <div className="space-y-2 mb-6">
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-700 dark:text-gray-200 max-w-xl mx-auto sm:mx-0 font-medium">
+              {/* Subtítulo com melhor estrutura e espaçamento */}
+              <div className="space-y-2 sm:space-y-3 max-w-2xl">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-800 dark:text-gray-100 font-medium">
                   Seu site profissional por mensalidade.
                 </p>
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-gray-600 dark:text-gray-300 max-w-xl mx-auto sm:mx-0 font-normal">
+                <p className="text-xs sm:text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-300 font-normal">
                   Sem taxa de entrada. Sem fidelidade. Cancele quando quiser.
                 </p>
               </div>
               
-              {/* CTAs reorganizados - CTA principal para planos, secundário para orçamento */}
-              <div className="flex flex-col sm:flex-row gap-4 w-full justify-center sm:justify-start items-center mt-2">
+              {/* CTAs com melhor espaçamento e responsividade */}
+              <div className="flex flex-col sm:flex-row gap-3 w-full justify-center sm:justify-start items-center mt-3 sm:mt-4">
                 {/* CTA Principal - Quero ver os planos */}
                 <button
-                  className="w-full max-w-full h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-xl px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#9CD653] bg-[#9CD653]/80 text-white shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #9CD65355, 0 4px 24px 0 #9CD65311'}}
+                  className="w-full sm:w-auto min-w-[180px] h-12 sm:h-14 text-sm sm:text-base md:text-lg font-bold flex items-center justify-center gap-3 rounded-2xl px-5 sm:px-6 py-3 transition-all duration-300 border-2 border-[#9CD653] bg-[#9CD653] text-white shadow-2xl backdrop-blur-md relative overflow-hidden group focus:ring-4 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105 hover:shadow-[0_20px_40px_rgba(156,214,83,0.3)]"
+                  style={{letterSpacing:'0.02em'}}
                   onClick={() => {
                     const section = document.querySelector('#planos');
                     if (section) {
@@ -175,11 +182,11 @@ function Hero(props: FullpageSectionProps) {
                     }
                   }}
                 >
-                  <span className="absolute inset-0 z-0 rounded-xl pointer-events-none" style={{boxShadow:'0 0 32px 8px #9CD65355, 0 0 0 0 #fff0', opacity:0.7, filter:'blur(2px)'}}></span>
-                  <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
+                  <span className="absolute inset-0 z-0 rounded-2xl pointer-events-none bg-gradient-to-r from-[#9CD653] to-[#84CC15] opacity-90 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="relative z-10 flex items-center gap-3 text-center leading-tight">
                     <span className="hidden sm:inline">Quero ver os planos</span>
                     <span className="sm:hidden">Ver planos</span>
-                    <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                    <MoveRight className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 transition-transform group-hover:translate-x-1" />
                   </span>
                 </button>
                 
@@ -188,12 +195,12 @@ function Hero(props: FullpageSectionProps) {
                   href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero falar com um especialista sobre meu projeto. Pode me ajudar?')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full max-w-xs md:max-w-xs lg:max-w-[200px] xl:max-w-[220px] h-14 sm:h-16 text-sm sm:text-base md:text-lg font-extrabold flex items-center justify-center gap-2 rounded-xl px-4 sm:px-6 py-3 transition-all duration-200 border-2 border-[#9CD653] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-2 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105"
-                  style={{letterSpacing:'0.02em', boxShadow:'0 0 32px 0 #9CD65311, 0 4px 24px 0 #0001'}}
+                  className="w-full sm:w-auto min-w-[180px] h-12 sm:h-14 text-sm sm:text-base md:text-lg font-bold flex items-center justify-center gap-3 rounded-2xl px-5 sm:px-6 py-3 transition-all duration-300 border-2 border-[#9CD653] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-4 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105 hover:shadow-[0_20px_40px_rgba(156,214,83,0.2)]"
+                  style={{letterSpacing:'0.02em'}}
                 >
-                  <span className="absolute inset-0 z-0 rounded-xl pointer-events-none group-hover:opacity-80" style={{boxShadow:'0 0 24px 4px #9CD65333, 0 0 0 0 #fff0', opacity:0.4, filter:'blur(2px)'}}></span>
-                  <span className="relative z-10 flex items-center gap-2 text-center leading-tight">
-                    <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                  <span className="absolute inset-0 z-0 rounded-2xl pointer-events-none bg-gradient-to-r from-white to-gray-50 opacity-90 group-hover:opacity-100 transition-opacity duration-300"></span>
+                  <span className="relative z-10 flex items-center gap-3 text-center leading-tight">
+                    <FaWhatsapp className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 transition-transform group-hover:scale-110" />
                     <span className="hidden sm:inline">Falar com especialista</span>
                     <span className="sm:hidden">Especialista</span>
                   </span>
@@ -201,11 +208,11 @@ function Hero(props: FullpageSectionProps) {
               </div>
             </div>
             {/* Imagem à direita no desktop */}
-            <div className="hidden sm:flex flex-1 justify-center items-center w-full h-full max-w-xs sm:max-w-xl mt-6 lg:mt-0 mb-4 lg:mb-0 order-last">
+            <div className="hidden sm:flex flex-1 justify-center items-center w-full h-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mt-8 lg:mt-0 mb-4 lg:mb-0 order-last">
               <img
-                src="/assets/site-hero-cerna-hero-v2.png"
+                src="/assets/optimized/site-hero-cerna-hero-v2.jpg"
                 alt="Ilustração de pessoas conversando sobre site"
-                className="w-full h-[200px] sm:h-[220px] md:h-[320px] lg:h-[440px] xl:h-[520px] max-h-[40vh] sm:max-h-[60vh] object-contain drop-shadow-2xl"
+                className="w-full h-[240px] sm:h-[280px] md:h-[320px] lg:h-[400px] xl:h-[480px] max-h-[50vh] sm:max-h-[65vh] object-contain drop-shadow-2xl"
                 loading="eager"
                 draggable="false"
                 fetchPriority="high"

@@ -3,15 +3,9 @@ import fs from 'fs';
 import path from 'path';
 
 // Configurações de otimização por imagem
-const imageConfigs = {
-  'site-hero-cerna-hero-v2.png': { width: 360, height: 360, quality: 85 },
-  'site-engicore.png': { width: 760, height: 492, quality: 85 },
-  'site-sancao.png': { width: 760, height: 492, quality: 85 },
-  'site-hotledas.png': { width: 760, height: 492, quality: 85 },
-  'site-alive.png': { width: 420, height: 272, quality: 85 },
-  'logo-principal-preta.png': { width: 228, height: 48, quality: 90 },
-  'logo-footer.png': { width: 228, height: 48, quality: 90 },
-};
+// Nota: Todas as imagens PNG foram migradas para WebP
+// Este script agora serve apenas para futuras otimizações
+const imageConfigs = {};
 
 // Otimizar imagem para WebP
 async function optimizeImage(inputPath, outputPath, width, height, quality) {
