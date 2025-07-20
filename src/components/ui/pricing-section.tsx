@@ -167,16 +167,33 @@ export function PricingSection() {
                     7 dias de garantia
                   </div>
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    {/* Ícone PIX */}
+                    {/* Ícones de pagamento */}
                     <span className="inline-flex items-center gap-1 align-middle">
+                      {/* PIX */}
                       <svg width="24" height="16" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-0.5">
                         <rect width="32" height="20" rx="3" fill="#32BCAD"/>
                         <path d="M6 6h20v8H6V6zm2 2v4h16V8H8zm2 1h12v2H10V9z" fill="#fff"/>
                         <circle cx="16" cy="10" r="1.5" fill="#32BCAD"/>
                         <path d="M14 10h4v1h-4v-1z" fill="#32BCAD"/>
                       </svg>
+                      {/* Visa */}
+                      <svg width="24" height="16" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-0.5">
+                        <rect width="32" height="20" rx="3" fill="#fff"/>
+                        <text x="16" y="14" textAnchor="middle" fontSize="10" fontWeight="bold" fill="#1A1F71">VISA</text>
+                      </svg>
+                      {/* MasterCard */}
+                      <svg width="24" height="16" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-0.5">
+                        <rect width="32" height="20" rx="3" fill="#fff"/>
+                        <circle cx="13" cy="10" r="5" fill="#EB001B"/>
+                        <circle cx="19" cy="10" r="5" fill="#F79E1B" fillOpacity="0.9"/>
+                      </svg>
+                      {/* Elo */}
+                      <svg width="24" height="16" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-0.5">
+                        <rect width="32" height="20" rx="3" fill="#231F20"/>
+                        <text x="16" y="14" textAnchor="middle" fontSize="8" fontWeight="bold" fill="#fff">Elo</text>
+                      </svg>
                     </span>
-                    <span className="align-middle">Pagamento via PIX</span>
+                    <span className="align-middle">Pagamento via PIX ou Cartão</span>
                   </div>
                 </div>
               </CardFooter>
