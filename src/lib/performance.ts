@@ -52,6 +52,7 @@ export const debounce = <T extends (...args: any[]) => any>(
 export const preloadCriticalResources = () => {
     const criticalResources = [
         '/assets/icone-1.jpg',
+        '/assets/optimized/site-hero-cerna-hero-v2.webp',
         '/assets/optimized/logo-principal-preta.webp',
         // Adicione outros recursos críticos aqui
     ];

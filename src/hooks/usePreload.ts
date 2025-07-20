@@ -10,7 +10,7 @@ export function usePreload() {
 
     // Preload de imagens críticas
     const criticalImages = [
-      '/assets/optimized/site-hero-cerna-hero-v2.jpg',
+      '/assets/optimized/site-hero-cerna-hero-v2.webp',
       '/assets/optimized/site-sancao.webp',
       '/assets/optimized/site-hotledas.webp',
       '/assets/optimized/site-engicore.webp',

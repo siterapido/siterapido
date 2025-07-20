@@ -26,9 +26,9 @@
   "categories": ["business", "productivity"],
   "screenshots": [
     {
-      "src": "/assets/optimized/site-hero-cerna-hero-v2.jpg",
+      "src": "/assets/optimized/site-hero-cerna-hero-v2.webp",
       "sizes": "1280x720",
-      "type": "image/jpeg",
+      "type": "image/webp",
       "form_factor": "wide"
     }
   ],

@@ -126,7 +126,7 @@ function Hero(props: FullpageSectionProps) {
             {/* Imagem acima do conteúdo no mobile, à direita no desktop */}
             <div className="block sm:hidden w-full flex justify-center items-center pt-4 pb-6">
               <img
-                src="/assets/optimized/site-hero-cerna-hero-v2.jpg"
+                src="/assets/optimized/site-hero-cerna-hero-v2.webp"
                 alt="Ilustração de pessoas conversando sobre site"
                 className="w-full h-[200px] max-h-[35vh] object-contain drop-shadow-2xl"
                 loading="eager"
@@ -210,7 +210,7 @@ function Hero(props: FullpageSectionProps) {
             {/* Imagem à direita no desktop */}
             <div className="hidden sm:flex flex-1 justify-center items-center w-full h-full max-w-sm sm:max-w-md lg:max-w-lg xl:max-w-xl mt-8 lg:mt-0 mb-4 lg:mb-0 order-last">
               <img
-                src="/assets/optimized/site-hero-cerna-hero-v2.jpg"
+                src="/assets/optimized/site-hero-cerna-hero-v2.webp"
                 alt="Ilustração de pessoas conversando sobre site"
                 className="w-full h-[240px] sm:h-[280px] md:h-[320px] lg:h-[400px] xl:h-[480px] max-h-[50vh] sm:max-h-[65vh] object-contain drop-shadow-2xl"
                 loading="eager"

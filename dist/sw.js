@@ -15,7 +15,7 @@ const STATIC_ASSETS = [
 
 // Recursos para cache dinâmico
 const DYNAMIC_ASSETS = [
-  '/assets/optimized/site-hero-cerna-hero-v2.jpg',
+  '/assets/optimized/site-hero-cerna-hero-v2.webp',
   '/assets/optimized/site-engicore.webp',
   '/assets/optimized/site-sancao.webp',
   '/assets/optimized/site-hotledas.webp',
