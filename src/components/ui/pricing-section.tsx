@@ -166,9 +166,9 @@ export function PricingSection() {
                     <ShieldCheck className="w-4 h-4 text-[#9CD653]" />
                     7 dias de garantia
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                  <div className="flex flex-col items-center gap-2 text-sm text-muted-foreground">
                     {/* Ícones de pagamento */}
-                    <span className="inline-flex items-center gap-1 align-middle">
+                    <span className="inline-flex items-center gap-1">
                       {/* PIX */}
                       <svg width="24" height="16" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="mx-0.5">
                         <rect width="32" height="20" rx="3" fill="#32BCAD"/>
@@ -193,7 +193,7 @@ export function PricingSection() {
                         <text x="16" y="14" textAnchor="middle" fontSize="8" fontWeight="bold" fill="#fff">Elo</text>
                       </svg>
                     </span>
-                    <span className="align-middle">Pagamento via PIX ou Cartão</span>
+                    <span>Pagamento via PIX ou Cartão</span>
                   </div>
                 </div>
               </CardFooter>
