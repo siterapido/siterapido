@@ -15,7 +15,7 @@ interface ThirdPartyScript {
 const thirdPartyScripts: ThirdPartyScript[] = [
   {
     id: 'gtm',
-    src: 'https://www.googletagmanager.com/gtm.js?id=GTM-XXXXXXX',
+    src: 'https://www.googletagmanager.com/gtm.js?id=GTM-M83CJT4B',
     async: true,
     loadCondition: () => !detectDeviceCapabilities().hasSlowConnection,
     loadStrategy: 'delayed',
