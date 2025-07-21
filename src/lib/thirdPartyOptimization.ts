@@ -79,6 +79,10 @@ class ScriptLoader {
       scriptElement.onload = () => {
         this.loadedScripts.add(script.id);
         this.loadingScripts.delete(script.id);
+        // Disparar pageview manualmente se for o GTM
+        if (script.id === 'gtm' && window.dataLayer) {
+          window.dataLayer.push({ event: 'pageview' });
+        }
         resolve();
       };
 
