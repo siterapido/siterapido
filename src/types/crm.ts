@@ -38,6 +38,18 @@ export type LeadStatus =
   | 'erro'
   | 'duplicado';
 
+export const OUTBOUND_STATUSES: LeadStatus[] = [
+  'novo',
+  'enviando',
+  'contato_iniciado',
+  'respondeu',
+  'interessado',
+  'reuniao_marcada',
+  'opt_out',
+  'erro',
+  'duplicado',
+];
+
 export const LEAD_STATUS_LABELS: Record<LeadStatus, string> = {
   novo: 'Novo',
   enviando: 'Enviando',
