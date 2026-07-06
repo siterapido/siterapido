@@ -137,8 +137,11 @@ export default defineConfig({
             if (id.includes('Login')) {
               return 'admin-login';
             }
-            if (id.includes('LeadsList')) {
-              return 'admin-leads';
+            if (id.includes('PipelineBoard')) {
+              return 'admin-pipeline';
+            }
+            if (id.includes('LeadDetail')) {
+              return 'admin-lead-detail';
             }
             return 'admin';
           }

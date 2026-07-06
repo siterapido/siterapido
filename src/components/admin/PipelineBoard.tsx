@@ -139,6 +139,13 @@ export default function PipelineBoard() {
             ))}
           </div>
         </>
+      ) : totalCount === 0 ? (
+        <div className="flex flex-1 flex-col items-center justify-center rounded-lg border border-dashed border-neutral-200 py-16 text-center">
+          <p className="text-sm font-medium text-neutral-600">Nenhum lead no pipeline</p>
+          <p className="mt-1 text-sm text-neutral-400">
+            Novos leads do formulário do site aparecem aqui automaticamente.
+          </p>
+        </div>
       ) : (
         <>
           <div className="hidden flex-1 gap-4 overflow-x-auto pb-4 md:flex">
