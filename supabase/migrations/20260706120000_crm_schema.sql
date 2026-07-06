@@ -20,7 +20,7 @@ ALTER TABLE public.leads
 
 CREATE TABLE IF NOT EXISTS public.customers (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  lead_id uuid REFERENCES public.leads(id) ON DELETE SET NULL,
+  lead_id bigint REFERENCES public.leads(id) ON DELETE SET NULL,
   nome text NOT NULL,
   email text NOT NULL,
   telefone text,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS public.customers (
 CREATE TABLE IF NOT EXISTS public.subscriptions (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
   customer_id uuid REFERENCES public.customers(id) ON DELETE CASCADE,
-  lead_id uuid REFERENCES public.leads(id) ON DELETE SET NULL,
+  lead_id bigint REFERENCES public.leads(id) ON DELETE SET NULL,
   asaas_subscription_id text NOT NULL UNIQUE,
   plan_slug text NOT NULL,
   status text NOT NULL DEFAULT 'pending'
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS public.subscriptions (
 
 CREATE TABLE IF NOT EXISTS public.pipeline_events (
   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  lead_id uuid NOT NULL REFERENCES public.leads(id) ON DELETE CASCADE,
+  lead_id bigint NOT NULL REFERENCES public.leads(id) ON DELETE CASCADE,
   from_stage text,
   to_stage text NOT NULL,
   metadata jsonb,
