@@ -1,7 +1,16 @@
-import { Copy } from 'lucide-react';
+import { useState } from 'react';
+import { Copy, Loader2, XCircle } from 'lucide-react';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import {
   Table,
@@ -12,9 +21,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useSubscriptions } from '@/hooks/useSubscriptions';
+import { cancelSubscription } from '@/lib/asaas';
 import { formatCentsBRL, PLAN_CONFIG } from '@/lib/plans';
 import { cn } from '@/lib/utils';
 import type { PlanSlug, SubscriptionStatus } from '@/types/crm';
+import type { SubscriptionWithCustomer } from '@/hooks/useSubscriptions';
 
 const STATUS_LABELS: Record<SubscriptionStatus, string> = {
   pending: 'Pendente',
@@ -56,6 +67,10 @@ function TableSkeleton() {
 
 export default function SubscriptionsTable() {
   const { subscriptions, loading, error, fetchSubscriptions } = useSubscriptions();
+  const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
+  const [subscriptionToCancel, setSubscriptionToCancel] =
+    useState<SubscriptionWithCustomer | null>(null);
+  const [cancelling, setCancelling] = useState(false);
 
   const handleCopyLink = async (url: string) => {
     try {
@@ -65,6 +80,35 @@ export default function SubscriptionsTable() {
       toast.error('Não foi possível copiar o link');
     }
   };
+
+  const openCancelDialog = (sub: SubscriptionWithCustomer) => {
+    setSubscriptionToCancel(sub);
+    setCancelDialogOpen(true);
+  };
+
+  const handleCancelDialogChange = (open: boolean) => {
+    setCancelDialogOpen(open);
+    if (!open) setSubscriptionToCancel(null);
+  };
+
+  const confirmCancel = async () => {
+    if (!subscriptionToCancel) return;
+
+    setCancelling(true);
+    try {
+      await cancelSubscription(subscriptionToCancel.id);
+      toast.success('Assinatura cancelada');
+      setCancelDialogOpen(false);
+      setSubscriptionToCancel(null);
+      await fetchSubscriptions();
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : 'Erro ao cancelar assinatura');
+    } finally {
+      setCancelling(false);
+    }
+  };
+
+  const customerName = subscriptionToCancel?.customers?.nome ?? 'este cliente';
 
   return (
     <div className="flex h-full flex-col p-6">
@@ -112,6 +156,7 @@ export default function SubscriptionsTable() {
               {subscriptions.map((sub) => {
                 const planLabel =
                   PLAN_CONFIG[sub.plan_slug as PlanSlug]?.label ?? sub.plan_slug;
+                const canCancel = sub.status !== 'cancelled';
                 return (
                   <TableRow key={sub.id}>
                     <TableCell>
@@ -131,18 +176,32 @@ export default function SubscriptionsTable() {
                     <TableCell>{formatCentsBRL(sub.value_cents)}</TableCell>
                     <TableCell>{formatDueDate(sub.next_due_date)}</TableCell>
                     <TableCell className="text-right">
-                      {sub.payment_url ? (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleCopyLink(sub.payment_url!)}
-                        >
-                          <Copy className="mr-1.5 h-4 w-4" />
-                          Copiar link
-                        </Button>
-                      ) : (
-                        <span className="text-sm text-neutral-400">—</span>
-                      )}
+                      <div className="flex items-center justify-end gap-1">
+                        {sub.payment_url && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleCopyLink(sub.payment_url!)}
+                          >
+                            <Copy className="mr-1.5 h-4 w-4" />
+                            Copiar link
+                          </Button>
+                        )}
+                        {canCancel && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="text-red-600 hover:bg-red-50 hover:text-red-700"
+                            onClick={() => openCancelDialog(sub)}
+                          >
+                            <XCircle className="mr-1.5 h-4 w-4" />
+                            Cancelar
+                          </Button>
+                        )}
+                        {!sub.payment_url && !canCancel && (
+                          <span className="text-sm text-neutral-400">—</span>
+                        )}
+                      </div>
                     </TableCell>
                   </TableRow>
                 );
@@ -151,6 +210,43 @@ export default function SubscriptionsTable() {
           </Table>
         </div>
       )}
+
+      <Dialog open={cancelDialogOpen} onOpenChange={handleCancelDialogChange}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Cancelar assinatura de {customerName}?</DialogTitle>
+            <DialogDescription>
+              A assinatura será cancelada no Asaas e o status será atualizado aqui. Esta ação não
+              pode ser desfeita.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => handleCancelDialogChange(false)}
+              disabled={cancelling}
+            >
+              Voltar
+            </Button>
+            <Button
+              type="button"
+              variant="destructive"
+              onClick={confirmCancel}
+              disabled={cancelling}
+            >
+              {cancelling ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Cancelando…
+                </>
+              ) : (
+                'Confirmar cancelamento'
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
