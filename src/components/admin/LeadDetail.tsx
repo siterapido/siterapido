@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ArrowLeft, Loader2 } from 'lucide-react';
+import { ArrowLeft, Copy, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -23,6 +23,7 @@ import {
 } from '@/components/ui/select';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Textarea } from '@/components/ui/textarea';
+import { createSubscription } from '@/lib/asaas';
 import { isValidCpfCnpj, onlyDigits } from '@/lib/cpf';
 import { formatCentsBRL, PLAN_CONFIG } from '@/lib/plans';
 import { supabase } from '@/lib/supabaseClient';
@@ -97,6 +98,8 @@ export default function LeadDetail() {
   const [cpfCnpj, setCpfCnpj] = useState('');
   const [billingType, setBillingType] = useState<BillingType>('PIX');
   const [planSaving, setPlanSaving] = useState(false);
+  const [subscriptionLoading, setSubscriptionLoading] = useState(false);
+  const [paymentUrl, setPaymentUrl] = useState<string | null>(null);
 
   const [lostDialogOpen, setLostDialogOpen] = useState(false);
   const [lostReason, setLostReason] = useState('');
@@ -249,9 +252,46 @@ export default function LeadDetail() {
     setCpfCnpj(formatCpfCnpjDisplay(value));
   };
 
-  const handleGenerateSubscription = () => {
-    if (!canGenerateSubscription) return;
-    toast.info('Em breve');
+  const handleCopyPaymentUrl = async () => {
+    if (!paymentUrl) return;
+    try {
+      await navigator.clipboard.writeText(paymentUrl);
+      toast.success('Link copiado');
+    } catch {
+      toast.error('Não foi possível copiar o link');
+    }
+  };
+
+  const handleGenerateSubscription = async () => {
+    if (!lead || !canGenerateSubscription) return;
+
+    if (!lead.plan_slug) {
+      toast.error('Selecione um plano');
+      return;
+    }
+
+    if (!cpfValid) {
+      toast.error('Informe um CPF ou CNPJ válido');
+      return;
+    }
+
+    setSubscriptionLoading(true);
+    try {
+      const result = await createSubscription({
+        lead_id: lead.id,
+        plan_slug: lead.plan_slug,
+        cpf_cnpj: onlyDigits(cpfCnpj),
+        billing_type: billingType,
+      });
+
+      setPaymentUrl(result.payment_url ?? null);
+      toast.success('Assinatura criada');
+      await fetchLead();
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Erro ao criar assinatura');
+    } finally {
+      setSubscriptionLoading(false);
+    }
   };
 
   const phone = lead?.whatsapp || lead?.telefone;
@@ -448,11 +488,47 @@ export default function LeadDetail() {
               <Button
                 type="button"
                 className="w-full"
-                disabled={!canGenerateSubscription}
+                disabled={!canGenerateSubscription || subscriptionLoading}
                 onClick={handleGenerateSubscription}
               >
-                Gerar assinatura Asaas
+                {subscriptionLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Gerando assinatura…
+                  </>
+                ) : (
+                  'Gerar assinatura Asaas'
+                )}
               </Button>
+
+              {paymentUrl && (
+                <div className="rounded-lg border border-green-200 bg-green-50 p-3">
+                  <p className="mb-2 text-xs font-medium uppercase tracking-wide text-green-800">
+                    Link de pagamento
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={paymentUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="min-w-0 flex-1 truncate text-sm text-green-900 underline"
+                    >
+                      {paymentUrl}
+                    </a>
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="icon"
+                      className="shrink-0 border-green-300 bg-white hover:bg-green-100"
+                      onClick={handleCopyPaymentUrl}
+                      aria-label="Copiar link de pagamento"
+                    >
+                      <Copy className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+
               {!canGenerateSubscription && (
                 <p className="text-center text-xs text-neutral-500">
                   Disponível na etapa Proposta ou posterior, com plano e CPF/CNPJ válidos.
