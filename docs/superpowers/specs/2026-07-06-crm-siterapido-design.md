@@ -295,3 +295,9 @@ supabase/
 - Empresarial plan value: confirm fixed price or manual entry before implementation
 - Asaas plan IDs: create in sandbox dashboard before Edge Function work
 - Run `impeccable teach` to create PRODUCT.md / DESIGN.md for future design consistency
+
+## Production gotchas (2026-07-06)
+
+- Remote `leads.id` is **bigint**, not uuid. CRM FKs use `bigint`.
+- Supabase project ref: `jjslxybimatghvsiqdfd`.
+- `.env` gitignored; never commit `VITE_SUPABASE_*` or `sbp_*` tokens.
