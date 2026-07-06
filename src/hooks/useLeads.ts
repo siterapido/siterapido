@@ -22,7 +22,7 @@ export function useLeads() {
     fetchLeads();
   }, [fetchLeads]);
 
-  const updateStage = async (leadId: string, stage: PipelineStage, lostReason?: string) => {
+  const updateStage = async (leadId: number, stage: PipelineStage, lostReason?: string) => {
     const payload: Partial<Lead> = { stage };
     if (stage === 'perdido' && lostReason) payload.lost_reason = lostReason;
     const { error: err } = await supabase.from('leads').update(payload).eq('id', leadId);

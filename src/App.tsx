@@ -18,6 +18,10 @@ import LeadDetail from './components/admin/LeadDetail';
 import SubscriptionsTable from './components/admin/SubscriptionsTable';
 import CustomersTable from './components/admin/CustomersTable';
 import ResumoPage from './components/admin/ResumoPage';
+import WhatsAppCenterPage from './components/admin/WhatsAppCenterPage';
+import OutboundPage from './components/admin/OutboundPage';
+import ProjectsPage from './components/admin/ProjectsPage';
+import ProjectDetailPage from './components/admin/ProjectDetailPage';
 import { 
   LazyPortfolioSection, 
   LazyAboutSection, 
@@ -112,6 +116,10 @@ function App() {
         <Route path="/admin/leads/:id" element={<ProtectedRoute><AdminLayout><LeadDetail /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/assinaturas" element={<ProtectedRoute><AdminLayout><SubscriptionsTable /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/clientes" element={<ProtectedRoute><AdminLayout><CustomersTable /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/whatsapp" element={<ProtectedRoute><AdminLayout><WhatsAppCenterPage /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/outbound" element={<ProtectedRoute><AdminLayout><OutboundPage /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/projetos" element={<ProtectedRoute><AdminLayout><ProjectsPage /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/projetos/:id" element={<ProtectedRoute><AdminLayout><ProjectDetailPage /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/leads" element={<Navigate to="/admin/pipeline" replace />} />
       </Routes>
       <Toaster richColors position="top-right" />

@@ -239,8 +239,9 @@ export default function PipelineBoard() {
 
   const handleDragStart = useCallback(
     (event: DragStartEvent) => {
-      const lead = leads.find((l) => l.id === event.active.id);
-      setActiveLead(lead ?? null);
+      const id = Number(event.active.id);
+      const lead = leads.find((l) => l.id === id) ?? null;
+      setActiveLead(lead);
     },
     [leads]
   );
@@ -251,7 +252,7 @@ export default function PipelineBoard() {
       const { active, over } = event;
       if (!over) return;
 
-      const leadId = String(active.id);
+      const leadId = Number(active.id);
       const targetStage = over.id as PipelineStage;
       const lead = leads.find((l) => l.id === leadId);
       if (!lead || lead.stage === targetStage) return;

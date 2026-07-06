@@ -1,13 +1,16 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BarChart3, LayoutGrid, CreditCard, Users, LogOut } from 'lucide-react';
+import { BarChart3, LayoutGrid, CreditCard, Users, MessageSquare, Send, Globe, LogOut } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { cn } from '@/lib/utils';
 
 const menu = [
-  { label: 'Resumo', path: '/admin/resumo', icon: BarChart3 },
-  { label: 'Pipeline', path: '/admin/pipeline', icon: LayoutGrid },
-  { label: 'Assinaturas', path: '/admin/assinaturas', icon: CreditCard },
-  { label: 'Clientes', path: '/admin/clientes', icon: Users },
+  { label: 'Resumo',       path: '/admin/resumo',      icon: BarChart3 },
+  { label: 'Pipeline',     path: '/admin/pipeline',    icon: LayoutGrid },
+  { label: 'WhatsApp',     path: '/admin/whatsapp',    icon: MessageSquare },
+  { label: 'Outbound',     path: '/admin/outbound',    icon: Send },
+  { label: 'Projetos',     path: '/admin/projetos',    icon: Globe },
+  { label: 'Assinaturas',  path: '/admin/assinaturas', icon: CreditCard },
+  { label: 'Clientes',     path: '/admin/clientes',    icon: Users },
 ];
 
 export default function Sidebar() {
@@ -23,7 +26,7 @@ export default function Sidebar() {
     <aside className="flex h-screen w-60 shrink-0 flex-col border-r border-neutral-200 bg-neutral-50 p-4">
       <div className="mb-8 px-2">
         <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">Site Rápido</p>
-        <p className="text-lg font-semibold text-neutral-900">CRM</p>
+        <p className="text-lg font-semibold text-neutral-900">Central</p>
       </div>
       <nav className="flex flex-1 flex-col gap-1">
         {menu.map(({ label, path, icon: Icon }) => {
