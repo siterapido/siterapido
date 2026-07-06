@@ -7,21 +7,22 @@ export function AboutSection() {
       id="about"
       className="relative w-full bg-white py-20 px-4 flex flex-col items-center justify-center"
     >
-      <div className="max-w-5xl w-full flex flex-col md:flex-row items-center gap-12 md:gap-20">
-        {/* Imagem ilustrativa */}
-        <BlurFade delay={0.1} inView className="w-full md:w-1/2 flex-shrink-0">
+      <div className="max-w-5xl w-full flex flex-col md:flex-row items-start gap-12 md:gap-20">
+        <div className="w-full md:w-1/2 shrink-0 overflow-visible bg-[#F1F3F2]">
           <img
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80"
-            alt="Equipe trabalhando"
-            className="rounded-3xl shadow-2xl w-full object-cover h-64 md:h-80"
+            src="/assets/optimized/site-hero-cerna-hero-v2.webp"
+            alt="Equipe Site Rápido criando sites para clientes"
+            className="block w-full h-auto max-w-full object-contain shadow-none rounded-none border-0 outline-none"
+            style={{ boxShadow: "none", filter: "none" }}
             loading="lazy"
+            draggable={false}
           />
-        </BlurFade>
+        </div>
         {/* Texto */}
         <div className="w-full md:w-1/2 flex flex-col items-start">
           <Badge className="mb-6 bg-[#9CD653] text-black">Sobre</Badge>
-          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white text-center">
-            {/* Título da seção Sobre */}
+          <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-neutral-900 text-left">
+            Quem faz seu site ficar no ar
           </h2>
           <BlurFade delay={0.2} inView>
             <p className="text-lg md:text-xl text-neutral-800 mb-8 leading-relaxed">

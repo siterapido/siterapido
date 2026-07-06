@@ -216,7 +216,7 @@ export function Pricing({
                   <a
                     href={
                       plan.buttonText.toLowerCase().includes('fale') || plan.buttonText.toLowerCase().includes('orçamento')
-                        ? 'https://wa.me/5584999810711?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%aas%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F'
+                        ? 'https://wa.me/5584986536223?text=Ol%C3%A1%2C%20vi%20o%20site%20de%20voc%C3%aas%20sobre%20site%20profissional%20por%20assinatura.%20Como%20funciona%3F'
                         : plan.href
                     }
                     target={

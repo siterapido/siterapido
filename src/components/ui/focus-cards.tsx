@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { MoveRight } from "lucide-react";
 import { gerarLinkWhatsApp } from "@/lib/utils";
+import type { FocusCardItem } from "@/data/portfolioItems";
 
 export const Card = React.memo(
   ({
@@ -11,7 +12,7 @@ export const Card = React.memo(
     setHovered,
     onClick,
   }: {
-    card: Card;
+    card: FocusCardItem;
     index: number;
     hovered: number | null;
     setHovered: React.Dispatch<React.SetStateAction<number | null>>;
@@ -58,34 +59,63 @@ export const Card = React.memo(
 
 Card.displayName = "Card";
 
-type Card = {
-  title: string;
-  src: string;
-  name: string;
-  challenge: string;
-  solution: string;
-  result: string;
+type FocusCardsProps = {
+  cards: FocusCardItem[];
+  heading?: string;
+  description?: string;
+  variant?: "light" | "dark";
+  showCta?: boolean;
 };
 
-export function FocusCards({ cards }: { cards: Card[] }) {
+export function FocusCards({
+  cards,
+  heading,
+  description,
+  variant = "light",
+  showCta = true,
+}: FocusCardsProps) {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [selected, setSelected] = useState<Card | null>(null);
-  // Estado para controlar expansão no mobile
+  const [selected, setSelected] = useState<FocusCardItem | null>(null);
   const [expanded, setExpanded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Lógica para mobile: mostra 3 ou todos
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   let visibleCards = cards.slice(0, 9);
   if (isMobile && !expanded) {
     visibleCards = cards.slice(0, 3);
   }
 
+  const isDark = variant === "dark";
+
   return (
-    <section className="w-full py-8 px-4 md:px-0 flex flex-col items-center">
-      <h2 className="text-3xl md:text-5xl font-extrabold text-center mb-4 text-neutral-900 dark:text-neutral-100">Sites em Destaque</h2>
-      <p className="text-lg md:text-2xl text-center text-neutral-600 dark:text-neutral-300 mb-8 max-w-2xl">
-        Veja alguns exemplos de sites criados para nossos clientes. Cada projeto é um case de sucesso com métricas reais de crescimento.
-      </p>
+    <div className="w-full py-12 md:py-16 px-4 md:px-0 flex flex-col items-center">
+      {heading && (
+        <h2
+          className={cn(
+            "text-3xl md:text-5xl font-extrabold text-center mb-4",
+            isDark ? "text-white" : "text-neutral-900 dark:text-neutral-100"
+          )}
+        >
+          {heading}
+        </h2>
+      )}
+      {description && (
+        <p
+          className={cn(
+            "text-lg md:text-xl text-center mb-8 max-w-2xl leading-relaxed",
+            isDark ? "text-neutral-300" : "text-neutral-600 dark:text-neutral-300"
+          )}
+        >
+          {description}
+        </p>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 max-w-7xl mx-auto w-full">
         {visibleCards.map((card, index) => (
           <Card
@@ -103,7 +133,12 @@ export function FocusCards({ cards }: { cards: Card[] }) {
         {cards.length > 3 && (
           <button
             onClick={() => setExpanded((v) => !v)}
-            className="flex items-center gap-2 px-6 py-2 rounded-full bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 font-semibold shadow hover:bg-neutral-300 dark:hover:bg-neutral-700 transition-all"
+            className={cn(
+              "flex items-center gap-2 px-6 py-2 rounded-full font-semibold shadow transition-all",
+              isDark
+                ? "bg-neutral-800 text-neutral-200 hover:bg-neutral-700"
+                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-200 hover:bg-neutral-300 dark:hover:bg-neutral-700"
+            )}
           >
             {expanded ? 'Ver menos' : 'Ver mais'}
             <span className={expanded ? 'rotate-180 transition-transform' : 'transition-transform'}>
@@ -113,10 +148,10 @@ export function FocusCards({ cards }: { cards: Card[] }) {
         )}
       </div>
       
-      {/* Botão de Call-to-Action */}
+      {showCta && (
       <div className="text-center mt-12">
         <a
-          href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi os sites em destaque de vocês e quero um site igual para meu negócio. Pode me ajudar?')}
+          href={gerarLinkWhatsApp('5584986536223', 'Olá! Vi os sites em destaque de vocês e quero um site igual para meu negócio. Pode me ajudar?')}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center gap-3 bg-[#9CD653] hover:bg-[#9CD653]/90 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
@@ -125,8 +160,8 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           <MoveRight className="w-5 h-5" />
         </a>
       </div>
+      )}
       
-      {/* Modal de detalhes do projeto */}
       {selected && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-2 sm:p-4">
           <div className="relative w-full max-w-4xl bg-white dark:bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl max-h-[95vh] sm:max-h-[90vh] flex flex-col">
@@ -168,7 +203,7 @@ export function FocusCards({ cards }: { cards: Card[] }) {
                   
                   <div className="pt-4 sm:pt-6 border-t border-neutral-200 dark:border-neutral-700">
                     <a
-                      href={gerarLinkWhatsApp('5584999810711', `Olá! Vi o projeto ${selected.name} e quero um site igual para meu negócio. Pode me ajudar?`)}
+                      href={gerarLinkWhatsApp('5584986536223', `Olá! Vi o projeto ${selected.name} e quero um site igual para meu negócio. Pode me ajudar?`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-[#9CD653] text-black px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold hover:bg-[#9CD653]/90 transition-colors text-sm sm:text-base"
@@ -253,6 +288,6 @@ export function FocusCards({ cards }: { cards: Card[] }) {
           }
         }
       `}</style>
-    </section>
+    </div>
   );
 } 

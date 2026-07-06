@@ -3,21 +3,18 @@
 import { Button } from "@/components/ui/button";
 import {
     NavigationMenu,
-    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
-    NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
-import { useState, useEffect, memo, useCallback } from "react";
+import { useState, useEffect, memo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LeadFormModal } from "@/components/ui/LeadFormModal";
 import { WhatsAppIcon } from "@/components/ui/WhatsAppIcon";
 import { OptimizedLogo } from "@/components/ui/OptimizedLogo";
-import { useLazyLoad } from "@/hooks/useLazyLoad";
 import { useSmoothScroll } from "@/hooks/useHeaderScroll";
 import { gerarLinkWhatsApp } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 
 // Constantes para evitar recriação
 const NAVIGATION_ITEMS = [
@@ -31,7 +28,7 @@ const NAVIGATION_ITEMS = [
 
 const WHATSAPP_MESSAGE = 'Olá! Vi o site de vocês e quero um orçamento personalizado para meu negócio. Pode me ajudar?';
 const WHATSAPP_MESSAGE_MOBILE = 'Olá! Quero tirar uma dúvida sobre o serviço de vocês.';
-const WHATSAPP_NUMBER = '5584999810711';
+const WHATSAPP_NUMBER = '5584986536223';
 
 // Componente otimizado para o logo
 const Logo = memo(() => <OptimizedLogo />);
@@ -65,7 +62,7 @@ const WhatsAppButton = memo(({ isMobile = false }: { isMobile?: boolean }) => {
 });
 
 // Componente para navegação desktop
-const DesktopNavigation = memo(({ onMenuClick }: { onMenuClick: (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => void }) => (
+const DesktopNavigation = memo(({ onMenuClick, activeSection }: { onMenuClick: (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => void; activeSection: string }) => (
     <div className="hidden md:flex items-center gap-x-10 xl:gap-x-16 font-[Coolvetica] text-lg">
         <NavigationMenu>
             <NavigationMenuList>
@@ -74,7 +71,12 @@ const DesktopNavigation = memo(({ onMenuClick }: { onMenuClick: (href: string) =
                         <NavigationMenuLink
                             href={item.href}
                             onClick={onMenuClick(item.href)}
-                            className="cursor-pointer px-2 py-1 hover:text-primary transition-colors"
+                            className={cn(
+                                "cursor-pointer px-2 py-1 transition-colors",
+                                activeSection === item.href
+                                    ? "text-[#9CD653] font-semibold"
+                                    : "hover:text-primary"
+                            )}
                         >
                             {item.title}
                         </NavigationMenuLink>
@@ -89,11 +91,13 @@ const DesktopNavigation = memo(({ onMenuClick }: { onMenuClick: (href: string) =
 const MobileMenu = memo(({ 
     isOpen, 
     onClose, 
-    onMenuClick 
+    onMenuClick,
+    activeSection,
 }: { 
     isOpen: boolean; 
     onClose: () => void; 
     onMenuClick: (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => void;
+    activeSection: string;
 }) => (
     <AnimatePresence>
         {isOpen && (
@@ -122,7 +126,12 @@ const MobileMenu = memo(({
                                         onMenuClick(item.href)(e);
                                         onClose();
                                     }} 
-                                    className="text-2xl font-bold hover:underline text-neutral-900 hover:text-primary transition-colors"
+                                    className={cn(
+                                        "text-2xl font-bold hover:underline transition-colors",
+                                        activeSection === item.href
+                                            ? "text-[#9CD653]"
+                                            : "text-neutral-900 hover:text-primary"
+                                    )}
                                 >
                                     {item.title}
                                 </a>
@@ -144,8 +153,32 @@ const MobileMenu = memo(({
 // Componente principal do Header
 function Header1() {
     const [isOpen, setOpen] = useState(false);
-    const [modalOpen, setModalOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState("#hero");
     const handleMenuClick = useSmoothScroll();
+
+    useEffect(() => {
+        const sectionIds = NAVIGATION_ITEMS.map((item) => item.href);
+        const observers: IntersectionObserver[] = [];
+
+        sectionIds.forEach((id) => {
+            const element = document.querySelector(id);
+            if (!element) return;
+
+            const observer = new IntersectionObserver(
+                ([entry]) => {
+                    if (entry.isIntersecting) {
+                        setActiveSection(id);
+                    }
+                },
+                { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+            );
+
+            observer.observe(element);
+            observers.push(observer);
+        });
+
+        return () => observers.forEach((observer) => observer.disconnect());
+    }, []);
 
     // Gerenciar overflow do body
     useEffect(() => {
@@ -168,7 +201,7 @@ function Header1() {
                     
                     <Logo />
 
-                    <DesktopNavigation onMenuClick={handleMenuClick} />
+                    <DesktopNavigation onMenuClick={handleMenuClick} activeSection={activeSection} />
                     
                     <div className="hidden md:flex items-center gap-2 lg:gap-4">
                         <WhatsAppButton />
@@ -191,10 +224,9 @@ function Header1() {
             <MobileMenu 
                 isOpen={isOpen} 
                 onClose={() => setOpen(false)} 
-                onMenuClick={handleMenuClick} 
+                onMenuClick={handleMenuClick}
+                activeSection={activeSection}
             />
-            
-            <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano="orcamento" />
         </header>
     );
 }

@@ -1,0 +1,1 @@
+import{c as s}from"./vendor-supabase-core-DQ7-WOZH.js";const I=s("https://jjslxybimatghvsiqdfd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impqc2x4eWJpbWF0Z2h2c2lxZGZkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMzMzgyNzEsImV4cCI6MjA5ODkxNDI3MX0.Zx4nMkP-rYcsx2JzeQPn-S1xODnLUq-L2XT7Zs6pfBo");export{I as s};

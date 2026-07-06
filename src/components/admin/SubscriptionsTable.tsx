@@ -111,7 +111,7 @@ export default function SubscriptionsTable() {
   const customerName = subscriptionToCancel?.customers?.nome ?? 'este cliente';
 
   return (
-    <div className="flex h-full flex-col p-6">
+    <div className="flex min-h-0 flex-1 flex-col overflow-y-auto p-6">
       <header className="mb-6">
         <h1 className="text-2xl font-bold text-neutral-900">Assinaturas</h1>
         <p className="mt-1 text-sm text-neutral-500">

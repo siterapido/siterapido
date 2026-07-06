@@ -21,6 +21,7 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src'),
     },
+    dedupe: ['react', 'react-dom'],
   },
   build: {
     target: 'es2017', // Atualizado para suporte moderno
@@ -72,24 +73,7 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Vendor chunks mais granulares
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
-            }
-            if (id.includes('react-router-dom')) {
-              return 'vendor-router';
-            }
-            if (id.includes('framer-motion')) {
-              // Separar Framer Motion em chunks menores
-              if (id.includes('framer-motion/dist/framer-motion')) {
-                return 'vendor-framer-core';
-              }
-              if (id.includes('framer-motion/dist/dom')) {
-                return 'vendor-framer-dom';
-              }
-              return 'vendor-framer';
-            }
             if (id.includes('gsap')) {
               return 'vendor-gsap';
             }
@@ -97,7 +81,6 @@ export default defineConfig({
               return 'vendor-lenis';
             }
             if (id.includes('@supabase')) {
-              // Separar Supabase em chunks menores
               if (id.includes('@supabase/supabase-js')) {
                 return 'vendor-supabase-core';
               }
@@ -106,30 +89,11 @@ export default defineConfig({
               }
               return 'vendor-supabase';
             }
-            if (id.includes('@radix-ui')) {
-              // Separar Radix UI por componentes
-              if (id.includes('@radix-ui/react-dialog')) {
-                return 'vendor-radix-dialog';
-              }
-              if (id.includes('@radix-ui/react-dropdown-menu')) {
-                return 'vendor-radix-dropdown';
-              }
-              if (id.includes('@radix-ui/react-navigation-menu')) {
-                return 'vendor-radix-navigation';
-              }
-              return 'vendor-radix';
-            }
-            if (id.includes('lucide-react')) {
-              return 'vendor-lucide';
-            }
-            if (id.includes('react-icons')) {
-              return 'vendor-react-icons';
-            }
             if (id.includes('canvas-confetti')) {
               return 'vendor-confetti';
             }
-            // Outros módulos node_modules
-            return 'vendor-other';
+            // Um único vendor evita dependência circular entre chunks (ex.: vendor-react ↔ vendor-other)
+            return 'vendor';
           }
           
           // Chunks específicos da aplicação mais granulares
@@ -223,10 +187,5 @@ export default defineConfig({
     exclude: [
       'canvas-confetti', // Carregar sob demanda
     ],
-  },
-  server: {
-    headers: {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    },
   },
 })

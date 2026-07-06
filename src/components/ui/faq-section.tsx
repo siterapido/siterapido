@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     question: "Em quanto tempo meu site fica pronto?",
-    answer: "Seu site pode ficar no ar em até 7 dias úteis após o envio das informações básicas e do pagamento inicial. É rápido mesmo!"
+    answer: "Seu site pode ficar no ar em até 7 dias úteis após o envio das informações básicas e a confirmação da primeira mensalidade. É rápido mesmo!"
   },
   {
     question: "O que está incluso no plano?",
@@ -69,7 +69,7 @@ function FAQ() {
           <div className="flex gap-12 flex-col">
             <div className="flex gap-6 flex-col">
               <div>
-                <Badge className="mb-6 bg-black text-white">FAQ</Badge>
+                <Badge className="mb-6 bg-[#9CD653] text-black">FAQ</Badge>
               </div>
               <div className="flex gap-4 flex-col">
                 <h4 className="text-3xl md:text-5xl font-extrabold mb-6 text-black text-left">
@@ -81,7 +81,7 @@ function FAQ() {
               </div>
               <div className="">
                 <a
-                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Quero tirar uma dúvida sobre o serviço de vocês.')}
+                  href={gerarLinkWhatsApp('5584986536223', 'Olá! Quero tirar uma dúvida sobre o serviço de vocês.')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block w-1/2"

@@ -74,31 +74,6 @@ export const LazyFooterdemo = withLazyLoading(
   lazy(() => import('./ui/footer-section').then(module => ({ default: module.Footerdemo })))
 );
 
-// Componentes admin com lazy loading
-export const LazyAdminLayout = withLazyLoading(
-  lazy(() => import('./admin/AdminLayout').then(module => ({ default: module.default })))
-);
-
-export const LazyPipelineBoard = withLazyLoading(
-  lazy(() => import('./admin/PipelineBoard').then(m => ({ default: m.default })))
-);
-
-export const LazyLeadDetail = withLazyLoading(
-  lazy(() => import('./admin/LeadDetail').then(m => ({ default: m.default })))
-);
-
-export const LazySubscriptionsTable = withLazyLoading(
-  lazy(() => import('./admin/SubscriptionsTable').then(m => ({ default: m.default })))
-);
-
-export const LazyCustomersTable = withLazyLoading(
-  lazy(() => import('./admin/CustomersTable').then(m => ({ default: m.default })))
-);
-
-export const LazyLogin = withLazyLoading(
-  lazy(() => import('./admin/Login').then(module => ({ default: module.default })))
-);
-
 // Componentes UI pesados
 export const LazyLeadFormModal = withLazyLoading(
   lazy(() => import('./ui/LeadFormModal').then(module => ({ default: module.LeadFormModal })))

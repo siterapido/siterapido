@@ -93,7 +93,7 @@ export function ComoFuncionaSection() {
         {/* Botão de Call-to-Action */}
         <div className="text-center mt-20">
           <a
-            href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi como funciona o processo de vocês e quero começar meu projeto. Pode me ajudar?')}
+            href={gerarLinkWhatsApp('5584986536223', 'Olá! Vi como funciona o processo de vocês e quero começar meu projeto. Pode me ajudar?')}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 bg-[#9CD653] hover:bg-[#9CD653]/90 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"

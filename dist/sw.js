@@ -1,6 +1,6 @@
-const CACHE_NAME = 'siterapido-v1.0.1';
-const STATIC_CACHE = 'static-v1.0.1';
-const DYNAMIC_CACHE = 'dynamic-v1.0.1';
+const CACHE_NAME = 'siterapido-v1.0.2';
+const STATIC_CACHE = 'static-v1.0.2';
+const DYNAMIC_CACHE = 'dynamic-v1.0.2';
 
 // Recursos para cache estático
 const STATIC_ASSETS = [
@@ -60,6 +60,11 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
+
+  // Nunca interceptar localhost (Vite dev / preview alternado na mesma porta)
+  if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+    return;
+  }
 
   // Estratégia Cache First para recursos estáticos
   if (request.method === 'GET' && isStaticAsset(url.pathname)) {
@@ -138,10 +143,17 @@ self.addEventListener('fetch', (event) => {
 
 // Funções auxiliares
 function isStaticAsset(pathname) {
+  // Nunca cachear módulos do Vite dev server
+  if (
+    pathname.startsWith('/@') ||
+    pathname.startsWith('/src/') ||
+    pathname.includes('/node_modules/.vite/')
+  ) {
+    return false;
+  }
   return (
     pathname.includes('/assets/') ||
     pathname.includes('/Fontes/') ||
-    pathname.endsWith('.js') ||
     pathname.endsWith('.css') ||
     pathname.endsWith('.woff2') ||
     pathname.endsWith('.woff')

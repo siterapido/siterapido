@@ -40,6 +40,7 @@ export interface Lead {
   notes: string | null;
   customer_id: string | null;
   lost_reason: string | null;
+  source?: string | null;
   created_at: string;
   updated_at: string;
 }

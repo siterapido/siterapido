@@ -58,25 +58,25 @@
         opacity: 1;
       }
     </style>
-    <script type="module" crossorigin src="/assets/js/index-BOBoGc7h.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-other-DNtCu_aW.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-radix-1jqlrV-B.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-react-C6q2kUTV.js">
+    <script type="module" crossorigin src="/assets/js/index-CrtjV4vc.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-BWGhnySV.js">
     <link rel="modulepreload" crossorigin href="/assets/js/lib-performance-J6WSP3tJ.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/lib-Bnd326h0.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-framer-CuJ6OVze.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/ui-components-B_O_j0oB.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-Dzta5LwM.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-auth-DS9P1e1f.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-core-CHKCHvTl.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/lib-supabase-DE3igQm5.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/ui-lead-form-DVC4mb8Z.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/hooks-BpOtAkd7.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/ui-header-B0ltX92x.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/ui-hero-TEsmeGfL.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/sections-como-funciona-SYaDTejv.js">
-    <link rel="modulepreload" crossorigin href="/assets/js/ui-pricing-CY3we40D.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BwoOis9i.css">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-CkYhPTWo.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-auth-BYzGgiv3.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/vendor-supabase-core-DQ7-WOZH.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/lib-supabase-CUCFd7u_.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/hooks-DtGctQ3u.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/admin-lead-detail-D3vqiLzI.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/admin-pRuM-dzo.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/lib-DXyQyLx7.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/ui-components-B9kLyQYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/ui-header-ClJZ0ci0.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/ui-hero-CUxjS19n.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/sections-como-funciona-D2JHaGWa.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/ui-pricing-BkumS6u2.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/admin-login-C1T00mvr.js">
+    <link rel="modulepreload" crossorigin href="/assets/js/admin-pipeline-BgRIVeR5.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DVdFabef.css">
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
@@ -85,16 +85,22 @@
     <!-- End Google Tag Manager (noscript) -->
     
     <div id="root"></div>
-    
-    <!-- Service Worker para cache offline -->
+    <!-- Dev: SW de preview/prod cacheia chunks antigos e quebra lazy/admin -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered'))
-            .catch(error => console.log('SW registration failed'));
-        });
-      }
+      (function () {
+        var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+        if (!isLocal) return;
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (r) { r.unregister(); });
+          });
+        }
+        if ('caches' in window) {
+          caches.keys().then(function (keys) {
+            keys.forEach(function (k) { caches.delete(k); });
+          });
+        }
+      })();
     </script>
   </body>
 </html>

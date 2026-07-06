@@ -10,7 +10,6 @@ import { useSectionInView } from "@/hooks/useSectionInView";
 import { FullpageSection } from "@/components/layout/FullpageSection";
 import type { FullpageSectionProps } from "@/components/layout/FullpageSection";
 import React from "react";
-import { LeadFormModal } from "@/components/ui/LeadFormModal";
 import { gerarLinkWhatsApp } from "@/lib/utils";
 
 function AnimatedGridBG() {
@@ -76,8 +75,7 @@ function Hero(props: FullpageSectionProps) {
 
   // Hook para detectar se a galeria está visível
   const [morphDone, setMorphDone] = useState(false);
-  const [morphTriggered, setMorphTriggered] = useState(false); // novo estado
-  const [modalOpen, setModalOpen] = useState<false | 'orcamento'>(false);
+  const [morphTriggered, setMorphTriggered] = useState(false);
 
   // Ref para a Hero Section
   const heroRef = useRef<HTMLDivElement>(null);
@@ -185,7 +183,7 @@ function Hero(props: FullpageSectionProps) {
               {/* Subtítulo com melhor estrutura e espaçamento */}
               <div className="space-y-2 sm:space-y-3 max-w-2xl">
                 <p className="text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed text-gray-800 dark:text-gray-100 font-medium">
-                  Seu site profissional por mensalidade.
+                  Seu site profissional por R$ 120/mês.
                 </p>
                 <p className="text-xs sm:text-sm md:text-base leading-relaxed text-gray-600 dark:text-gray-300 font-normal">
                   Sem taxa de entrada. Sem fidelidade. Cancele quando quiser.
@@ -215,7 +213,7 @@ function Hero(props: FullpageSectionProps) {
                 
                 {/* CTA Secundário - Falar com especialista */}
                 <a
-                  href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero falar com um especialista sobre meu projeto. Pode me ajudar?')}
+                  href={gerarLinkWhatsApp('5584986536223', 'Olá! Vi o site de vocês e quero falar com um especialista sobre meu projeto. Pode me ajudar?')}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto min-w-[180px] h-12 sm:h-14 text-sm sm:text-base md:text-lg font-bold flex items-center justify-center gap-3 rounded-2xl px-5 sm:px-6 py-3 transition-all duration-300 border-2 border-[#9CD653] bg-white text-[#222] shadow-xl backdrop-blur-md relative overflow-hidden group focus:ring-4 focus:ring-[#9CD653] focus:ring-offset-2 hover:scale-105 hover:shadow-[0_20px_40px_rgba(156,214,83,0.2)]"
@@ -244,7 +242,6 @@ function Hero(props: FullpageSectionProps) {
           </div>
         </div>
         {/* Removido: Botão com ChevronDown para scroll */}
-        <LeadFormModal open={modalOpen !== false} onClose={() => setModalOpen(false)} plano={modalOpen === 'orcamento' ? 'orcamento' : undefined} />
       </FullpageSection>
     </div>
   );

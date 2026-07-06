@@ -76,12 +76,37 @@ function formatCpfCnpjDisplay(value: string): string {
     .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
 }
 
-function ContactRow({ label, value }: { label: string; value: string | null | undefined }) {
-  if (!value) return null;
+function ContactField({
+  label,
+  id,
+  value,
+  onChange,
+  onBlur,
+  type = 'text',
+  required = false,
+}: {
+  label: string;
+  id: string;
+  value: string;
+  onChange: (value: string) => void;
+  onBlur: () => void;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
-      <dt className="text-xs font-medium uppercase tracking-wide text-neutral-500">{label}</dt>
-      <dd className="mt-0.5 text-sm text-neutral-900">{value}</dd>
+      <Label htmlFor={id} className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+        {label}
+      </Label>
+      <Input
+        id={id}
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
+        required={required}
+        className="mt-1.5"
+      />
     </div>
   );
 }
@@ -95,6 +120,12 @@ export default function LeadDetail() {
 
   const [notes, setNotes] = useState('');
   const [notesSaving, setNotesSaving] = useState(false);
+  const [contactSaving, setContactSaving] = useState(false);
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+  const [whatsapp, setWhatsapp] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [instagram, setInstagram] = useState('');
   const [cpfCnpj, setCpfCnpj] = useState('');
   const [billingType, setBillingType] = useState<BillingType>('PIX');
   const [planSaving, setPlanSaving] = useState(false);
@@ -131,6 +162,11 @@ export default function LeadDetail() {
     const leadData = data as Lead;
     setLead(leadData);
     setNotes(leadData.notes ?? '');
+    setNome(leadData.nome ?? '');
+    setEmail(leadData.email ?? '');
+    setWhatsapp(leadData.whatsapp ?? '');
+    setTelefone(leadData.telefone ?? '');
+    setInstagram(leadData.instagram ?? '');
 
     if (leadData.customer_id) {
       const { data: customer } = await supabase
@@ -235,6 +271,38 @@ export default function LeadDetail() {
     }
   };
 
+  const handleContactBlur = async () => {
+    if (!lead) return;
+    const payload: Partial<Lead> = {};
+    if (nome !== (lead.nome ?? '')) payload.nome = nome.trim() || lead.nome;
+    if (email !== (lead.email ?? '')) payload.email = email.trim();
+    if (whatsapp !== (lead.whatsapp ?? '')) payload.whatsapp = whatsapp.trim() || null;
+    if (telefone !== (lead.telefone ?? '')) payload.telefone = telefone.trim() || null;
+    if (instagram !== (lead.instagram ?? '')) payload.instagram = instagram.trim() || null;
+
+    if (Object.keys(payload).length === 0) return;
+    if (payload.email !== undefined && !payload.email) {
+      toast.error('E-mail é obrigatório');
+      setEmail(lead.email);
+      return;
+    }
+
+    setContactSaving(true);
+    try {
+      await updateLead(payload);
+      toast.success('Contato atualizado');
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : 'Erro ao salvar contato');
+      setNome(lead.nome ?? '');
+      setEmail(lead.email ?? '');
+      setWhatsapp(lead.whatsapp ?? '');
+      setTelefone(lead.telefone ?? '');
+      setInstagram(lead.instagram ?? '');
+    } finally {
+      setContactSaving(false);
+    }
+  };
+
   const handlePlanChange = async (slug: PlanSlug) => {
     if (!lead || lead.plan_slug === slug) return;
     setPlanSaving(true);
@@ -294,11 +362,9 @@ export default function LeadDetail() {
     }
   };
 
-  const phone = lead?.whatsapp || lead?.telefone;
-
   if (loading) {
     return (
-      <div className="p-6">
+      <div className="min-h-0 flex-1 overflow-y-auto p-6">
         <Skeleton className="mb-6 h-8 w-48" />
         <div className="grid gap-6 lg:grid-cols-3">
           <Skeleton className="h-64 lg:col-span-2" />
@@ -310,7 +376,7 @@ export default function LeadDetail() {
 
   if (error || !lead) {
     return (
-      <div className="p-6">
+      <div className="min-h-0 flex-1 overflow-y-auto p-6">
         <Link
           to="/admin/pipeline"
           className="mb-6 inline-flex items-center gap-2 text-sm text-neutral-600 hover:text-neutral-900"
@@ -326,7 +392,7 @@ export default function LeadDetail() {
   }
 
   return (
-    <div className="p-6">
+    <div className="min-h-0 flex-1 overflow-y-auto p-6">
       <Link
         to="/admin/pipeline"
         className="mb-6 inline-flex items-center gap-2 text-sm text-neutral-600 transition-colors hover:text-neutral-900"
@@ -350,14 +416,68 @@ export default function LeadDetail() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <section className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">
-            <h2 className="mb-4 text-sm font-semibold text-neutral-900">Contato</h2>
-            <dl className="grid gap-4 sm:grid-cols-2">
-              <ContactRow label="Nome" value={lead.nome} />
-              <ContactRow label="E-mail" value={lead.email} />
-              <ContactRow label="WhatsApp / Telefone" value={phone} />
-              <ContactRow label="Instagram" value={lead.instagram} />
-              <ContactRow label="Plano (landing)" value={lead.plano} />
-            </dl>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-neutral-900">Contato</h2>
+              {contactSaving && (
+                <span className="flex items-center gap-1 text-xs text-neutral-500">
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                  Salvando…
+                </span>
+              )}
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <ContactField
+                label="Nome"
+                id="contact_nome"
+                value={nome}
+                onChange={setNome}
+                onBlur={handleContactBlur}
+              />
+              <ContactField
+                label="E-mail"
+                id="contact_email"
+                type="email"
+                value={email}
+                onChange={setEmail}
+                onBlur={handleContactBlur}
+                required
+              />
+              <ContactField
+                label="WhatsApp"
+                id="contact_whatsapp"
+                value={whatsapp}
+                onChange={setWhatsapp}
+                onBlur={handleContactBlur}
+              />
+              <ContactField
+                label="Telefone"
+                id="contact_telefone"
+                value={telefone}
+                onChange={setTelefone}
+                onBlur={handleContactBlur}
+              />
+              <ContactField
+                label="Instagram"
+                id="contact_instagram"
+                value={instagram}
+                onChange={setInstagram}
+                onBlur={handleContactBlur}
+              />
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                  Plano (landing)
+                </p>
+                <p className="mt-1.5 text-sm text-neutral-900">{lead.plano || '—'}</p>
+              </div>
+              {lead.source && (
+                <div>
+                  <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                    Origem
+                  </p>
+                  <Badge className="mt-1.5 border-0 bg-[#9CD653]/15 text-[#4a7a18]">{lead.source}</Badge>
+                </div>
+              )}
+            </div>
           </section>
 
           <section className="rounded-lg border border-neutral-200 bg-white p-5 shadow-sm">

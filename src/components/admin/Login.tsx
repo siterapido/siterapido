@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { supabase } from '../../lib/supabaseClient';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 export default function Login({ onLogin }: { onLogin: () => void }) {
   const [email, setEmail] = useState('');
@@ -21,34 +24,61 @@ export default function Login({ onLogin }: { onLogin: () => void }) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <form onSubmit={handleLogin} className="bg-white p-8 rounded shadow-md w-80">
-        <h2 className="text-2xl font-bold mb-6 text-center">Admin Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          className="w-full mb-4 p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          className="w-full mb-4 p-2 border rounded"
-          required
-        />
-        {error && <div className="text-red-500 mb-2 text-sm">{error}</div>}
-        <button
+    <div className="flex min-h-screen items-center justify-center bg-neutral-50 p-4">
+      <form
+        onSubmit={handleLogin}
+        className="w-full max-w-sm rounded-lg border border-neutral-200 bg-white p-8 shadow-sm"
+      >
+        <div className="mb-8 text-center">
+          <p className="text-xs font-medium uppercase tracking-wide text-neutral-500">Site Rápido</p>
+          <h2 className="mt-1 text-2xl font-bold text-neutral-950">CRM</h2>
+        </div>
+
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="email" className="text-neutral-700">
+              E-mail
+            </Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="seu@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1.5"
+              required
+            />
+          </div>
+          <div>
+            <Label htmlFor="password" className="text-neutral-700">
+              Senha
+            </Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="••••••••"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1.5"
+              required
+            />
+          </div>
+        </div>
+
+        {error && (
+          <div className="mt-4 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">
+            {error}
+          </div>
+        )}
+
+        <Button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          className="mt-6 w-full bg-[#9CD653] text-neutral-950 hover:bg-[#8bc442]"
           disabled={loading}
         >
-          {loading ? 'Entrando...' : 'Entrar'}
-        </button>
+          {loading ? 'Entrando…' : 'Entrar'}
+        </Button>
       </form>
     </div>
   );
-} 
+}

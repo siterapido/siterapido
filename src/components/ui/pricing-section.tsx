@@ -1,9 +1,6 @@
-import { useState } from 'react';
 import { Badge } from "./badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "./card";
-import { Button } from "./button";
-import { CheckCircle, Star, CreditCard, ShieldCheck, Barcode, DollarSign, PhoneCall, MoveRight } from "lucide-react";
-import { LeadFormModal } from './LeadFormModal';
+import { CheckCircle, Star, ShieldCheck, MoveRight } from "lucide-react";
 import { gerarLinkWhatsApp } from "@/lib/utils";
 
 type PlanoType = 'mensal' | 'anual';
@@ -60,9 +57,6 @@ const plans: Plan[] = [
 ];
 
 export function PricingSection() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedPlano, setSelectedPlano] = useState<PlanoType>('mensal');
-
   return (
     <section id="planos" className="relative w-full py-20 lg:py-32 bg-background overflow-hidden">
       {/* Faixa de grade ao fundo, horizontal e ocupando toda a largura, com fade nas bordas */}
@@ -80,7 +74,7 @@ export function PricingSection() {
         />
       </div>
       <div className="container mx-auto flex flex-col items-center relative z-10">
-        <Badge className="mb-4 bg-black text-white">Planos</Badge>
+        <Badge className="mb-4 bg-[#9CD653] text-black">Planos</Badge>
         <h2 className="text-3xl md:text-5xl font-extrabold mb-4 text-black text-center">
           Preços que fazem sentido para o seu negócio
         </h2>
@@ -134,7 +128,7 @@ export function PricingSection() {
               <CardFooter className="flex flex-col gap-2">
                 <a
                   href={gerarLinkWhatsApp(
-                    plan.plano === 'mensal' ? '5584999810711' : '5584999810711',
+                    plan.plano === 'mensal' ? '5584986536223' : '5584986536223',
                     plan.plano === 'mensal'
                       ? 'Olá! Quero contratar o plano mensal de R$120/mês. Como funciona o processo?'
                       : 'Olá! Quero contratar o plano anual de R$997/ano. Como funciona o processo?'
@@ -201,7 +195,6 @@ export function PricingSection() {
           ))}
         </div>
       </div>
-      <LeadFormModal open={modalOpen} onClose={() => setModalOpen(false)} plano={selectedPlano} />
     </section>
   );
 } 

@@ -66,17 +66,23 @@
     <!-- End Google Tag Manager (noscript) -->
     
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    
-    <!-- Service Worker para cache offline -->
+    <!-- Dev: SW de preview/prod cacheia chunks antigos e quebra lazy/admin -->
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => console.log('SW registered'))
-            .catch(error => console.log('SW registration failed'));
-        });
-      }
+      (function () {
+        var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+        if (!isLocal) return;
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.getRegistrations().then(function (regs) {
+            regs.forEach(function (r) { r.unregister(); });
+          });
+        }
+        if ('caches' in window) {
+          caches.keys().then(function (keys) {
+            keys.forEach(function (k) { caches.delete(k); });
+          });
+        }
+      })();
     </script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

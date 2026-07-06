@@ -11,17 +11,18 @@ import { initThirdPartyOptimization } from './lib/thirdPartyOptimization';
 import { initializeFontOptimization } from './lib/fontOptimization';
 import { loadLenisConditionally, progressiveLoader } from './lib/performance';
 import { Toaster } from '@/components/ui/sonner';
+import Login from './components/admin/Login';
+import AdminLayout from './components/admin/AdminLayout';
+import PipelineBoard from './components/admin/PipelineBoard';
+import LeadDetail from './components/admin/LeadDetail';
+import SubscriptionsTable from './components/admin/SubscriptionsTable';
+import CustomersTable from './components/admin/CustomersTable';
+import ResumoPage from './components/admin/ResumoPage';
 import { 
   LazyPortfolioSection, 
   LazyAboutSection, 
   LazyFAQ, 
   LazyFooterdemo,
-  LazyAdminLayout,
-  LazyLogin,
-  LazyPipelineBoard,
-  LazyLeadDetail,
-  LazySubscriptionsTable,
-  LazyCustomersTable,
 } from './components/lazy';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -104,12 +105,13 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/admin/login" element={<LazyLogin onLogin={() => window.location.href = '/admin/pipeline'} />} />
-        <Route path="/admin" element={<Navigate to="/admin/pipeline" replace />} />
-        <Route path="/admin/pipeline" element={<ProtectedRoute><LazyAdminLayout><LazyPipelineBoard /></LazyAdminLayout></ProtectedRoute>} />
-        <Route path="/admin/leads/:id" element={<ProtectedRoute><LazyAdminLayout><LazyLeadDetail /></LazyAdminLayout></ProtectedRoute>} />
-        <Route path="/admin/assinaturas" element={<ProtectedRoute><LazyAdminLayout><LazySubscriptionsTable /></LazyAdminLayout></ProtectedRoute>} />
-        <Route path="/admin/clientes" element={<ProtectedRoute><LazyAdminLayout><LazyCustomersTable /></LazyAdminLayout></ProtectedRoute>} />
+        <Route path="/admin/login" element={<Login onLogin={() => window.location.href = '/admin/resumo'} />} />
+        <Route path="/admin" element={<Navigate to="/admin/resumo" replace />} />
+        <Route path="/admin/resumo" element={<ProtectedRoute><AdminLayout><ResumoPage /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/pipeline" element={<ProtectedRoute><AdminLayout><PipelineBoard /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/leads/:id" element={<ProtectedRoute><AdminLayout><LeadDetail /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/assinaturas" element={<ProtectedRoute><AdminLayout><SubscriptionsTable /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/clientes" element={<ProtectedRoute><AdminLayout><CustomersTable /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/leads" element={<Navigate to="/admin/pipeline" replace />} />
       </Routes>
       <Toaster richColors position="top-right" />

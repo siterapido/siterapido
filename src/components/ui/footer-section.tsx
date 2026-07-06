@@ -32,7 +32,7 @@ function Footerdemo() {
             />
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <Phone className="h-4 w-4" />
-              <span>WhatsApp: (84) 99981-0711</span>
+              <span>WhatsApp: (84) 98653-6223</span>
             </div>
             <div className="flex items-center gap-3 text-sm text-muted-foreground">
               <Mail className="h-4 w-4" />
@@ -91,7 +91,7 @@ function Footerdemo() {
               Entre em contato conosco e vamos criar o site perfeito para seu negócio
             </p>
             <a
-              href={gerarLinkWhatsApp('5584999810711', 'Olá! Vi o site de vocês e quero começar meu projeto. Pode me ajudar?')}
+              href={gerarLinkWhatsApp('5584986536223', 'Olá! Vi o site de vocês e quero começar meu projeto. Pode me ajudar?')}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-3 bg-[#9CD653] hover:bg-[#9CD653]/90 text-black font-bold text-lg px-8 py-4 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg"
@@ -104,7 +104,7 @@ function Footerdemo() {
         
         <div className="mt-12 flex flex-col items-center justify-between gap-6 border-t pt-12 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © 2024 Site Rápido. Todos os direitos reservados.
+            © 2026 Site Rápido. Todos os direitos reservados.
           </p>
           <nav className="flex gap-6 text-sm">
             <a href="#" className="transition-colors hover:text-[#9CD653] text-white">Política de Privacidade</a>

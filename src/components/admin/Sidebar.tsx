@@ -1,9 +1,10 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutGrid, CreditCard, Users, LogOut } from 'lucide-react';
+import { BarChart3, LayoutGrid, CreditCard, Users, LogOut } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { cn } from '@/lib/utils';
 
 const menu = [
+  { label: 'Resumo', path: '/admin/resumo', icon: BarChart3 },
   { label: 'Pipeline', path: '/admin/pipeline', icon: LayoutGrid },
   { label: 'Assinaturas', path: '/admin/assinaturas', icon: CreditCard },
   { label: 'Clientes', path: '/admin/clientes', icon: Users },

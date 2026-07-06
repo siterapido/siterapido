@@ -44,7 +44,7 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({ open, onClose, pla
     }
     setLoading(true);
     const { error } = await supabase.from('leads').insert([
-      { nome, email, whatsapp, instagram, plano: planoLabel, stage: 'novo' }
+      { nome, email, whatsapp, instagram, plano: planoLabel, stage: 'novo', source: 'landing' }
     ]);
     setLoading(false);
     if (error) {

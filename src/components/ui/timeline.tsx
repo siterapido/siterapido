@@ -50,31 +50,18 @@ export const Timeline = ({ data, vertical = false, activeIndex }: TimelineProps)
         {data.map((item, index) => (
           vertical ? (
             <div key={index} className="pt-10 md:pt-40" ref={item.ref}>
-              {/* Desktop: card embaixo do título */}
-              <div className="hidden md:flex flex-row items-start gap-8">
-                {/* Bola numerada centralizada */}
-                <div className="relative flex flex-col items-center min-w-[32px] w-[32px]">
+              <div className="flex flex-row items-start gap-6 md:gap-8">
+                <div className="relative flex flex-col items-center min-w-[28px] w-[28px] md:min-w-[32px] md:w-[32px]">
                   {item.numero && (
-                    <div className={`relative z-10 flex items-center justify-center w-7 h-7 rounded-full font-bold text-base shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#9CD653] text-black dark:text-white sticky top-8' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-6px'}}>
+                    <div
+                      className={`relative z-10 flex items-center justify-center w-6 h-6 md:w-7 md:h-7 rounded-full font-bold text-sm md:text-base shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#9CD653] text-black dark:text-white sticky top-4 md:top-8' : 'bg-gray-100 text-neutral-500'}`}
+                      style={{ marginTop: '-4px' }}
+                    >
                       {item.numero}
                     </div>
                   )}
                 </div>
-                <div className="flex-1 space-y-4">
-                  {item.title}
-                  {item.content}
-                </div>
-              </div>
-              {/* Mobile: layout padrão (linha e bola menores) */}
-              <div className="flex md:hidden justify-start gap-6">
-                <div className="relative flex flex-col items-center min-w-[28px] w-[28px]">
-                  {item.numero && (
-                    <div className={`relative z-10 flex items-center justify-center w-6 h-6 rounded-full font-bold text-sm shadow-sm mb-0 border border-gray-200 ${activeIndex === index ? 'bg-[#9CD653] text-black dark:text-white sticky top-4' : 'bg-gray-100 text-neutral-500'} ${activeIndex === index ? '' : 'mb-2'}`} style={{marginTop: '-4px'}}>
-                      {item.numero}
-                    </div>
-                  )}
-                </div>
-                <div className="w-full space-y-4">
+                <div className="flex-1 w-full space-y-4">
                   {item.title}
                   {item.content}
                 </div>
