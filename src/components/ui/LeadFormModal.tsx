@@ -44,7 +44,7 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({ open, onClose, pla
     }
     setLoading(true);
     const { error } = await supabase.from('leads').insert([
-      { nome, email, whatsapp, instagram, plano: planoLabel }
+      { nome, email, whatsapp, instagram, plano: planoLabel, stage: 'novo' }
     ]);
     setLoading(false);
     if (error) {
@@ -55,7 +55,7 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({ open, onClose, pla
     console.log(`Lead enviado para o plano: ${planoLabel}`);
     setSuccess(`Formulário enviado para o plano: ${planoLabel}`);
     setTimeout(() => {
-      const numero = '+5584999810711';
+      const numero = '+5584986536223';
       const mensagem = encodeURIComponent(`Olá! Meu nome é ${nome} e quero saber mais sobre o plano ${planoLabel}.`);
       window.location.href = `https://wa.me/${numero.replace(/\D/g, '')}?text=${mensagem}`;
       onClose();
