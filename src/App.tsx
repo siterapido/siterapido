@@ -10,27 +10,19 @@ import { usePreload } from './hooks/usePreload';
 import { initThirdPartyOptimization } from './lib/thirdPartyOptimization';
 import { initializeFontOptimization } from './lib/fontOptimization';
 import { loadLenisConditionally, progressiveLoader } from './lib/performance';
+import { Toaster } from '@/components/ui/sonner';
 import { 
   LazyPortfolioSection, 
-  LazyFocusCardsDemo, 
   LazyAboutSection, 
   LazyFAQ, 
   LazyFooterdemo,
   LazyAdminLayout,
-  LazyLeadsList,
-  LazyLogin
+  LazyLogin,
+  LazyPipelineBoard,
+  LazyLeadDetail,
+  LazySubscriptionsTable,
+  LazyCustomersTable,
 } from './components/lazy';
-
-function toggleDarkMode(forceDark?: boolean) {
-  const html = document.documentElement;
-  if (forceDark === undefined) {
-    html.classList.toggle("dark");
-  } else if (forceDark) {
-    html.classList.add("dark");
-  } else {
-    html.classList.remove("dark");
-  }
-}
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<any>(null);
@@ -50,35 +42,16 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 function LandingPage() {
-  const [dark, setDark] = useState(() => {
-    if (typeof window === "undefined") return true;
-    return document.documentElement.classList.contains("dark");
-  });
-
-  // Hook para preload de recursos críticos
   usePreload();
   
-  // Inicializa otimizações
   useEffect(() => {
-    // Inicializa otimização de terceiros
     initThirdPartyOptimization();
-    
-    // Inicializa otimização de fontes
     initializeFontOptimization();
     
-    // Preload de componentes pesados
     progressiveLoader.preload('portfolio-section', () => 
       import('./components/sections/PortfolioSection')
     );
-    
-    progressiveLoader.preload('focus-cards', () => 
-      import('./components/ui/demo')
-    );
   }, []);
-
-  useEffect(() => {
-    toggleDarkMode(dark);
-  }, [dark]);
 
   // Lenis Smooth Scroll - Carregamento otimizado
   useEffect(() => {
@@ -118,7 +91,6 @@ function LandingPage() {
       <ComoFuncionaSection />
       <PricingSection />
       <LazyPortfolioSection />
-      <LazyFocusCardsDemo />
       <LazyAboutSection />
       <LazyFAQ />
       <LazyFooterdemo />
@@ -129,13 +101,20 @@ function LandingPage() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/admin/login" element={<LazyLogin onLogin={() => window.location.href = '/admin/leads'} />} />
-      <Route path="/admin" element={<ProtectedRoute><LazyAdminLayout><LazyLeadsList /></LazyAdminLayout></ProtectedRoute>} />
-      <Route path="/admin/leads" element={<ProtectedRoute><LazyAdminLayout><LazyLeadsList /></LazyAdminLayout></ProtectedRoute>} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/admin/login" element={<LazyLogin onLogin={() => window.location.href = '/admin/pipeline'} />} />
+        <Route path="/admin" element={<Navigate to="/admin/pipeline" replace />} />
+        <Route path="/admin/pipeline" element={<ProtectedRoute><LazyAdminLayout><LazyPipelineBoard /></LazyAdminLayout></ProtectedRoute>} />
+        <Route path="/admin/leads/:id" element={<ProtectedRoute><LazyAdminLayout><LazyLeadDetail /></LazyAdminLayout></ProtectedRoute>} />
+        <Route path="/admin/assinaturas" element={<ProtectedRoute><LazyAdminLayout><LazySubscriptionsTable /></LazyAdminLayout></ProtectedRoute>} />
+        <Route path="/admin/clientes" element={<ProtectedRoute><LazyAdminLayout><LazyCustomersTable /></LazyAdminLayout></ProtectedRoute>} />
+        <Route path="/admin/leads" element={<Navigate to="/admin/pipeline" replace />} />
+      </Routes>
+      <Toaster richColors position="top-right" />
+    </>
   );
 }
 
-export default App; 
+export default App;

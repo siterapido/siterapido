@@ -3,9 +3,9 @@ import type { ReactNode } from 'react';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen bg-white font-sans text-neutral-900">
       <Sidebar />
-      <main className="flex-1 bg-gray-50">{children}</main>
+      <main className="flex-1 overflow-auto bg-white">{children}</main>
     </div>
   );
-} 
+}

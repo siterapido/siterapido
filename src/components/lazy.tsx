@@ -62,10 +62,6 @@ export const LazyPortfolioSection = withLazyLoading(
   lazy(() => import('./sections/PortfolioSection').then(module => ({ default: module.PortfolioSection })))
 );
 
-export const LazyFocusCardsDemo = withLazyLoading(
-  lazy(() => import('./ui/demo').then(module => ({ default: module.FocusCardsDemo })))
-);
-
 export const LazyAboutSection = withLazyLoading(
   lazy(() => import('./sections/AboutSection').then(module => ({ default: module.AboutSection })))
 );
@@ -83,8 +79,20 @@ export const LazyAdminLayout = withLazyLoading(
   lazy(() => import('./admin/AdminLayout').then(module => ({ default: module.default })))
 );
 
-export const LazyLeadsList = withLazyLoading(
-  lazy(() => import('./admin/LeadsList').then(module => ({ default: module.default })))
+export const LazyPipelineBoard = withLazyLoading(
+  lazy(() => import('./admin/PipelineBoard').then(m => ({ default: m.default })))
+);
+
+export const LazyLeadDetail = withLazyLoading(
+  lazy(() => import('./admin/LeadDetail').then(m => ({ default: m.default })))
+);
+
+export const LazySubscriptionsTable = withLazyLoading(
+  lazy(() => import('./admin/SubscriptionsTable').then(m => ({ default: m.default })))
+);
+
+export const LazyCustomersTable = withLazyLoading(
+  lazy(() => import('./admin/CustomersTable').then(m => ({ default: m.default })))
 );
 
 export const LazyLogin = withLazyLoading(
@@ -107,9 +115,6 @@ export const usePreloadComponent = (preloadFn: () => Promise<any>) => {
 // Funções de preload
 export const preloadPortfolioSection = () => 
   import('./sections/PortfolioSection');
-
-export const preloadFocusCardsDemo = () => 
-  import('./ui/demo');
 
 export const preloadAboutSection = () => 
   import('./sections/AboutSection');
