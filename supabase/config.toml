@@ -36,3 +36,6 @@ enable_signup = true
 
 [functions.asaas-create-subscription]
 verify_jwt = false
+
+[functions.asaas-webhook]
+verify_jwt = false
