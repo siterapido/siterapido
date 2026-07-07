@@ -28,7 +28,9 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import TablePagination from '@/components/admin/TablePagination';
 import { useOutbound } from '@/hooks/useOutbound';
+import { usePaginatedSlice } from '@/hooks/usePaginatedSlice';
 import { cn } from '@/lib/utils';
 import {
   LEAD_STATUS_LABELS,
@@ -283,6 +285,13 @@ export default function OutboundPage() {
     });
   }, [leads, search, statusFilter]);
 
+  const leadsPagination = usePaginatedSlice(
+    filteredLeads,
+    `${search}|${statusFilter}`
+  );
+  const enviosPagination = usePaginatedSlice(envios, 'envios');
+  const respostasPagination = usePaginatedSlice(respostas, 'respostas');
+
   const handleRefresh = async () => {
     setRefreshing(true);
     await refresh();
@@ -446,7 +455,7 @@ export default function OutboundPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {filteredLeads.map((lead) => (
+                      {leadsPagination.visible.map((lead) => (
                         <TableRow key={lead.id}>
                           <TableCell>
                             <div>
@@ -472,6 +481,12 @@ export default function OutboundPage() {
                       ))}
                     </TableBody>
                   </Table>
+                  <TablePagination
+                    page={leadsPagination.page}
+                    totalPages={leadsPagination.totalPages}
+                    totalItems={leadsPagination.total}
+                    onPageChange={leadsPagination.setPage}
+                  />
                 </div>
               )}
             </TabsContent>
@@ -496,7 +511,7 @@ export default function OutboundPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {envios.map((envio: Envio) => (
+                      {enviosPagination.visible.map((envio: Envio) => (
                         <TableRow key={envio.id}>
                           <TableCell className="whitespace-nowrap text-sm text-neutral-500">
                             {formatDateTime(envio.data_hora)}
@@ -523,6 +538,12 @@ export default function OutboundPage() {
                       ))}
                     </TableBody>
                   </Table>
+                  <TablePagination
+                    page={enviosPagination.page}
+                    totalPages={enviosPagination.totalPages}
+                    totalItems={enviosPagination.total}
+                    onPageChange={enviosPagination.setPage}
+                  />
                 </div>
               )}
             </TabsContent>
@@ -546,7 +567,7 @@ export default function OutboundPage() {
                       </TableRow>
                     </TableHeader>
                     <TableBody>
-                      {respostas.map((r: Resposta) => (
+                      {respostasPagination.visible.map((r: Resposta) => (
                         <TableRow key={r.id}>
                           <TableCell className="whitespace-nowrap text-sm text-neutral-500">
                             {formatDateTime(r.data_hora)}
@@ -564,6 +585,12 @@ export default function OutboundPage() {
                       ))}
                     </TableBody>
                   </Table>
+                  <TablePagination
+                    page={respostasPagination.page}
+                    totalPages={respostasPagination.totalPages}
+                    totalItems={respostasPagination.total}
+                    onPageChange={respostasPagination.setPage}
+                  />
                 </div>
               )}
             </TabsContent>
