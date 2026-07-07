@@ -196,27 +196,37 @@ function Header1() {
     return (
         <header className="w-full z-50 fixed top-0 left-0 flex justify-center items-center bg-transparent transition-colors duration-300 text-neutral-900">
             <div className="container mx-auto flex items-center justify-between px-2 md:px-6 py-2 min-h-20">
-                <div className="w-full flex items-center justify-between bg-white shadow-lg rounded-full px-4 md:px-10 py-2 md:py-3 gap-2 md:gap-8 border border-neutral-100" 
+                <div className="relative w-full flex items-center bg-white shadow-lg rounded-full px-4 md:px-10 py-2 md:py-3 gap-2 md:gap-8 border border-neutral-100" 
                      style={{ boxShadow: '0 4px 24px 0 rgba(0,0,0,0.07)' }}>
                     
-                    <Logo />
-
-                    <DesktopNavigation onMenuClick={handleMenuClick} activeSection={activeSection} />
-                    
-                    <div className="hidden md:flex items-center gap-2 lg:gap-4">
-                        <WhatsAppButton />
+                    <div className="flex-1 hidden md:block">
+                        <DesktopNavigation onMenuClick={handleMenuClick} activeSection={activeSection} />
                     </div>
 
-                    <div className="md:hidden flex items-center">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            onClick={() => setOpen(!isOpen)}
-                            aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
-                            className="hover:bg-gray-100"
-                        >
-                            {isOpen ? <X size={24} /> : <Menu size={24} />}
-                        </Button>
+                    <div className="md:hidden flex-1" aria-hidden>
+                        <div className="w-10 h-10" />
+                    </div>
+
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                        <Logo />
+                    </div>
+                    
+                    <div className="flex-1 flex items-center justify-end gap-2 lg:gap-4">
+                        <div className="hidden md:flex items-center">
+                            <WhatsAppButton />
+                        </div>
+
+                        <div className="md:hidden flex items-center">
+                            <Button
+                                variant="ghost"
+                                size="icon"
+                                onClick={() => setOpen(!isOpen)}
+                                aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+                                className="hover:bg-gray-100"
+                            >
+                                {isOpen ? <X size={24} /> : <Menu size={24} />}
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
